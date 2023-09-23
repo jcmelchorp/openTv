@@ -1,0 +1,57 @@
+<div class="mx-5 my-5">
+  <!-- <app-card-header [cardheaderTitle]="{{'card-header-title'|translate}}"></app-card-header> -->
+  <div style="margin-top: 20px">
+    <mat-card style="width: fit-content;" appMaterialElevation [raisedElevation]="raisedElevation"
+      [defaultElevation]="defaultElevation">
+      <mat-card-header style="margin-top: -20px">
+        <!-- <img mat-card-avatar src="https://i.pinimg.com/originals/98/d3/a2/98d3a283f98cded8e639957e935bd373.png" /> -->
+        <mat-card-title><span class="view-title">{{"settings-header-title"| translate}}</span>
+        </mat-card-title>
+        <mat-card-subtitle style="margin-top: 10px" class="view-subtitle">{{"settings-header-description" |translate}}
+        </mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+  </div>
+</div>
+<div class="mx-3" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="space-around" fxLayoutGap="10px">
+  <mat-card class="my-4 {{(isDarkTheme$|async)?'':'border'}}" fxFlex="0 1 calc(50% - 5px)" fxFlex.lt-sm="100%">
+    <mat-card-header style="margin-top: -25px">
+      <mat-card-title>
+        <span [ngClass]="{'bg-white': !(isDarkTheme$|async)}" class="card-title">{{"theme-header-title"|
+          translate}}</span>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div fxLayout="row" fxLayoutAlign="start top" fxLayoutGap="10px">
+        <mat-slide-toggle [checked]="isDarkTheme$|async" labelPosition="before" (change)="toggleDarkTheme(isDarkTheme)">
+        </mat-slide-toggle>
+        <fa-icon [icon]="(isDarkTheme$|async)?faMoon:faSun" size="lg"></fa-icon>
+        <div>Modo {{(isDarkTheme$|async)?'nocturno':'diurno'}}</div>
+      </div>
+      <p>Disminuye la intensidad de luz emitida por la pantalla al utilizar una interfaz de color negro.</p>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="my-4 {{(isDarkTheme$|async)?'':'border'}}" fxFlex="0 1 calc(50% - 5px)" fxFlex.lt-sm="100%">
+    <mat-card-header style="margin-top: -25px">
+      <mat-card-title>
+        <span class="card-title {{(isDarkTheme$|async)?'':'bg-white'}}">{{"language-header-title"|
+          translate}}</span>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="langForm">
+        <mat-form-field class="d-block" appearance="outline">
+          <mat-label>Selecciona el idioma</mat-label>
+          <mat-select formControlName="selectedLang" (selectionChange)="switchLang($event.value)">
+            <mat-option *ngFor="let lang of langs" value="{{lang}}">
+              <!-- <mat-icon svgIcon="{{lang}}" aria-hidden="false" aria-label="{{lang}} flag icon"></mat-icon> -->
+              <mat-icon svgIcon="{{lang}}" aria-hidden="false"></mat-icon>
+              {{ "language-"+lang+"-name" | translate }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+      <p>Selecciona el idioma.</p>
+    </mat-card-content>
+  </mat-card>
+</div>

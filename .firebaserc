@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "freetv-opentv": {
+      "hosting": {
+        "openTv": [
+          "opentv"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "freetv-opentv"
+  }
+}

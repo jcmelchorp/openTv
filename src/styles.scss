@@ -1,1 +1,38 @@
-/* You can add global styles to this file, and also import other style files */
+@import "assets/theme/custom-theme.scss";
+@import "assets/theme/colors";
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  //font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.app-name {
+  font-family: "Modak", cursive;
+  font-size: 3rem;
+  text-shadow: -2px 2px 2px rgb(160, 160, 160);
+  color: $orange-color;
+}
+.view-title {
+  color: $bg-main;
+  font-size: calc(2rem + 1.5vw);
+  font-weight: 800;
+  font-family: "fredoka one", cursive;
+  text-shadow: -3px -2px 1px $text-shadow-color;
+}
+.view-subtitle {
+  font-family: "comfortaa";
+  font-size: calc(0.8rem + 1vw);
+  font-weight: 400;
+}
+.head-component {
+  font-family: "Love Ya Like A Sister";
+}
+/* class to avoid text selection*/
+.no-copy {
+  -webkit-user-select: none; /* Chrome all / Safari all */
+  -moz-user-select: none; /* Firefox all */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none; /* Likely future */
+}

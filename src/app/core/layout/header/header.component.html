@@ -1,0 +1,35 @@
+<mat-toolbar class="border-bottom">
+  <mat-toolbar-row fxLayout="row warp" fxLayoutAlign="space-between center">
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+      <fa-icon mat-icon-button [icon]="faBars" (click)="toggleSidenavLeft($event)" aria-label="Side nav toggle icon">
+      </fa-icon>
+      <a routerLink="/"><img class="logo-image" src="/assets/icons/openTv_transparent.png" /></a>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
+      <button type="button" aria-label="Alternar idioma" mat-icon-button [matMenuTriggerFor]="languageMenu">
+        <div fxLayout="column" fxLayoutAlign="end center">
+          <mat-icon>language</mat-icon>
+          <span *ngIf="translate.currentLang==='es'" style="font-size:50%">{{ "language-es-name" | translate }}</span>
+          <span *ngIf="translate.currentLang==='en'" style="font-size:50%">{{ "language-en-name" | translate }}</span>
+        </div>
+      </button>
+      <mat-menu #languageMenu="matMenu">
+        <div mat-menu-item (click)="switchLang('es')">
+          <mat-icon svgIcon="es" aria-hidden="false" aria-label="español flag icon"></mat-icon>
+          {{ "language-es-name" | translate }}
+        </div>
+        <div mat-menu-item (click)="switchLang('en')">
+          <mat-icon svgIcon="en" aria-hidden="false" aria-label="english flag icon"></mat-icon>
+          {{ "language-en-name" | translate }}
+        </div>
+      </mat-menu>
+      <button type="button" aria-label="Alternar tema" mat-icon-button (click)="toggleDarkTheme(isDarkTheme)">
+        <div fxLayout="column" fxLayoutAlign="end center">
+          <mat-icon>{{(isDarkTheme$|async)?'nightlight':'light_mode'}}</mat-icon>
+          <span style="font-size:50%">{{ (isDarkTheme$|async)?'on':'off' }}</span>
+        </div>
+      </button>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<ng-content #progressBar></ng-content>

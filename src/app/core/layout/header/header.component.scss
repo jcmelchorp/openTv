@@ -1,0 +1,15 @@
+.logo-image {
+  height: 50px;
+  width: auto;
+  margin-left: 10px;
+}
+.header-icons {
+  font-size: 50%;
+}
+
+.mat-toolbar {
+  min-height: 50px !important;
+  .mat-toolbar-row {
+    max-height: 50px !important;
+  }
+}

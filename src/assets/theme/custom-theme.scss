@@ -1,0 +1,49 @@
+@use "@angular/material" as mat;
+@import "@angular/material/theming";
+
+@include mat.core();
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa&family=Roboto&family=Fredoka+One&family=Fredoka&family=Love+Ya+Like+A+Sister&family=Sarabun&family=Londrina+Shadow&family=Londrina+Sketch&family=Miltonian&family=Modak&display=swap");
+
+$typography-config: mat.define-typography-config(
+  $font-family: '"Fredoka", "Londrina Sketch", sans-serif',
+);
+
+@include mat.typography-hierarchy($typography-config);
+
+// Define a dark theme
+$dark-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: mat.define-palette(mat.$pink-palette),
+      accent: mat.define-palette(mat.$blue-grey-palette),
+    ),
+    // Only include `typography` and `density` in the default dark theme.
+    typography: $typography-config,
+    density: 0,
+  )
+);
+
+// Define a light theme
+$light-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: mat.define-palette(mat.$indigo-palette),
+      accent: mat.define-palette(mat.$pink-palette),
+    ),
+  )
+);
+
+// Apply the dark theme by default
+@include mat.core-theme($dark-theme);
+@include mat.button-theme($dark-theme);
+.dark-theme {
+  @include mat.all-component-colors($dark-theme);
+}
+// Apply the light theme only when the user prefers light themes.
+@media (prefers-color-scheme: light) {
+  // Use the `-color` mixins to only apply color styles without reapplying the same
+  // typography and density styles.
+  @include mat.core-color($light-theme);
+  @include mat.button-color($light-theme);
+}
+@include mat.all-component-colors($light-theme);

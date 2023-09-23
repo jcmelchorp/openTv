@@ -1,0 +1,15 @@
+<mat-card *ngIf="(iptv$|async)">
+    <mat-card-header>
+        <img mat-card-avatar [src]="(iptv$|async).logo!||'/assets/icons/bad-tv.png'" />
+        <mat-card-title>{{ (iptv$|async).channelName! }}</mat-card-title>
+        <mat-card-subtitle>{{ (iptv$|async).channelId! }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <div>
+            <video #video appHlsVideoPlayer [stream]="(iptv$|async).url" controls autoplay muted></video>
+        </div>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button>Ok</button>
+    </mat-card-actions>
+</mat-card>

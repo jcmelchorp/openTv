@@ -1,0 +1,21 @@
+<!-- <img src="https://techcrunch.com/wp-content/uploads/2020/03/c-19-splash-header.png?resize=512,192"
+  class="img-fluid position-absolute" [ngStyle]="{zIndex:1}"> -->
+<div class="jumbotron bg-transparent">
+  <div class="text-center">
+    <p class="display-4 head-component text-danger">
+      {{ "notfound-module-title" | translate }}
+    </p>
+    <p class="mat-h1">
+      {{ "notfound-module-description" | translate }}
+    </p>
+    <p>
+      {{ "notfound-module-message" | translate }}
+    </p>
+    <button mat-raised-button color="warn" [routerLink]="['/']">
+      <mat-icon>home</mat-icon> {{ "home" | translate }}
+    </button>
+  </div>
+</div>
+<a download="{{filename}}" [href]="dataUri">
+  <button>Download</button>
+</a>

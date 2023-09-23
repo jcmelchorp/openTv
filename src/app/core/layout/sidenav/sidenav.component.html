@@ -1,0 +1,38 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #leftSidenav class="sidenav" [fixedInViewport]="false" [attr.role]="isHandset ? 'dialog' : 'navigation'"
+    [@onSideNavChange]="sideNavState ? 'open' : 'close'" [mode]="isHandset ? 'over' : 'side'"
+    [opened]="isHandset === false">
+    <div role="navigation" fxLayout="column" fxLayoutAlign="space-between" fxFlexFill>
+      <app-iptv-list [objects]="iptvs$|async" (onIptvEmit)="notify($event)"></app-iptv-list>
+      <!-- <mat-nav-list>
+        <app-brand-button></app-brand-button>
+        <h3 matSubheader>Herramientas </h3>
+        <mat-list-item [routerLink]="['seed']" routerLinkActive="active">
+          <mat-icon matListIcon>upload_file</mat-icon>
+          <span matLine>{{ "notfound" | translate }}</span>
+        </mat-list-item>
+        <mat-list-item [routerLink]="['on-development']" routerLinkActive="active">
+          <mat-icon matListIcon>architecture</mat-icon>
+          <span matLine>{{ "comming-soon" | translate }} ...</span>
+        </mat-list-item>
+      </mat-nav-list> -->
+
+      <mat-nav-list>
+        <mat-divider></mat-divider>
+        <mat-list-item mat-button [routerLink]="['settings']" routerLinkActive="active" (click)="leftSidenav.close()">
+          <mat-icon matListIcon>settings</mat-icon>
+          <span matLine [@animateText]="linkText ? 'show' : 'hide'">{{ "settings" | translate }}</span>
+        </mat-list-item>
+        <!-- <mat-list-item (click)="onSidenavToggle()">
+          <fa-icon matListIcon [icon]="sideNavState ? faCompressAlt : faExpandAlt"></fa-icon>
+        </mat-list-item> -->
+      </mat-nav-list>
+
+    </div>
+
+  </mat-sidenav>
+  <mat-sidenav-content [@onMainContentChange]="(onSideNavChange && !isHandset) ? 'open': 'close'"
+    class="sidenav-content">
+    <app-main-content fxFill></app-main-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>
