@@ -9,8 +9,8 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.state';
 import { toggleDarkMode } from '../../state/config.actions';
 import { isDarkMode } from '../../state/config.selectors';
-import { ThemeService } from '../../services/theme.service';
 import { LayoutService } from '../../services/layout.service';
+import { ThemeService } from '../../services';
 
 @Component({
   selector: 'app-settings',

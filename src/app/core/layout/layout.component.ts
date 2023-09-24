@@ -7,11 +7,11 @@ import { NavigationStart, NavigationEnd, NavigationCancel, NavigationError, Rout
 import { Observable } from 'rxjs';
 
 import { LayoutService } from '../services/layout.service';
-import { ThemeService } from '../services/theme.service';
 import { isDarkMode } from '../state/config.selectors';
 import { setDarkMode } from '../state/config.actions';
 import { AppState } from 'src/app/store/app.state';
 import { Store } from '@ngrx/store';
+import { ThemeService } from '../services';
 
 @Component({
   selector: 'app-layout',

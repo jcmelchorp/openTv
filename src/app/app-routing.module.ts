@@ -1,24 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './core/layout';
-import { IptvResolver } from './store/resolvers/iptv.resolver';
-import { PlayerComponent, SettingsComponent, WellcomeComponent } from './core/components';
-import { SurferSeedDbComponent } from './core/containers';
+import { SettingsComponent, WellcomeComponent } from './core/components';
+import { SurferSeedDbComponent } from './iptvs/containers';
 
 const routes: Routes = [
   {
-    path: '', component: LayoutComponent, resolve: { cycles: IptvResolver }, children: [
+    path: '', component: LayoutComponent, children: [
       {
         path: '',
         component: WellcomeComponent,
       },
+      { path: 'iptvs', loadChildren: () => import('./iptvs/iptvs.module').then(m => m.IptvsModule) },
       {
         path: 'settings',
         component: SettingsComponent,
-      },
-      {
-        path: ':id',
-        component: PlayerComponent,
       },
       {
         path: 'seed',
@@ -27,7 +23,7 @@ const routes: Routes = [
 
     ]
   },
-  { path: '**', redirectTo: '/', pathMatch: 'full' }
+  { path: '**', redirectTo: '/iptvs', pathMatch: 'full' }
 ];
 
 @NgModule({

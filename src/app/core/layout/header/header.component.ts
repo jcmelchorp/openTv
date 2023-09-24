@@ -1,21 +1,20 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
 
-import { faMoon, faSun } from '@fortawesome/free-regular-svg-icons';
-import { faBars, faGlobe, faLightbulb } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faGlobe } from '@fortawesome/free-solid-svg-icons';
 
 import { TranslateService } from '@ngx-translate/core';
 
 import { Observable } from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { LayoutService } from '../../services/layout.service';
-import { ThemeService } from '../../services/theme.service';
 import { isDarkMode } from '../../state/config.selectors';
 import { AppState } from 'src/app/store/app.state';
 import { toggleDarkMode } from '../../state/config.actions';
-import { SubscriptionService } from '../../generic services';
+import { ThemeService } from '../../services';
+import { SubscriptionService } from 'src/app/shared/services';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',

@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { tap } from 'rxjs/operators';
 import { loadAppSuccess } from '../actions/app.actions';
-import { SnackService } from 'src/app/core/generic services';
+import { SnackService } from 'src/app/core/services';
 
 // import { SnackService } from '@rds-shared/services';
 // import { loadAppSuccess } from '@rds-store/actions/app.actions';

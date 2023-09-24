@@ -1,6 +1,6 @@
 import { EntityMetadataMap } from '@ngrx/data';
 import * as fromIptv from '../iptv';
-import { IptvDto } from 'src/app/core/models/iptv-dto.model';
+import { IptvDto } from 'src/app/iptvs/models/iptv-dto.model';
 
 export const entityMetadata: EntityMetadataMap = {
     [fromIptv.entityCollectionName]: {

@@ -1,3 +1,4 @@
+@import "bootstrap/scss/bootstrap";
 @import "assets/theme/custom-theme.scss";
 @import "assets/theme/colors";
 html,
@@ -36,3 +37,6 @@ body {
   -ms-user-select: none; /* IE 10+ */
   user-select: none; /* Likely future */
 }
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';

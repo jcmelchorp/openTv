@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { SeoService } from './core/generic services';
 import { TranslateService } from '@ngx-translate/core';
+import { SeoService } from './shared/services';
 
 @Component({
   selector: 'app-root',

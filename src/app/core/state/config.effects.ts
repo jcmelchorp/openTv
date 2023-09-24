@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
-import { Actions, createEffect, ofType, ROOT_EFFECTS_INIT } from "@ngrx/effects";
+import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { from, of } from "rxjs";
 import { catchError, map, switchMap, tap } from "rxjs/operators";
 import * as configActions from './config.actions';
-import { ThemeService } from "../services/theme.service";
+import { ThemeService } from "../services";
 
 @Injectable()
 export class ConfigEffects {

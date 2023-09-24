@@ -17,13 +17,17 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule } from 'ngx-toastr';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppStoreModule } from './store/app-store.module';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { commonModules, formsModules, uiModules } from './material';
 import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
+import { registerLocaleData } from '@angular/common';
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
+import localeEs from "@angular/common/locales/es";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+registerLocaleData(localeEs, "es");
+
 @NgModule({
   declarations: [
     AppComponent
@@ -32,8 +36,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule,
     CoreModule,
+    SharedModule.forRoot(),
+    HttpClientModule,
     AppStoreModule,
     NgxSpinnerModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
@@ -88,7 +93,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       // }
       return database;
     }),
-    FontAwesomeModule,
+    NgbModule,
     // provideAnalytics(() => getAnalytics()),
     // provideAuth(() => getAuth()),
   ],

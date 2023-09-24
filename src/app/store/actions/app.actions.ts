@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { IptvDto } from 'src/app/core/models/iptv-dto.model';
+import { IptvDto } from 'src/app/iptvs/models/iptv-dto.model';
 
 export const loadApp = createAction('[App] Load App');
 
