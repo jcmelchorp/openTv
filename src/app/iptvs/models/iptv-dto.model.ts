@@ -6,6 +6,7 @@ export class IptvDto {
     countryCode?: string;
     countryName?: string;
     countryFlag?: string;
+    countryNameFlag?: string;
     languageCodes?: string[];
     languageNames?: string[];
     categories?: string[];

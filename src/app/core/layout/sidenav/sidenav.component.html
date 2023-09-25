@@ -5,15 +5,16 @@
       <!-- <app-iptv-list [objects]="iptvs$|async" (onIptvEmit)="notify($event)"></app-iptv-list> -->
       <mat-nav-list>
         <!-- <app-brand-button></app-brand-button>-->
-        <h3 matSubheader>Herramientas </h3>
-        <mat-list-item [routerLink]="['seed']" routerLinkActive="active">
-          <mat-icon matListIcon>upload_file</mat-icon>
-          <span matLine>Datos</span>
-        </mat-list-item>
+        <h3 matSubheader>openTv: </h3>
         <mat-list-item [routerLink]="['iptvs']" routerLinkActive="active">
           <mat-icon matListIcon>play_circle</mat-icon>
           <span matLine [@animateText]="linkText ? 'show' : 'hide'">Canales</span>
         </mat-list-item>
+        <mat-list-item [routerLink]="['seed']" routerLinkActive="active">
+          <mat-icon matListIcon>upload_file</mat-icon>
+          <span matLine [@animateText]="linkText ? 'show' : 'hide'">Fuente de datos</span>
+        </mat-list-item>
+
         <!-- <mat-list-item [routerLink]="['on-development']" routerLinkActive="active">
           <mat-icon matListIcon>architecture</mat-icon>
           <span matLine>{{ "comming-soon" | translate }} ...</span>

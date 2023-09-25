@@ -2,10 +2,14 @@ import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Outpu
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
-import { merge, of, startWith, switchMap } from 'rxjs';
+import { Observable, firstValueFrom, map, merge, of, startWith, switchMap } from 'rxjs';
 import { IptvDto } from '../../models/iptv-dto.model';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/shared/services';
+import { Country } from '../../models/country.model';
+import { Countries } from '../../models/countries.enum';
+import { Categories } from '../../models/categories.enum';
 
 @Component({
   selector: 'app-iptv-list',
@@ -28,13 +32,16 @@ export class IptvListComponent implements OnInit, /*OnChanges,*/ AfterViewInit {
   resultsLength = 0;
   isLoadingResults = true;
   isRateLimitReached = false;
-
+  countriesEnum = Countries;
+  categoriesEnum = Categories
+  countryKeys = Object.keys(this.countriesEnum);
+  categoryKeys = Object.keys(this.categoriesEnum);
+  selectedCountry: string = 'Mexico';
+  selectedCategory: string = '';
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = [/*'logo',*/ 'channelName', 'countryFlag'];
   constructor(private _router: Router, private _liveAnnouncer: LiveAnnouncer) {
-
   }
-
   // ngOnChanges(changes: SimpleChanges): void {
   //   if (changes['objects'].currentValue) {
   //     this.dataSource = new MatTableDataSource(changes['objects'].currentValue);
@@ -47,6 +54,7 @@ export class IptvListComponent implements OnInit, /*OnChanges,*/ AfterViewInit {
   // }
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.objects);
+    this.dataSource.filter = this.selectedCountry + this.selectedCategory;
     // this.linkListToPaginator();
 
     // this.dataSource = new IptvListDataSource(this.iptvDtoService);
@@ -61,11 +69,8 @@ export class IptvListComponent implements OnInit, /*OnChanges,*/ AfterViewInit {
     // this.isLoading = false;
     // this.isLoaded = true;
   }
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = this.selectedCategory.trim().toLowerCase() + ' ' + this.selectedCountry.trim().toLowerCase();
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }

@@ -1,8 +1,35 @@
 <!-- <ng-content #filterform></ng-content> -->
-<mat-form-field appearance="outline">
-  <mat-label>Busqueda de canal</mat-label>
-  <input matInput #input (keyup)="applyFilter($event)" placeholder="Escribe una busqueda">
-</mat-form-field>
+<div fxLayout="row" fxLayoutAlign="space-between stretch">
+  <mat-icon>flag_circle</mat-icon>
+  <mat-form-field appearance="outline">
+    <mat-select [(ngModel)]="selectedCountry" placeholder="País" (selectionChange)="applyFilter($event.value)">
+      <mat-option [value]="''">Todas</mat-option>
+      <mat-option selected [value]="'Mexico'">México</mat-option>
+      <mat-option *ngFor="let key of countryKeys" [value]="countriesEnum[key]">
+        {{countriesEnum[key]}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div fxLayout="row" fxLayoutAlign="space-between stretch">
+  <mat-icon>category</mat-icon>
+  <mat-form-field appearance="outline">
+    <mat-select [(ngModel)]="selectedCategory" placeholder="Categoria" (selectionChange)="applyFilter($event.value)">
+      <mat-option selected [value]="''">Todas</mat-option>
+      <mat-option *ngFor="let key of categoryKeys" [value]="categoriesEnum[key]">
+        {{categoriesEnum[key]}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div fxLayout="row" fxLayoutAlign="space-between stretch">
+  <mat-icon>search</mat-icon>
+  <mat-form-field appearance="outline">
+    <mat-label>Busqueda de canal</mat-label>
+    <input matInput #input (keyup)="applyFilter($event.target.value)" placeholder="Escribe una busqueda">
+  </mat-form-field>
+</div>
+
 <mat-card class="mat-elevation-z8">
   <table mat-table #table [dataSource]="dataSource.data" aria-label="iptv channels" matSort
     (matSortChange)="announceSortChange($event)">
