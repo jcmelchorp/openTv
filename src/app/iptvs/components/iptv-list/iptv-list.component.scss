@@ -1,14 +1,15 @@
 .mat-mdc-form-field {
-  font-size: 14px;
+  font-size: 16px;
   width: 90%;
 }
-.paginator {
-  font-size: small;
-}
+
 .mat-mdc-card {
   height: 50vh;
 }
-
+.paginator {
+  font-size: 80%;
+  padding-left: -30px;
+}
 ::ng-deep {
   tbody {
     display: block;
@@ -41,4 +42,12 @@
 
 .mat-mdc-row:hover {
   // border-color: currentColor;
+}
+
+.mat-row:last-child td {
+  border-bottom: none;
+}
+
+.mat-footer-row:first-child td {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
 }

@@ -4,7 +4,7 @@
   <div fxLayout="row" fxLayoutAlign="space-between stretch">
     <mat-icon>search</mat-icon>
     <mat-form-field appearance="outline">
-      <mat-label>Busqueda de canal</mat-label>
+      <mat-label>Búsqueda por palabra</mat-label>
       <input matInput #input (keyup)="applyFilter($event.target.value)" placeholder="Escribe una busqueda">
     </mat-form-field>
   </div>
@@ -14,7 +14,7 @@
       (matSortChange)="announceSortChange($event)">
 
       <ng-container matColumnDef="channelName">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordena por nombre">
           <span class="fw-bold">Canales:</span>
         </th>
         <td fxLayout="row wrap" fxLayout="space-between center" mat-cell *matCellDef="let row">
@@ -23,7 +23,12 @@
           </div>
         </td>
       </ng-container>
-
+      <ng-container matColumnDef="paginator">
+        <td mat-footer-cell *matFooterCellDef [colSpan]="displayedColumns.length">
+          <mat-paginator class="paginator" #paginator [length]="dataSource?.data.length" [pageSize]="10"
+            [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons aria-label="Select channel"></mat-paginator>
+        </td>
+      </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="row.channelId">
       </tr>
@@ -31,8 +36,8 @@
       <tr class="mat-row" *matNoDataRow>
         <td class="text-center" colspan="3"><span class="badge text-bg-warning">No encontré resultados.</span></td>
       </tr>
+      <tr mat-footer-row *matFooterRowDef="['paginator']; sticky: true"></tr>
     </table>
-    <mat-paginator class="paginator" #paginator [length]="dataSource?.data.length" [pageSize]="10"
-      [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons aria-label="Select channel"></mat-paginator>
+
   </mat-card>
 </div>
