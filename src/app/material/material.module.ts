@@ -46,7 +46,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MaterialElevationDirective } from './material-elevation.directive';
 export function getPaginatorIntl() {
   const paginatorIntl = new MatPaginatorIntl();
-  paginatorIntl.itemsPerPageLabel = 'Items por página:';
+  paginatorIntl.itemsPerPageLabel = 'Canales por página:';
   paginatorIntl.nextPageLabel = 'Página siguiente ';
   paginatorIntl.previousPageLabel = 'Página anterior';
   paginatorIntl.firstPageLabel = 'Primera página';

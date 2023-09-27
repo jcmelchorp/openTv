@@ -1,8 +1,44 @@
-mat-form-field {
+.mat-mdc-form-field {
   font-size: 14px;
   width: 90%;
 }
-
 .paginator {
-  font-size: 12px;
+  font-size: small;
+}
+.mat-mdc-card {
+  height: 50vh;
+}
+
+::ng-deep {
+  tbody {
+    display: block;
+    overflow: auto;
+    max-height: 50vh;
+    width: 100%;
+    padding-top: 15px;
+  }
+  thead,
+  tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+}
+.mdc-data-table__header-row {
+  height: 30px;
+  font-style: bold;
+  font-size: 18px;
+  background-color: #93aa8b;
+  color: #5b380e;
+}
+
+.mat-mdc-row .mat-mdc-cell {
+  height: 40px;
+  // border-bottom: 2px solid transparent;
+  // border-top: 3px solid transparent;
+  cursor: pointer;
+}
+
+.mat-mdc-row:hover {
+  // border-color: currentColor;
 }

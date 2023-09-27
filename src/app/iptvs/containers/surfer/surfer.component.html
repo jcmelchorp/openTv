@@ -1,38 +1,35 @@
-<div class="my-3" fxLayout="row-reverse" fxLayoutAlign="space-around end" fxLayoutGap="10px" fxLayout.lt-md="column"
-    fxLayoutAlign.lt-md="space-between center">
-    <div fxFlex>
+<div class="my-3" fxLayout="row-reverse" fxLayoutAlign="space-around start" fxLayout.lt-md="column"
+    fxLayoutAlign.lt-md="space-between center" fxLayoutGap="30px">
+    <div fxFlex="0 1 calc(70% -5px)">
         <router-outlet></router-outlet>
     </div>
-    <div fxFlex="0 1 calc(35% -10px)" *ngIf="!(isLoading$|async)&&(isLoaded$|async)&&(filteredEntities$|async)">
-        <app-iptv-list [objects]="filteredEntities$|async" (onIptvEmit)="notify($event)">
-            <!-- <div name="filterform" fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutGap="5px">
-            <form [formGroup]="filterValues">
-                <mat-form-field appearance="outline" fxFlex="1 0 calc(33.3% - 5px)">
-                    <mat-label>Idioma</mat-label>
-                    <mat-select formControlName="languageCodes" placeholder="Selecciona un idioma">
-                        <mat-option *ngFor="let key of langKeys" [value]="key">
-                            {{lang[key]}}
-                        </mat-option>
-                    </mat-select>
-                    <button mat-icon-button matSuffix
-                        (click)="filterValues.controls.languageCodes.reset();$event.stopPropagation()">
-                        <mat-icon>close</mat-icon>
-                    </button>
-                </mat-form-field>
-                <mat-form-field appearance="outline" fxFlex="1 0 calc(33.3% - 5px)">
-                    <mat-label>País de origen</mat-label>
-                    <mat-select formControlName="countryCode" placeholder="Selecciona un país">
+
+    <div fxFlex="0 1 calc(30% -5px)" *ngIf="!(isLoading$|async)&&(isLoaded$|async)">
+        <form [formGroup]="filterValues">
+            <div fxLayout="row" fxLayoutAlign="space-between stretch">
+                <mat-icon>flag_circle</mat-icon>
+                <mat-form-field appearance="outline">
+                    <mat-select formControlName="countryCode" placeholder="País">
+                        <!-- <mat-option [value]="''">Todas</mat-option> -->
                         <mat-option *ngFor="let key of countryKeys" [value]="key">
-                            {{countries[key]}}
+                            {{key | translate}}
                         </mat-option>
                     </mat-select>
-                    <button mat-icon-button matSuffix
-                        (click)="filterValues.controls.countryCode.reset();$event.stopPropagation()">
-                        <mat-icon>close</mat-icon>
-                    </button>
                 </mat-form-field>
-            </form>
-        </div> -->
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between stretch">
+                <mat-icon>category</mat-icon>
+                <mat-form-field appearance="outline">
+                    <mat-select formControlName="categories" placeholder="Categoria">
+                        <mat-option [value]="''">Todas</mat-option>
+                        <mat-option *ngFor="let key of categoryKeys" [value]="key">
+                            {{key| translate}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </form>
+        <app-iptv-list *ngIf="(iptvs$|async)" [objects]="iptvs$|async" (onIptvEmit)="notify($event)">
         </app-iptv-list>
     </div>
 </div>

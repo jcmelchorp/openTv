@@ -1,21 +1,454 @@
-<div class="mx-5 my-5">
-  <!-- <app-card-header [cardheaderTitle]="{{'card-header-title'|translate}}"></app-card-header> -->
-  <div style="margin-top: 20px">
-    <mat-card style="width: fit-content;" appMaterialElevation [raisedElevation]="raisedElevation"
-      [defaultElevation]="defaultElevation">
-      <mat-card-header style="margin-top: -20px">
-        <!-- <img mat-card-avatar src="https://i.pinimg.com/originals/98/d3/a2/98d3a283f98cded8e639957e935bd373.png" /> -->
-        <mat-card-title><span class="view-title">{{"wellcome-header-title"| translate}}</span>
-        </mat-card-title>
-        <mat-card-subtitle style="margin-top: 10px" class="view-subtitle">{{"wellcome-header-description" |translate}}
-        </mat-card-subtitle>
-      </mat-card-header>
-    </mat-card>
+<!-- <p class="dev">Developed with <span>❤</span> by <a href="https://codepen.io/designfenix/" target="_blank">Fernando
+    Cohen</a> </p>
+<button onclick="var el = document.querySelector('body'); el.requestFullscreen();">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-maximize">
+    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+  </svg>
+</button> -->
+
+
+<div class="wrapper-images">
+  <!-- 5 images by row -->
+  <div class="images-line">
+    <div class="line" style="background-image:url(https://i.imgur.com/LbZkdca.png)">
+      <a href="iptvs/XHUNESTDT.mx" class="img" style="background-image:url(https://i.imgur.com/LbZkdca.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/AWLWu91.png)">
+      <a href="iptvs/XHSPRTDT1.mx" class="img" style="background-image:url(https://i.imgur.com/AWLWu91.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/ClqIQ4M.png)">
+      <a href="iptvs/AzClic.mx" class="img" style="background-image:url(https://i.imgur.com/ClqIQ4M.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/79hrcx8.png)">
+      <a href="iptvs/bitMe.mx" class="img" style="background-image:url(https://i.imgur.com/79hrcx8.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/JgXQz6c.png)">
+      <a href="iptvs/bitMeLatinAmerica.mx" class="img" style="background-image:url(https://i.imgur.com/JgXQz6c.png)">
+      </a>
+    </div>
+
+    <div class="line" style="background-image:url(https://i.imgur.com/iiKKt7I.png)">
+      <a href="iptvs/DemandAfricaMexico.mx" class="img" style="background-image:url(https://i.imgur.com/iiKKt7I.png)">
+      </a>
+    </div>
+    <div class="line"
+      style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/2019_Discovery_logo.svg/512px-2019_Discovery_logo.svg.png)">
+      <a href="iptvs/DiscoveryChannelMexico.mx" class="img"
+        style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/2019_Discovery_logo.svg/512px-2019_Discovery_logo.svg.png)">
+      </a>
+    </div>
+    <div class="line"
+      style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Nueve_%282018_logo%29.png/512px-Nueve_%282018_logo%29.png)">
+      <a href="iptvs/ElNu9ve.mx" class="img"
+        style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Nueve_%282018_logo%29.png/512px-Nueve_%282018_logo%29.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/MeV5N08.png)">
+      <a href="iptvs/TeleplaySureste.mx" class="img" style="background-image:url(https://i.imgur.com/MeV5N08.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/RIplC7X.png)">
+      <a href="iptvs/ViXFamilia.mx" class="img" style="background-image:url(https://i.imgur.com/RIplC7X.png)">
+      </a>
+    </div>
+
+    <div class="line" style="background-image:url(https://i.imgur.com/7wYK8m6.png)">
+      <a href="iptvs/ViXParejas.mx" class="img" style="background-image:url(https://i.imgur.com/7wYK8m6.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/RzL5Z3P.png)">
+      <a href="iptvs/XHCCATDT.mx" class="img" style="background-image:url(https://i.imgur.com/RzL5Z3P.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/CMMEIq3_d.jpg)">
+      <a href="iptvs/ZAZ.mx" class="img" style="background-image:url(https://i.imgur.com/CMMEIq3_d.jpg)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/7i7GkSL.png)">
+      <a href="iptvs/PSN.mx" class="img" style="background-image:url(https://i.imgur.com/7i7GkSL.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/ndOGVXI.png)">
+      <a href="iptvs/ViBETV.mx" class="img" style="background-image:url(https://i.imgur.com/ndOGVXI.png)">
+      </a>
+    </div>
+  </div>
+  <!-- 5 images by row -->
+  <div class="images-line">
+    <div class="line" style="background-image:url(https://i.imgur.com/Mk28uUy.png)">
+      <a href="iptvs/ThePetCollectiveMexico.mx" class="img"
+        style="background-image:url(https://i.imgur.com/Mk28uUy.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/CZ8LKmA.png)">
+      <a href="iptvs/15TV.mx" class="img" style="background-image:url(https://i.imgur.com/CZ8LKmA.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/7ecgGIG.png)">
+      <a href="iptvs/8NTV.mx" class="img" style="background-image:url(https://i.imgur.com/7ecgGIG.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/1sAgSME.png)">
+      <a href="iptvs/AntenaTV.mx" class="img" style="background-image:url(https://i.imgur.com/1sAgSME.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/rRxgBtI.png)">
+      <a href="iptvs/AztecaUno.mx" class="img" style="background-image:url(https://i.imgur.com/rRxgBtI.png)">
+      </a>
+    </div>
+
+    <div class="line" style="background-image:url(https://i.imgur.com/wevVUSt.png)">
+      <a href="iptvs/AztecaUnoPlus1.mx" class="img" style="background-image:url(https://i.imgur.com/wevVUSt.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/KmhaXHD.png)">
+      <a href="iptvs/ImagenRadio.mx" class="img" style="background-image:url(https://i.imgur.com/KmhaXHD.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/kaUhEQy.png)">
+      <a href="iptvs/B15.mx" class="img" style="background-image:url(https://i.imgur.com/kaUhEQy.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.ibb.co/XFZycpY/46h446hygwegerwgerwgplanet-television.png)">
+      <a href="iptvs/Canal12Durango.mx" class="img"
+        style="background-image:url(https://i.ibb.co/XFZycpY/46h446hygwegerwgerwgplanet-television.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/pAppH1M.png)">
+      <a href="iptvs/IngenioTV.mx" class="img" style="background-image:url(https://i.imgur.com/pAppH1M.png)">
+      </a>
+    </div>
+
+    <div class="line" style="background-image:url(https://i.imgur.com/JMa7jws.png)">
+      <a href="iptvs/GoldenPremier.mx" class="img" style="background-image:url(https://i.imgur.com/JMa7jws.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/uZdVSoW.png)">
+      <a href="iptvs/Canal5.mx" class="img" style="background-image:url(https://i.imgur.com/uZdVSoW.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.ibb.co/YND5HXD/Captura.png)">
+      <a href="iptvs/CanalOchoTV.mx" class="img" style="background-image:url(https://i.ibb.co/YND5HXD/Captura.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/kFVVGrg.png)">
+      <a href="iptvs/ExpresaTV.mx" class="img" style="background-image:url(https://i.imgur.com/kFVVGrg.png)">
+      </a>
+    </div>
+    <div class="line"
+      style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Las_Estrellas.svg/512px-Las_Estrellas.svg.png)">
+      <a href="iptvs/LasEstrellas.mx" class="img"
+        style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Las_Estrellas.svg/512px-Las_Estrellas.svg.png)">
+      </a>
+    </div>
+  </div>
+  <!-- 5 images by row -->
+  <div class="images-line">
+    <div class="line"
+      style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Las_Estrellas.svg/512px-Las_Estrellas.svg.png)">
+      <a href="iptvs/LasEstrellasEuropa.mx" class="img"
+        style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Las_Estrellas.svg/512px-Las_Estrellas.svg.png)">
+      </a>
+    </div>
+    <div class="line"
+      style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Las_Estrellas.svg/512px-Las_Estrellas.svg.png)">
+      <a href="iptvs/LasEstrellasLatinAmerica.mx" class="img"
+        style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Las_Estrellas.svg/512px-Las_Estrellas.svg.png)">
+      </a>
+    </div>
+    <div class="line"
+      style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Las_Estrellas.svg/512px-Las_Estrellas.svg.png)">
+      <a href="iptvs/LasEstrellasPlus1.mx" class="img"
+        style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Las_Estrellas.svg/512px-Las_Estrellas.svg.png)">
+      </a>
+    </div>
+    <div class="line"
+      style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/A%26E_Network_logo.svg/512px-A%26E_Network_logo.svg.png)">
+      <a href="iptvs/AEMexico.mx" class="img"
+        style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/A%26E_Network_logo.svg/512px-A%26E_Network_logo.svg.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/3fzB7zY.png)">
+      <a href="iptvs/NueveTV.mx" class="img" style="background-image:url(https://i.imgur.com/3fzB7zY.png)">
+      </a>
+    </div>
+
+    <div class="line"
+      style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/FOX_Sports_logo.svg/512px-FOX_Sports_logo.svg.png)">
+      <a href="iptvs/FoxSportsMexico.mx" class="img"
+        style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/FOX_Sports_logo.svg/512px-FOX_Sports_logo.svg.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/K0351vF.png)">
+      <a href="iptvs/XEIPNTDT.mx" class="img" style="background-image:url(https://i.imgur.com/K0351vF.png)">
+      </a>
+    </div>
+    <div class="line"
+      style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Telemundo_logo_2018.svg/512px-Telemundo_logo_2018.svg.png)">
+      <a href="iptvs/TelemundoMexico.mx" class="img"
+        style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Telemundo_logo_2018.svg/512px-Telemundo_logo_2018.svg.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/hHrIn0r.png)">
+      <a href="iptvs/TVBUAP.mx" class="img" style="background-image:url(https://i.imgur.com/hHrIn0r.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/HbnCZSF.png)">
+      <a href="iptvs/TVGuanajuato.mx" class="img" style="background-image:url(https://i.imgur.com/HbnCZSF.png)">
+      </a>
+    </div>
+
+    <div class="line" style="background-image:url(https://i.imgur.com/kuyQvUP.png)">
+      <a href="iptvs/TVIndependencia.mx" class="img" style="background-image:url(https://i.imgur.com/kuyQvUP.png)">
+      </a>
+    </div>
+    <div class="line"
+      style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/History2_logo_%282022%29.svg/512px-History2_logo_%282022%29.svg.png)">
+      <a href="iptvs/History2Mexico.mx" class="img"
+        style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/History2_logo_%282022%29.svg/512px-History2_logo_%282022%29.svg.png)">
+      </a>
+    </div>
+    <div class="line"
+      style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/History_%282021%29.svg/512px-History_%282021%29.svg.png)">
+      <a href="iptvs/HistoryMexico.mx" class="img"
+        style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/History_%282021%29.svg/512px-History_%282021%29.svg.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/z9iVlMn.png)">
+      <a href="iptvs/TVMarPuertoVallarta.mx" class="img" style="background-image:url(https://i.imgur.com/z9iVlMn.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/tVgkiJF.png)">
+      <a href="iptvs/TVMigrante.mx" class="img" style="background-image:url(https://i.imgur.com/tVgkiJF.png)">
+      </a>
+    </div>
+
+  </div>
+
+  <!-- 5 images by row -->
+  <div class="images-line">
+    <div class="line" style="background-image:url(https://i.ibb.co/DtzHJDR/Logo-Tv-Monarca.png)">
+      <a href="iptvs/TVMonarca.mx" class="img"
+        style="background-image:url(https://i.ibb.co/DtzHJDR/Logo-Tv-Monarca.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/80BviIe.png)">
+      <a href="iptvs/TvQTabasco.mx" class="img" style="background-image:url(https://i.imgur.com/80BviIe.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/MH8YlfO.png)">
+      <a href="iptvs/TVT.mx" class="img" style="background-image:url(https://i.imgur.com/MH8YlfO.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/QKvINA6.png)">
+      <a href="iptvs/UDGTV.mx" class="img" style="background-image:url(https://i.imgur.com/QKvINA6.png)">
+      </a>
+    </div>
+    <div class="line"
+      style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Natgeologo.svg/512px-Natgeologo.svg.png)">
+      <a href="iptvs/NationalGeographicMexico.mx" class="img"
+        style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Natgeologo.svg/512px-Natgeologo.svg.png)">
+      </a>
+    </div>
+
+    <div class="line" style="background-image:url(https://i.imgur.com/MeIfhXp.png)">
+      <a href="iptvs/XEIMTTDT2.mx" class="img" style="background-image:url(https://i.imgur.com/MeIfhXp.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/Og17U9N.png)">
+      <a href="iptvs/ADN40.mx" class="img" style="background-image:url(https://i.imgur.com/Og17U9N.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/cBC2Jre.png)">
+      <a href="iptvs/XETTDT1.mx" class="img" style="background-image:url(https://i.imgur.com/cBC2Jre.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/CE9WguS.png)">
+      <a href="iptvs/XETVTDT1.mx" class="img" style="background-image:url(https://i.imgur.com/CE9WguS.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/0FLFINq.png)">
+      <a href="iptvs/XETVTDT2.mx" class="img" style="background-image:url(https://i.imgur.com/0FLFINq.png)">
+      </a>
+    </div>
+
+    <div class="line" style="background-image:url(https://i.imgur.com/R3icGuG.png)">
+      <a href="iptvs/XHBZCTDT.mx" class="img" style="background-image:url(https://i.imgur.com/R3icGuG.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/9ZXCQvy.png)">
+      <a href="iptvs/XHFGLTDT.mx" class="img" style="background-image:url(https://i.imgur.com/9ZXCQvy.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/aGup2ag.png)">
+      <a href="iptvs/XHFNTDT1.mx" class="img" style="background-image:url(https://i.imgur.com/aGup2ag.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/oRudPXX.png)">
+      <a href="iptvs/XHICCHTDT.mx" class="img" style="background-image:url(https://i.imgur.com/oRudPXX.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/oRudPXX.png)">
+      <a href="iptvs/XHIJTDT.mx" class="img" style="background-image:url(https://i.imgur.com/oRudPXX.png)">
+      </a>
+    </div>
+  </div>
+  <!-- 5 images by row -->
+  <div class="images-line">
+    <div class="line" style="background-image:url(https://i.imgur.com/QFI2OdJ.png)">
+      <a href="iptvs/XHKGTDT.mx" class="img" style="background-image:url(https://i.imgur.com/QFI2OdJ.png)">
+      </a>
+    </div>
+    <div class="line"
+      style="background-image:url(https://scontent-yyz1-1.xx.fbcdn.net/v/t39.30808-1/271755827_5321375487891095_2432776156282125041_n.jpg?stp=dst-jpg_p200x200&_nc_cat=109&ccb=1-7&_nc_sid=c6021c&_nc_ohc=UYUE80UtS2gAX-L-nPe&_nc_oc=AQmEmLD6ZaCgGG_xOi3pK5ekU1snWjsjuC_ianbulGULE8j76EUy2VpU0fujGvPPPNo&_nc_ht=scontent-yyz1-1.xx&oh=00_AfDv9IeMHVbBKfy4rh83_wZyH4v-G-vpetBQ8QBekD0sPQ&oe=6475C189)">
+      <a href="iptvs/XHMZTDT1.mx" class="img"
+        style="background-image:url(https://scontent-yyz1-1.xx.fbcdn.net/v/t39.30808-1/271755827_5321375487891095_2432776156282125041_n.jpg?stp=dst-jpg_p200x200&_nc_cat=109&ccb=1-7&_nc_sid=c6021c&_nc_ohc=UYUE80UtS2gAX-L-nPe&_nc_oc=AQmEmLD6ZaCgGG_xOi3pK5ekU1snWjsjuC_ianbulGULE8j76EUy2VpU0fujGvPPPNo&_nc_ht=scontent-yyz1-1.xx&oh=00_AfDv9IeMHVbBKfy4rh83_wZyH4v-G-vpetBQ8QBekD0sPQ&oe=6475C189)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/TY6ewSv.png)">
+      <a href="iptvs/XHSTV.mx" class="img" style="background-image:url(https://i.imgur.com/TY6ewSv.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/BVdNSJo.png)">
+      <a href="iptvs/XHTPGTDT.mx" class="img" style="background-image:url(https://i.imgur.com/BVdNSJo.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/nqmXCfd.png)">
+      <a href="iptvs/XHTRESTDT.mx" class="img" style="background-image:url(https://i.imgur.com/nqmXCfd.png)">
+      </a>
+    </div>
+
+    <div class="line" style="background-image:url(https://i.imgur.com/dw6puHC.png)">
+      <a href="iptvs/XHTTGTDT.mx" class="img" style="background-image:url(https://i.imgur.com/dw6puHC.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/g5ShxZ7.png)">
+      <a href="iptvs/XHXTDT1.mx" class="img" style="background-image:url(https://i.imgur.com/g5ShxZ7.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/RxhABeK.png)">
+      <a href="iptvs/XHZHZTDT.mx" class="img" style="background-image:url(https://i.imgur.com/RxhABeK.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/rSeR402.png)">
+      <a href="iptvs/XHILATDT.mx" class="img" style="background-image:url(https://i.imgur.com/rSeR402.png)">
+      </a>
+    </div>
+    <div class="line"
+      style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Boomerang_2014_logo.svg/512px-Boomerang_2014_logo.svg.png)">
+      <a href="iptvs/BoomerangMexico.mx" class="img"
+        style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Boomerang_2014_logo.svg/512px-Boomerang_2014_logo.svg.png)">
+      </a>
+    </div>
+
+    <div class="line"
+      style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Cartoon_Network_2010_logo.svg/512px-Cartoon_Network_2010_logo.svg.png)">
+      <a href="iptvs/CartoonNetworkMexico.mx" class="img"
+        style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Cartoon_Network_2010_logo.svg/512px-Cartoon_Network_2010_logo.svg.png)">
+      </a>
+    </div>
+    <div class="line"
+      style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Discovery_Kids_Logo_2021-Presente.webp/512px-Discovery_Kids_Logo_2021-Presente.webp.png)">
+      <a href="iptvs/DiscoveryKidsMexico.mx" class="img"
+        style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Discovery_Kids_Logo_2021-Presente.webp/512px-Discovery_Kids_Logo_2021-Presente.webp.png)">
+      </a>
+    </div>
+    <div class="line"
+      style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Disney_XD_-_2015.svg/512px-Disney_XD_-_2015.svg.png)">
+      <a href="iptvs/DisneyXDMexico.mx" class="img"
+        style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Disney_XD_-_2015.svg/512px-Disney_XD_-_2015.svg.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/E84jnP8.png)">
+      <a href="iptvs/NickelodeonMexico.mx" class="img" style="background-image:url(https://i.imgur.com/E84jnP8.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/xAC6gQO.png)">
+      <a href="iptvs/CanaldelCongreso451.mx" class="img" style="background-image:url(https://i.imgur.com/xAC6gQO.png)">
+      </a>
+    </div>
+  </div>
+  <!-- 5 images by row -->
+  <div class="images-line">
+    <div class="line" style="background-image:url(https://i.imgur.com/TtVZR5W.png)">
+      <a href="iptvs/CanaldelCongreso452.mx" class="img" style="background-image:url(https://i.imgur.com/TtVZR5W.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/DS3166S.png)">
+      <a href="iptvs/CanaldelCongreso453.mx" class="img" style="background-image:url(https://i.imgur.com/DS3166S.png)">
+      </a>
+    </div>
+    <div class="line"
+      style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Discovery_H%26H_Logo_2022.webp/512px-Discovery_H%26H_Logo_2022.webp.png)">
+      <a href="iptvs/DiscoveryHomeHealthMexico.mx" class="img"
+        style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Discovery_H%26H_Logo_2022.webp/512px-Discovery_H%26H_Logo_2022.webp.png)">
+      </a>
+    </div>
+    <div class="line"
+      style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/TLC_Logo.svg/512px-TLC_Logo.svg.png)">
+      <a href="iptvs/TLCMexico.mx" class="img"
+        style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/TLC_Logo.svg/512px-TLC_Logo.svg.png)">
+      </a>
+    </div>
+    <div class="line"
+      style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/AXN_logo_%282015%29.svg/512px-AXN_logo_%282015%29.svg.png)">
+      <a href="iptvs/AXNMexico.mx" class="img"
+        style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/AXN_logo_%282015%29.svg/512px-AXN_logo_%282015%29.svg.png)">
+      </a>
+    </div>
+
+    <div class="line" style="background-image:url(https://i.imgur.com/B5UN7C8.png)">
+      <a href="iptvs/AzCinema.mx" class="img" style="background-image:url(https://i.imgur.com/B5UN7C8.png)">
+      </a>
+    </div>
+    <div class="line"
+      style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/CinecanalLA.png/512px-CinecanalLA.png)">
+      <a href="iptvs/CinecanalMexico.mx" class="img"
+        style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/CinecanalLA.png/512px-CinecanalLA.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/2V0R0xT.png)">
+      <a href="iptvs/CineLatino.mx" class="img" style="background-image:url(https://i.imgur.com/2V0R0xT.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/ebTuWRe.png)">
+      <a href="iptvs/CinemaDinamita.mx" class="img" style="background-image:url(https://i.imgur.com/ebTuWRe.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/YMhzH6g.png)">
+      <a href="iptvs/CinemaPlatino.mx" class="img" style="background-image:url(https://i.imgur.com/YMhzH6g.png)">
+      </a>
+    </div>
+
+    <div class="line" style="background-image:url(https://i.imgur.com/6fgWygj.png)">
+      <a href="iptvs/CinemaPlatino2.mx" class="img" style="background-image:url(https://i.imgur.com/6fgWygj.png)">
+      </a>
+    </div>
+    <div class="line"
+      style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Cinemax_%28Yellow%29.svg/512px-Cinemax_%28Yellow%29.svg.png)">
+      <a href="iptvs/CinemaxMexico.mx" class="img"
+        style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Cinemax_%28Yellow%29.svg/512px-Cinemax_%28Yellow%29.svg.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/qHtOVRO.png)">
+      <a href="iptvs/CineMexicano.mx" class="img" style="background-image:url(https://i.imgur.com/qHtOVRO.png)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/SOLGQxQ.jpg)">
+      <a href="iptvs/ClaroCinema.mx" class="img" style="background-image:url(https://i.imgur.com/SOLGQxQ.jpg)">
+      </a>
+    </div>
+    <div class="line" style="background-image:url(https://i.imgur.com/L6J0kDU.png)">
+      <a href="iptvs/DePeliculaClasico.mx" class="img" style="background-image:url(https://i.imgur.com/L6J0kDU.png)">
+      </a>
+    </div>
+
   </div>
 </div>
-<div class="center">
-  <button mat-button color="primary" routerLink="/iptvs">
-    <mat-icon>live_tv</mat-icon>
-    <span>Canales</span>
-  </button>
-</div>
+
+<app-start-title></app-start-title>

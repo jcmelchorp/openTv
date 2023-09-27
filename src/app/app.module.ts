@@ -41,6 +41,7 @@ registerLocaleData(localeEs, "es");
     HttpClientModule,
     AppStoreModule,
     NgxSpinnerModule,
+    NgbModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable
@@ -93,7 +94,6 @@ registerLocaleData(localeEs, "es");
       // }
       return database;
     }),
-    NgbModule,
     // provideAnalytics(() => getAnalytics()),
     // provideAuth(() => getAuth()),
   ],

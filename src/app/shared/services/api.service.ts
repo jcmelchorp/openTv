@@ -43,25 +43,25 @@ export class ApiService {
                     }))
                 );
             }),
-            mergeMap(iptvs => {
-                return this.getCountries().pipe(
-                    map(countries => iptvs.map(iptv => {
-                        let name = countries.find(country => country.code === iptv.countryCode).name;
-                        let flag = countries.find(country => country.code === iptv.countryCode).flag;
-                        let obj: IptvDto = { ...iptv, countryName: name, countryFlag: flag };
-                        return obj;
-                    }))
-                );
-            }),
-            mergeMap(iptvs => {
-                return this.getCategories().pipe(
-                    map(categories => iptvs.map(iptv => {
-                        let names = iptv.categories.map(categoryId => categories.find(category => category.id = categoryId).name)
-                        let obj: IptvDto = { ...iptv, categoryNames: names };
-                        return obj;
-                    }))
-                );
-            }),
+            // mergeMap(iptvs => {
+            //     return this.getCountries().pipe(
+            //         map(countries => iptvs.map(iptv => {
+            //             let name = countries.find(country => country.code === iptv.countryCode).name;
+            //             let flag = countries.find(country => country.code === iptv.countryCode).flag;
+            //             let obj: IptvDto = { ...iptv, countryName: name, countryFlag: flag };
+            //             return obj;
+            //         }))
+            //     );
+            // }),
+            // mergeMap(iptvs => {
+            //     return this.getCategories().pipe(
+            //         map(categories => iptvs.map(iptv => {
+            //             let names = iptv.categories.map(categoryId => categories.find(category => category.id = categoryId).name)
+            //             let obj: IptvDto = { ...iptv, categoryNames: names };
+            //             return obj;
+            //         }))
+            //     );
+            // }),
         );
     }
     getStreams() {

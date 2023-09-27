@@ -7,10 +7,9 @@
       "installMode": "prefetch",
       "resources": {
         "files": [
-          "/favicon.ico",
           "/index.html",
           "/manifest.webmanifest",
-          "/*.css",
+          "/*.scss",
           "/*.js"
         ]
       }
@@ -23,7 +22,25 @@
         "files": [
           "/assets/**",
           "/*.(svg|cur|jpg|jpeg|png|apng|webp|avif|gif|otf|ttf|woff|woff2)"
+        ],
+        "urls": [
+          "https://fonts.googleapis.com/**"
         ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "iptv-org.github",
+      "urls": [
+        "https://iptv-org.github.io/api/channels.json",
+        "https://iptv-org.github.io/api/streams.json"
+      ],
+      "cacheConfig": {
+        "maxSize": 5,
+        "maxAge": "1d",
+        "timeout": "5s",
+        "strategy": "freshness"
       }
     }
   ]

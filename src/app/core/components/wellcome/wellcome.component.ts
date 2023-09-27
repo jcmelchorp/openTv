@@ -11,6 +11,6 @@ export class WellcomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-  }
 
+  }
 }

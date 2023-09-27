@@ -1,84 +1,38 @@
 <!-- <ng-content #filterform></ng-content> -->
-<div fxLayout="row" fxLayoutAlign="space-between stretch">
-  <mat-icon>flag_circle</mat-icon>
-  <mat-form-field appearance="outline">
-    <mat-select [(ngModel)]="selectedCountry" placeholder="País" (selectionChange)="applyFilter($event.value)">
-      <mat-option [value]="''">Todas</mat-option>
-      <mat-option selected [value]="'Mexico'">México</mat-option>
-      <mat-option *ngFor="let key of countryKeys" [value]="countriesEnum[key]">
-        {{countriesEnum[key]}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+<div fxLayout="column" fxLayoutAlign="space-evenly stretsh">
+
+  <div fxLayout="row" fxLayoutAlign="space-between stretch">
+    <mat-icon>search</mat-icon>
+    <mat-form-field appearance="outline">
+      <mat-label>Busqueda de canal</mat-label>
+      <input matInput #input (keyup)="applyFilter($event.target.value)" placeholder="Escribe una busqueda">
+    </mat-form-field>
+  </div>
+
+  <mat-card>
+    <table class="mat-elevation-z9" mat-table #table [dataSource]="dataSource.data" aria-label="iptv channels" matSort
+      (matSortChange)="announceSortChange($event)">
+
+      <ng-container matColumnDef="channelName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+          <span class="fw-bold">Canales:</span>
+        </th>
+        <td fxLayout="row wrap" fxLayout="space-between center" mat-cell *matCellDef="let row">
+          <div fxFlex>{{row.channelName}}</div>
+          <div><img style="max-width: 75px;max-height:35px" [src]="(row.logo)?row.logo:'/assets/icons/bad-tv.png'" />
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="row.channelId">
+      </tr>
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="text-center" colspan="3"><span class="badge text-bg-warning">No encontré resultados.</span></td>
+      </tr>
+    </table>
+    <mat-paginator class="paginator" #paginator [length]="dataSource?.data.length" [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons aria-label="Select channel"></mat-paginator>
+  </mat-card>
 </div>
-<div fxLayout="row" fxLayoutAlign="space-between stretch">
-  <mat-icon>category</mat-icon>
-  <mat-form-field appearance="outline">
-    <mat-select [(ngModel)]="selectedCategory" placeholder="Categoria" (selectionChange)="applyFilter($event.value)">
-      <mat-option selected [value]="''">Todas</mat-option>
-      <mat-option *ngFor="let key of categoryKeys" [value]="categoriesEnum[key]">
-        {{categoriesEnum[key]}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
-<div fxLayout="row" fxLayoutAlign="space-between stretch">
-  <mat-icon>search</mat-icon>
-  <mat-form-field appearance="outline">
-    <mat-label>Busqueda de canal</mat-label>
-    <input matInput #input (keyup)="applyFilter($event.target.value)" placeholder="Escribe una busqueda">
-  </mat-form-field>
-</div>
-
-<mat-card class="mat-elevation-z8">
-  <table mat-table #table [dataSource]="dataSource.data" aria-label="iptv channels" matSort
-    (matSortChange)="announceSortChange($event)">
-    <!-- <ng-container matColumnDef="logo">
-      <th mat-header-cell *matHeaderCellDef>Logo</th>
-      <td mat-cell *matCellDef="let row">
-        <img mat-card-avatar [src]="row.logo||'/assets/icons/bad-tv.png'" height="40px" />
-      </td>
-    </ng-container> -->
-
-    <ng-container matColumnDef="channelName">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">Canal</th>
-      <td mat-cell *matCellDef="let row">{{row.channelName}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="countryFlag">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by country">País</th>
-      <td mat-cell *matCellDef="let row">{{row.countryFlag}}</td>
-    </ng-container>
-    <!-- <ng-container matColumnDef="isNsfw">
-        <th mat-header-cell *matHeaderCellDef>bool</th>
-        <td mat-cell *matCellDef="let row">{{row.isNsfw}}</td>
-      </ng-container> -->
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="goIptv(row.id)"></tr>
-    <!-- Row shown when there is no matching data. -->
-    <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-    </tr>
-  </table>
-  <mat-paginator class="paginator" #paginator [length]="dataSource?.data.length" [pageSize]="5"
-    [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons aria-label="Select channel"></mat-paginator>
-</mat-card>
-<!-- <mat-card class="list-card" *ngIf="dataSource.data;else spinner">
-    <mat-card-header>
-      <mat-card-title>List of Images</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <mat-list role="list">
-        <mat-list-item role="listitem" *ngFor="let iptv of objects" class="list-item">
-          <p matLine><a href="{{ iptv.channel!.logo }}">{{ iptv.channel!.name }}</a></p>
-          <img src="{{ iptv.channel!.logo }}" alt="{{ iptv.channel!.name }}" height="50px" />
-        </mat-list-item>
-      </mat-list>
-      <mat-list role="list">
-        <mat-list-item class="mat-list" role="listitem" *ngFor='let i of dataSource.data'>
-          {{i.logo}}
-        </mat-list-item>
-      </mat-list>
-    </mat-card-content>
-  </mat-card> -->

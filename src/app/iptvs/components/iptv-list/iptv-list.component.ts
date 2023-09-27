@@ -16,7 +16,7 @@ import { Categories } from '../../models/categories.enum';
   templateUrl: './iptv-list.component.html',
   styleUrls: ['./iptv-list.component.scss'],
 })
-export class IptvListComponent implements OnInit, /*OnChanges,*/ AfterViewInit {
+export class IptvListComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   @ViewChild(MatSort)
@@ -26,35 +26,28 @@ export class IptvListComponent implements OnInit, /*OnChanges,*/ AfterViewInit {
   @Input({ required: true }) objects!: IptvDto[];
   @Output() onIptvEmit = new EventEmitter<string>();
   dataSource!: MatTableDataSource<IptvDto>;
-  public isLoading: boolean = true;
-  public isLoaded: boolean = false;
-  value: number = 0;
-  resultsLength = 0;
-  isLoadingResults = true;
-  isRateLimitReached = false;
-  countriesEnum = Countries;
-  categoriesEnum = Categories
-  countryKeys = Object.keys(this.countriesEnum);
-  categoryKeys = Object.keys(this.categoriesEnum);
-  selectedCountry: string = 'Mexico';
-  selectedCategory: string = '';
+  isLoading = true;
+  // countryKeys = Object.keys(Countries);
+  // categoryKeys = Object.keys(Categories);
+  // selectedCountry: string = 'MX';
+  // selectedCategory: string;
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = [/*'logo',*/ 'channelName', 'countryFlag'];
-  constructor(private _router: Router, private _liveAnnouncer: LiveAnnouncer) {
+  displayedColumns = ['channelName'/*, 'logo'*/];
+  constructor(private _liveAnnouncer: LiveAnnouncer) {
   }
-  // ngOnChanges(changes: SimpleChanges): void {
-  //   if (changes['objects'].currentValue) {
-  //     this.dataSource = new MatTableDataSource(changes['objects'].currentValue);
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['objects'].currentValue) {
+      this.dataSource = new MatTableDataSource(changes['objects'].currentValue);
 
-  //     // this.table.dataSource = this.dataSource;
-  //     this.dataSource.paginator = this.paginator;
-  //     this.dataSource.sort = this.sort;
+      // this.table.dataSource = this.dataSource;
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
 
-  //   }
-  // }
+    }
+  }
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.objects);
-    this.dataSource.filter = this.selectedCountry + this.selectedCategory;
+    // this.dataSource.filter = this.selectedCountry
     // this.linkListToPaginator();
 
     // this.dataSource = new IptvListDataSource(this.iptvDtoService);
@@ -70,7 +63,7 @@ export class IptvListComponent implements OnInit, /*OnChanges,*/ AfterViewInit {
     // this.isLoaded = true;
   }
   applyFilter(filterValue: string) {
-    this.dataSource.filter = this.selectedCategory.trim().toLowerCase() + ' ' + this.selectedCountry.trim().toLowerCase();
+    this.dataSource.filter = filterValue.trim().toLowerCase()
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
@@ -88,12 +81,12 @@ export class IptvListComponent implements OnInit, /*OnChanges,*/ AfterViewInit {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
-  playUrl(url: string) {
-    this.onIptvEmit.emit(url);
-  }
-  goIptv(id: string) {
-    this._router.navigate(['/iptvs', id]);
-  }
+  // playUrl(url: string) {
+  //   this.onIptvEmit.emit(url);
+  // }
+  // goIptv(id: string) {
+  //   this._router.navigate(['/iptvs', id]);
+  // }
 
   // this method will link data to paginator
   linkListToPaginator() {

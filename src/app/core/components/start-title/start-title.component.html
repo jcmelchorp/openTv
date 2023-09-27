@@ -1,0 +1,21 @@
+<div class="my-5">
+  <!-- <app-card-header [cardheaderTitle]="{{'card-header-title'|translate}}"></app-card-header> -->
+  <mat-card class="text-center" style="width: fit-content" appMaterialElevation [raisedElevation]="raisedElevation"
+    [defaultElevation]="defaultElevation">
+    <mat-card-header>
+      <img mat-card-sm-image src="/assets/icons/openTv_transparent.png" />
+      <mat-card-title><span class="view-title">{{"wellcome-header-title"| translate}}</span>
+      </mat-card-title>
+      <mat-card-subtitle class="view-subtitle">{{"wellcome-header-description" |translate}}
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+    </mat-card-content>
+    <mat-card-footer>
+      <button mat-button color="primary" routerLink="/iptvs">
+        <mat-icon>live_tv</mat-icon>
+        <span>Canales</span>
+      </button>
+    </mat-card-footer>
+  </mat-card>
+</div>
