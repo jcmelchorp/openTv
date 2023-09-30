@@ -21,7 +21,7 @@ export class AppComponent {
     seoService.titleInit();
     seoService.generateTags({
       title: this.title,
-      description: 'IP TV Player',
+      description: 'Watch every TV channel in the world with OpenTv. Find more than 30,000 streams from local or global TV channels in every country all over the world.',
       image: 'assets/icons/openTv_transparent.png',
     });
   }

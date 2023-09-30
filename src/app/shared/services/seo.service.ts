@@ -48,9 +48,9 @@ export class SeoService {
   }
 
   generateTags({
-    title = '',
-    description = '',
-    image = ''
+    title = 'OpenTv',
+    description = 'Watch every TV channel in the world with OpenTv. Find more than 30,000 streams from local or global TV channels in every country all over the world.',
+    image = 'assets/icons/openTv_transparent.png',
   }): void {
     this.titleService.setTitle(title);
     this.metaService.addTags([
@@ -63,7 +63,7 @@ export class SeoService {
       { httpEquiv: 'X-UA-Compatible', content: 'IE=edge' },
       { name: 'author', content: 'Julio César Melchor Pinto' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0, shrink-to-fit=no' },
-      { name: 'date', content: '2021-02-05', scheme: 'YYYY-MM-DD' },
+      { name: 'date', content: '2023-02-', scheme: 'YYYY-MM-DD' },
       { name: 'application-name', content: title },
       { name: 'apple-mobile-web-app-status-bar', content: 'black-translucent' },
       { name: 'theme-color', content: '#1976d2' },
@@ -93,7 +93,7 @@ export class SeoService {
       { property: 'twitter:image', content: image, },
     ]);
     if (this.swUpdate.isEnabled) {
-      this.swUpdate.available.subscribe(async () => {
+      this.swUpdate.versionUpdates.subscribe(async () => {
         this.snackBar.open(
           'Se han hecho cambios desde la última visita. Actualiza la página para continuar'
         );

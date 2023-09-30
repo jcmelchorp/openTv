@@ -30,7 +30,8 @@ export class ApiService {
                     languageCodes: channel.languages,
                     logo: channel.logo,
                     website: channel.website,
-                    categories: channel.categories
+                    categories: channel.categories,
+                    subdivision: channel.subdivision,
                 }
                 return iptv;
             })),

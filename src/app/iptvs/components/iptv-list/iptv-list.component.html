@@ -8,7 +8,9 @@
       <input matInput #input (keyup)="applyFilter($event.target.value)" placeholder="Escribe una busqueda">
     </mat-form-field>
   </div>
-
+  <div *ngIf="isLoading" fxLayout="row" fxLayoutAlign="center center">
+    <mat-spinner [diameter]="50" [strokeWidth]="5"></mat-spinner>
+  </div>
   <mat-card>
     <table class="mat-elevation-z9" mat-table #table [dataSource]="dataSource.data" aria-label="iptv channels" matSort
       (matSortChange)="announceSortChange($event)">

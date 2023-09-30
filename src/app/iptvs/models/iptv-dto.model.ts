@@ -17,4 +17,5 @@ export class IptvDto {
     url?: string;
     guideSite?: string;
     guideUrl?: string;
+    subdivision?: string;
 }

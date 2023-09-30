@@ -26,7 +26,7 @@ export class IptvListComponent implements OnInit, OnChanges, AfterViewInit {
   @Input({ required: true }) objects!: IptvDto[];
   @Output() onIptvEmit = new EventEmitter<string>();
   dataSource!: MatTableDataSource<IptvDto>;
-  isLoading = true;
+  isLoading = false;
   // countryKeys = Object.keys(Countries);
   // categoryKeys = Object.keys(Categories);
   // selectedCountry: string = 'MX';
@@ -42,7 +42,7 @@ export class IptvListComponent implements OnInit, OnChanges, AfterViewInit {
       // this.table.dataSource = this.dataSource;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-
+      this.isLoading = false;
     }
   }
   ngOnInit(): void {
