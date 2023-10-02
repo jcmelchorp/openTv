@@ -11,4 +11,5 @@
             <video appHlsVideoPlayer [stream]="(iptv$|async).url" controls autoplay muted></video>
         </div>
     </mat-card-content>
+    {{(iptv$|async)|json}}
 </mat-card>

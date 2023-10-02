@@ -42,6 +42,10 @@ export class IptvListComponent implements OnInit, OnChanges, AfterViewInit {
       // this.table.dataSource = this.dataSource;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+
+      if (this.dataSource.paginator) {
+        this.dataSource.paginator.firstPage();
+      }
       this.isLoading = false;
     }
   }
