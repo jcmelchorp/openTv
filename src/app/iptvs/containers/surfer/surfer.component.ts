@@ -53,7 +53,7 @@ export class SurferComponent implements OnInit {
     this.filterValues = this.fb.group({
       countryCode: new FormControl('MX'),
       // subdivisions: new FormControl([]),
-      categories: new FormControl(''),
+      category: new FormControl(''),
     });
 
     // this.filterValues.patchValue({ conutryCode: 'MX' });
@@ -113,8 +113,8 @@ export class SurferComponent implements OnInit {
   get countryCode(): string {
     return this.filterValues.get('countryCode').value;
   }
-  get categories(): string {
-    return this.filterValues.get('categories').value;
+  get category(): string {
+    return this.filterValues.get('category').value;
   }
   // get subdivisions(): string[] {
   //   return this.filterValues.get('subdivisions').value;
@@ -123,10 +123,10 @@ export class SurferComponent implements OnInit {
     let obj = {
       // subdivision: this.subdivisions ? this.subdivisions.join('@@') : null, 
       countryCode: this.countryCode,// ? this.countryCode : this.subdivisions.slice(0, 2)[0], 
-      categories: this.categories
+      category: this.category
     };
     Object.keys(obj).forEach((key) => obj[key] == null && delete obj[key]);
-    this.iptvsEntityService.setFilter(obj);
+    this.iptvsEntityService.setFilter(...[obj]);
     // console.log(obj)
   }
 

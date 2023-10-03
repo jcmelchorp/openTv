@@ -12,7 +12,9 @@
 
     <ng-container matColumnDef="channelName">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordena por nombre">
-        <span *ngIf="dataSource.data.length>0"> <span class="badge text-bg-success">{{dataSource.data.length}}</span> en
+        <span *ngIf="dataSource?.data?.length>0"> <span
+            class="badge text-bg-success">{{dataSource?.data?.length}}</span>
+          en
           {{(dataSource?.data[0]?.countryCode|translate).slice(5,end)}}</span>
       </th>
       <td fxLayout="row" fxLayoutAlign="space-between center" mat-cell *matCellDef="let row">
@@ -22,7 +24,7 @@
     </ng-container>
     <ng-container matColumnDef="paginator">
       <td mat-footer-cell *matFooterCellDef [colSpan]="displayedColumns.length">
-        <mat-paginator class="paginator" #paginator [length]="dataSource?.data.length" [pageSize]="5"
+        <mat-paginator class="paginator" #paginator [length]="dataSource?.data?.length" [pageSize]="5"
           [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons aria-label="Select channel"></mat-paginator>
       </td>
     </ng-container>

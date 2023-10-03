@@ -5,13 +5,13 @@ import { IptvDto } from 'src/app/iptvs/models/iptv-dto.model';
 export const entityMetadata: EntityMetadataMap = {
     [fromIptv.entityCollectionName]: {
         sortComparer: (a: IptvDto, b: IptvDto) => a.countryCode.localeCompare(b.countryCode!),
-        filterFn: (entities: IptvDto[], { channelName, subdivision, countryCode, countryName, languageNames, categories }: Partial<IptvDto>) =>
+        filterFn: (entities: IptvDto[], { channelName, subdivision, countryCode, countryName, languageNames, category }: any) =>
             entities
                 .filter((e) => (channelName ? e.channelName!.includes(channelName) : true))
                 .filter((e) => (countryName ? e.channelName!.includes(countryName) : true))
                 // .filter((e) => (subdivision ? e.subdivision === subdivision.split('@@')[0] : true))
                 .filter((e) => (countryCode ? e.countryCode === countryCode : true))
-                .filter((e) => (categories ? e.categories!.includes(categories[0]) : true))
+                .filter((e) => (category ? e.categories?.includes(category) : true))
                 .filter((e) => (languageNames ? e.languageNames === languageNames : true)),
         selectId: (iptv: IptvDto) => iptv.id,
         entityDispatcherOptions: {

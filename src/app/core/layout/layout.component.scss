@@ -1,5 +1,6 @@
 .sidenav-container {
   height: 100%;
+  // background-color: transparent !important;
 }
 
 .sidenav {
@@ -7,10 +8,11 @@
 }
 
 .sidenav .mat-toolbar {
-  background: inherit;
+  // background: transparent !important;
 }
 
 .fix-top {
+  background-color: transparent !important;
   position: sticky;
   top: 0;
   z-index: 100;

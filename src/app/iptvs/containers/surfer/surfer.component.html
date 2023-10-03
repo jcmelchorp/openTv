@@ -22,7 +22,7 @@
                 <mat-icon>dvr</mat-icon>
                 <mat-form-field appearance="outline">
                     <mat-label>Categoría</mat-label>
-                    <mat-select formControlName="categories" placeholder="Categoria">
+                    <mat-select formControlName="category" placeholder="Categoria">
                         <mat-option [value]="''">Todas</mat-option>
                         <mat-option *ngFor="let key of categoryKeys" [value]="key">
                             {{key| translate}}

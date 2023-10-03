@@ -9,7 +9,10 @@
 
 .mat-toolbar {
   min-height: 50px !important;
+  max-height: max-content;
+  // background-color: transparent !important;
   .mat-toolbar-row {
-    max-height: 50px !important;
+    max-height: 53px !important;
+    background-color: transparent !important;
   }
 }
