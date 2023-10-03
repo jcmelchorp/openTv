@@ -1,15 +1,16 @@
-<mat-card *ngIf="(iptv$|async)">
-    <mat-card-header fxLayout="row" fxLayoutAlign="space-between center">
-        <mat-card-title>{{ (iptv$|async).channelName! }}</mat-card-title>
-        <mat-card-subtitle>{{ (iptv$|async).channelId! }}</mat-card-subtitle>
-        <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
-            <img mat-card-image [src]="(iptv$|async).logo!||'/assets/icons/bad-tv.png'" height="40px" />
-        </div>
-    </mat-card-header>
-    <mat-card-content>
-        <div class="m-2">
-            <video appHlsVideoPlayer [stream]="(iptv$|async).url" controls autoplay muted></video>
-        </div>
-    </mat-card-content>
-    {{(iptv$|async)|json}}
-</mat-card>
+<div class="card" appMaterialElevation [defaultElevation]="0" [raisedElevation]="6" *ngIf="(iptv$|async)">
+    <mat-card>
+        <mat-card-header fxLayout="row" fxLayoutAlign="space-between center">
+            <mat-card-title>{{ (iptv$|async).channelName! }}</mat-card-title>
+            <mat-card-subtitle>{{ (iptv$|async).channelId! }}</mat-card-subtitle>
+            <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
+                <img mat-card-image [src]="(iptv$|async).logo!||'/assets/icons/bad-tv.png'" height="40px" />
+            </div>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="m-2">
+                <video appHlsVideoPlayer [stream]="(iptv$|async).url" controls autoplay muted></video>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

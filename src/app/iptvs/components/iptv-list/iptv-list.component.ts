@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
@@ -15,6 +15,7 @@ import { Categories } from '../../models/categories.enum';
   selector: 'app-iptv-list',
   templateUrl: './iptv-list.component.html',
   styleUrls: ['./iptv-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IptvListComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChild(MatPaginator)
@@ -26,6 +27,8 @@ export class IptvListComponent implements OnInit, OnChanges, AfterViewInit {
   @Input({ required: true }) objects!: IptvDto[];
   @Output() onIptvEmit = new EventEmitter<string>();
   dataSource!: MatTableDataSource<IptvDto>;
+  defaultElevation = 2;
+  raisedElevation = 4;
   isLoading = false;
   // countryKeys = Object.keys(Countries);
   // categoryKeys = Object.keys(Categories);

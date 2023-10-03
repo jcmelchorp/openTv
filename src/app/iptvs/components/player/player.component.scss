@@ -3,3 +3,15 @@ video {
   height: fit-content;
   margin: 0 auto;
 }
+
+.mat-mdc-card,
+.card {
+  background-color: transparent !important;
+  border: none;
+}
+
+.mat-mdc-card-title {
+  font-size: 24px;
+  font-family: "Fredoka", cursive;
+  text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.1);
+}

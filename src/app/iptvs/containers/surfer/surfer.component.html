@@ -1,14 +1,15 @@
-<div class="my-3" fxLayout="row-reverse" fxLayoutAlign="space-around start" fxLayout.lt-md="column"
+<div class="my-4" fxLayout="row-reverse" fxLayoutAlign="space-around start" fxLayout.lt-md="column"
     fxLayoutAlign.lt-md="space-between center" fxLayoutGap="30px">
-    <div fxFlex="0 1 calc(70% -5px)">
+    <div fxFlex="0 1 calc(65% -5px)" fxFlex.lt-lg="0 1 calc(50% -5px)">
         <router-outlet></router-outlet>
     </div>
 
-    <div fxFlex="0 1 calc(32% -5px)" *ngIf="!(isLoading$|async)&&(isLoaded$|async)">
+    <div class="my-2" fxFlex="0 1 calc(35% -5px)" fxFlex.lt-lg="0 1 calc(50% -5px)">
         <form [formGroup]="filterValues">
             <div fxLayout="row" fxLayoutAlign="space-between stretch">
-                <mat-icon>flag_circle</mat-icon>
+                <mat-icon>public</mat-icon>
                 <mat-form-field appearance="outline">
+                    <mat-label>País</mat-label>
                     <mat-select formControlName="countryCode" placeholder="País">
                         <mat-option [value]="''">Todas</mat-option>
                         <mat-option *ngFor="let key of countryKeys" [value]="key">
@@ -17,9 +18,10 @@
                     </mat-select>
                 </mat-form-field>
             </div>
-            <div fxLayout="row" fxLayoutAlign="space-between stretch">
-                <mat-icon>category</mat-icon>
+            <div class="pt-2" fxLayout="row" fxLayoutAlign="space-between stretch">
+                <mat-icon>dvr</mat-icon>
                 <mat-form-field appearance="outline">
+                    <mat-label>Categoría</mat-label>
                     <mat-select formControlName="categories" placeholder="Categoria">
                         <mat-option [value]="''">Todas</mat-option>
                         <mat-option *ngFor="let key of categoryKeys" [value]="key">
@@ -28,100 +30,13 @@
                     </mat-select>
                 </mat-form-field>
             </div>
-
-            <!-- <div fxLayout="row" fxLayoutAlign="space-between stretch">
-                <mat-icon>flag_circle</mat-icon>
-                <mat-form-field appearance="fill"> -->
-            <!-- <mat-label>Paises</mat-label> -->
-            <!-- <input type="text" matInput placeholder="States Group" formControlName="stateGroup" required [matAutocomplete]="autoGroup">
-                       <mat-autocomplete #autoGroup="matAutocomplete"> -->
-            <!-- <input type="text" matInput placeholder="" aria-label="" matInput [matAutocomplete]="auto"
-                        formControlName="subdivisions" style="">
-                    <span *ngIf="states.value">
-                        {{states.value ? (states.value[0] |translate) : ''}}
-                        (+{{states.value.length-1}} {{states.value?.length === 2 ? 'región' : 'regiones'}})
-                    </span>
-                    <mat-autocomplete #auto="matAutocomplete"> -->
-
-            <!-- <mat-select [formControl]="states" multiple> -->
-            <!-- <mat-select-trigger>
-                            {{states.value ? states.value[0] : ''}}
-                            <span *ngIf="states.value?.length > 1" class="example-additional-selection">
-                                (+{{states.value.length - 1}} {{states.value?.length === 2 ? 'other' : 'others'}})
-                            </span>
-                        </mat-select-trigger>
-
-                        <mat-optgroup *ngFor="let group of countrySubKeys">
-                            <div>
-                                <mat-checkbox *ngIf="group" [checked]="group.selected"
-                                    (change)="toggleParent($event, group)" (click)="$event.stopPropagation()">
-                                    {{group.letter|translate}}
-                                </mat-checkbox>
-                                <button mat-button *ngIf="group.names" (click)="expandDocumentTypes(group)">
-                                    <mat-icon>keyboard_arrow_down</mat-icon>
-                                </button>
-                            </div>
-                            <mat-option *ngFor="let name of group.names" [value]="name"
-                                [ngClass]="isExpandCategory[group.letter] ? 'list-show' : 'list-hide'">
-                                <mat-checkbox [checked]="group.checked" (change)="toggleSelection($event, name, group)"
-                                    (click)="$event.stopPropagation()">
-                                    {{name | translate}}
-                                </mat-checkbox>
-                            </mat-option>
-                        </mat-optgroup> -->
-
-            <!-- </mat-select> -->
-            <!-- </mat-autocomplete> -->
-            <!-- </mat-autocomplete> -->
-            <!-- </mat-form-field>
-            </div> -->
-            <!-- <mat-label>País</mat-label> -->
-            <!-- <input type="text" matInput placeholder="States Group" formControlName="subdivision" required
-                    [matAutocomplete]="autoGroup"> -->
-            <!-- <input type="text" matInput placeholder="" aria-label="" [matAutocomplete]="auto" [formControl]=""
-                    style=""> -->
-            <!-- <mat-autocomplete #autoGroup="matAutocomplete">
-                    <span *ngIf="states.value">
-                        {{states.value ? states.value[0] : ''}}
-                        (+{{states.value.length - 1}} {{states.value?.length === 2 ? 'other' : 'others'}})
-                    </span>
-                    <mat-autocomplete #auto="matAutocomplete"> -->
-
-            <!-- <mat-select [formControl]="states" multiple> -->
-            <!-- <mat-select-trigger>
-                            {{states.value ? states.value[0] : ''}}
-                            <span *ngIf="states.value?.length > 1" class="example-additional-selection">
-                                (+{{states.value.length - 1}} {{states.value?.length === 2 ? 'other' : 'others'}})
-                            </span>
-                        </mat-select-trigger>
-
-                        <mat-optgroup *ngFor="let group of countryKeys">
-                            <div>
-                                <mat-checkbox [checked]="group.selected" (change)="toggleParent($event, group)"
-                                    (click)="$event.stopPropagation()">
-                                    {{countries[group]}}
-                                </mat-checkbox>
-                                <button mat-button (click)="expandDocumentTypes(group)">
-                                    <mat-icon>keyboard_arrow_down</mat-icon>
-                                </button>
-                            </div>
-                            <mat-option *ngFor="let name of group.names" [value]="name"
-                                [ngClass]="isExpandCategory[group.letter] ? 'list-show' : 'list-hide'">
-                                <mat-checkbox [checked]="group.checked" (change)="toggleSelection($event, name, group)"
-                                    (click)="$event.stopPropagation()">
-                                    {{name}}
-                                </mat-checkbox>
-                            </mat-option>
-                        </mat-optgroup> -->
-
-            <!-- </mat-select> -->
-            <!-- </mat-autocomplete>
-                </mat-autocomplete>
-            </mat-form-field> -->
         </form>
-        <app-iptv-list *ngIf="(iptvs$|async)" [objects]="iptvs$|async" (onIptvEmit)="notify($event)">
+        <section *ngIf="(isLoading$|async)||!(isLoaded$|async)">
+            <h1 class="display-1">Loading Accounts</h1>
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </section>
+        <app-iptv-list *ngIf="!(isLoading$|async)&&(isLoaded$|async)" [objects]="iptvs$|async"
+            (onIptvEmit)="notify($event)">
         </app-iptv-list>
     </div>
 </div>
-
-<!-- <div>{{(iptvs$|async) |json}}</div> -->

@@ -8,7 +8,7 @@ export class MaterialElevationDirective implements OnChanges {
   defaultElevation = 0;
 
   @Input()
-  raisedElevation = 2;
+  raisedElevation = 3;
 
   constructor(
     private element: ElementRef,

@@ -1,6 +1,5 @@
 <!-- <ng-content #filterform></ng-content> -->
-<div fxLayout="column" fxLayoutAlign="space-evenly stretsh">
-
+<div class="pt-1" fxLayout="column" fxLayoutAlign="space-evenly stretch">
   <div fxLayout="row" fxLayoutAlign="space-between stretch">
     <mat-icon>search</mat-icon>
     <mat-form-field appearance="outline">
@@ -8,38 +7,34 @@
       <input matInput #input (keyup)="applyFilter($event.target.value)" placeholder="Escribe una busqueda">
     </mat-form-field>
   </div>
-  <div *ngIf="isLoading" fxLayout="row" fxLayoutAlign="center center">
-    <mat-spinner [diameter]="50" [strokeWidth]="5"></mat-spinner>
-  </div>
-  <mat-card>
-    <table class="mat-elevation-z9" mat-table #table [dataSource]="dataSource" aria-label="iptv channels" matSort
-      (matSortChange)="announceSortChange($event)">
+  <table appMaterialElevation mat-table #table [dataSource]="dataSource" aria-label="iptv channels" matSort
+    (matSortChange)="announceSortChange($event)">
 
-      <ng-container matColumnDef="channelName">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordena por nombre">
-          <span class="fw-bold">Canales:</span>
-        </th>
-        <td fxLayout="row wrap" fxLayout="space-between center" mat-cell *matCellDef="let row">
-          <div fxFlex>{{row.channelName}}</div>
-          <div><img style="max-width: 75px;max-height:35px" [src]="(row.logo)?row.logo:'/assets/icons/bad-tv.png'" />
-          </div>
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="paginator">
-        <td mat-footer-cell *matFooterCellDef [colSpan]="displayedColumns.length">
-          <mat-paginator class="paginator" #paginator [length]="dataSource?.data.length" [pageSize]="10"
-            [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons aria-label="Select channel"></mat-paginator>
-        </td>
-      </ng-container>
-      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="row.channelId">
-      </tr>
-      <!-- Row shown when there is no matching data. -->
-      <tr class="mat-row" *matNoDataRow>
-        <td class="text-center" colspan="3"><span class="badge text-bg-warning">No encontré resultados.</span></td>
-      </tr>
-      <tr mat-footer-row *matFooterRowDef="['paginator']; sticky: true"></tr>
-    </table>
+    <ng-container matColumnDef="channelName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordena por nombre">
+        <span *ngIf="dataSource.data.length>0"> <span class="badge text-bg-success">{{dataSource.data.length}}</span> en
+          {{(dataSource?.data[0]?.countryCode|translate).slice(5,end)}}</span>
+      </th>
+      <td fxLayout="row" fxLayoutAlign="space-between center" mat-cell *matCellDef="let row">
+        <div>{{row.channelName}}</div>
+        <div><img class="row-bg" [src]="(row.logo)?row.logo:'/assets/icons/bad-tv.png'" /></div>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="paginator">
+      <td mat-footer-cell *matFooterCellDef [colSpan]="displayedColumns.length">
+        <mat-paginator class="paginator" #paginator [length]="dataSource?.data.length" [pageSize]="5"
+          [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons aria-label="Select channel"></mat-paginator>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="row.channelId">
+    </tr>
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="text-center h2" colspan="3"><span class="badge text-bg-warning text-light">No encontré
+          resultados.</span></td>
+    </tr>
+    <tr mat-footer-row *matFooterRowDef="['paginator']"></tr>
+  </table>
 
-  </mat-card>
 </div>
