@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { SeoService } from './shared/services';
 
@@ -7,10 +7,10 @@ import { SeoService } from './shared/services';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'openTv';
   constructor(
-    private seoService: SeoService,
+    public seoService: SeoService,
     public translate: TranslateService,
   ) {
     translate.addLangs(['es', 'en']);
@@ -23,6 +23,15 @@ export class AppComponent {
       title: this.title,
       description: 'Watch every TV channel in the world with OpenTv. Find more than 30,000 streams from local or global TV channels in every country all over the world.',
       image: 'assets/icons/openTv_transparent.png',
+    });
+
+  }
+
+  ngOnInit(): void {
+    this.seoService.updateActivated.subscribe(_ => {
+      if (confirm('Se han hecho cambios desde la última visita. Actualiza la página para continuar')) {
+        window.location.reload();
+      }
     });
   }
 }

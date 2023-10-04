@@ -1,15 +1,11 @@
 @import "./../../../../assets/theme/colors";
 .sidenav {
-  //height: inherit;
-  width: min-content;
+  // width: min-content;
   border: none;
-  mat-toolbar {
-    background-color: inherit !important;
-  }
 }
 .active {
   color: $success-color;
 }
 .sidenav-container {
-  height: calc(100vh - 54px);
+  height: calc(100vh - 53px);
 }

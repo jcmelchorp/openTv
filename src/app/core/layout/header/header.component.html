@@ -1,18 +1,18 @@
 <mat-toolbar appMaterialElevation>
   <mat-toolbar-row fxLayout="row warp" fxLayoutAlign="space-between center">
     <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
-      <fa-icon mat-icon-button [icon]="faBars" (click)="toggleSidenavLeft($event)" aria-label="Side nav toggle icon">
-      </fa-icon>
+      <!-- <fa-icon mat-icon-button [icon]="faBars" (click)="toggleSidenavLeft($event)" aria-label="Side nav toggle icon">
+      </fa-icon> -->
+      <mat-icon class="mx-2" mat-icon-button (click)="toggleSidenavLeft($event)"
+        aria-label="Side nav toggle icon">menu</mat-icon>
       <a routerLink="/"><img src="/assets/icons/openTv_transparent.png" height="45px" /></a>
     </div>
-    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
-      <button type="button" aria-label="Alternar idioma" mat-icon-button [matMenuTriggerFor]="languageMenu">
-        <div fxLayout="column" fxLayoutAlign="end center">
-          <mat-icon>language</mat-icon>
-          <span *ngIf="translate.currentLang==='es'" style="font-size:50%">{{ "language-es-name" | translate }}</span>
-          <span *ngIf="translate.currentLang==='en'" style="font-size:50%">{{ "language-en-name" | translate }}</span>
-        </div>
-      </button>
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px">
+      <mat-icon class="mx-2" type="button" aria-label="Alternar idioma" mat-icon-button
+        [matMenuTriggerFor]="languageMenu"
+        matTooltip="{{ 'language-'+translate.currentLang+'-name' | translate }}">language</mat-icon>
+      <!-- <span *ngIf="translate.currentLang==='es'" style="font-size:50%">{{ "language-es-name" | translate }}</span>
+          <span *ngIf="translate.currentLang==='en'" style="font-size:50%">{{ "language-en-name" | translate }}</span> -->
       <mat-menu #languageMenu="matMenu">
         <div mat-menu-item (click)="switchLang('es')">
           <mat-icon svgIcon="es" aria-hidden="false" aria-label="español flag icon"></mat-icon>
@@ -23,12 +23,14 @@
           {{ "language-en-name" | translate }}
         </div>
       </mat-menu>
-      <button type="button" aria-label="Alternar tema" mat-icon-button (click)="toggleDarkTheme(isDarkTheme)">
-        <div fxLayout="column" fxLayoutAlign="end center">
-          <mat-icon>{{(isDarkTheme$|async)?'nightlight':'light_mode'}}</mat-icon>
-          <span style="font-size:50%">{{ (isDarkTheme$|async)?'on':'off' }}</span>
-        </div>
-      </button>
+      <mat-icon class="mx-2" [matTooltip]="(isDarkTheme$|async)?'Modo oscuro':'Modo claro'" type="button"
+        aria-label="Alternar tema" mat-icon-button
+        (click)="toggleDarkTheme(isDarkTheme)">{{(isDarkTheme$|async)?'nightlight':'light_mode'}}</mat-icon>
+      <!-- <span style="font-size:50%">{{ (isDarkTheme$|async)?'on':'off' }}</span> -->
+      <!-- <button > -->
+      <mat-icon class="mx-2" matTooltip="Pantalla completa" type="button" mat-icon-button
+        onclick="var el = document.querySelector('body'); el.requestFullscreen();">fullscreen</mat-icon>
+      <!-- </button> -->
     </div>
   </mat-toolbar-row>
 </mat-toolbar>

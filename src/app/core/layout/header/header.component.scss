@@ -1,18 +1,7 @@
-.logo-image {
-  height: 45px;
-  width: auto;
-  margin-left: 10px;
-}
-.header-icons {
-  font-size: 50%;
-}
-
 .mat-toolbar {
-  min-height: 50px !important;
+  min-height: 53px !important;
   max-height: max-content;
-  // background-color: transparent !important;
   .mat-toolbar-row {
     max-height: 53px !important;
-    background-color: transparent !important;
   }
 }

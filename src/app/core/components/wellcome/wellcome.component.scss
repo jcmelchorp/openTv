@@ -1,7 +1,141 @@
+// :root {
+//   --duration: 15s;
+// }
+
+// button {
+//   position: fixed;
+//   top: 1vw;
+//   right: 1vw;
+//   z-index: 5;
+//   background: none;
+//   border: 0;
+//   outline: none;
+//   color: white;
+//   cursor: pointer;
+// }
+
+// body {
+//   background: #131520;
+//   overflow: hidden;
+// }
+// .wrapper-images {
+//   display: flex;
+//   flex-direction: column;
+//   height: 150vh;
+//   justify-content: center;
+//   left: 50%;
+//   position: absolute;
+//   top: 50%;
+//   opacity: 0.8;
+//   transform: translate3d(-50%, -50%, 0) perspective(800px) rotatey(10deg)
+//     rotateX(-10deg);
+// }
+// .images-line {
+//   animation: runner var(--duration) linear infinite;
+//   display: flex;
+//   transform: translateX(23%);
+//   &:nth-child(even) {
+//     animation-duration: calc(var(--duration) * 1.5);
+//   }
+//   .line {
+//     background-position: 50% 50%;
+//     background-size: cover;
+//     flex: none;
+//     height: 29vh;
+//     margin: clamp(10px, 2vw, 20px);
+//     width: 20vh;
+//     position: relative;
+//     transition: ease-in-out all 0.3s;
+//     border-radius: 1rem;
+//     .img {
+//       position: absolute;
+//       z-index: 2;
+//       width: 100%;
+//       height: 100%;
+//       top: 0;
+//       left: 0;
+//       background-position: 50% 50%;
+//       background-size: cover;
+//       transition: ease-in-out all 0.3s;
+//       overflow: hidden;
+//       border-radius: 1rem;
+//     }
+//     &:hover {
+//       .img {
+//         cursor: pointer;
+//         transform: scale(1.1) translatez(0px);
+//       }
+//       &:after {
+//         filter: blur(35px) opacity(0.8);
+//       }
+//     }
+//     &:after {
+//       content: "";
+//       background: inherit;
+//       display: block;
+//       width: 100%;
+//       height: 100%;
+//       border-radius: 50%;
+//       top: 3vh;
+//       position: absolute;
+//       background-size: cover;
+//       z-index: -1;
+//       transition: ease-in-out all 0.3s;
+//       filter: blur(25px) opacity(0.8);
+//     }
+//   }
+// }
+
+// @keyframes runner {
+//   to {
+//     transform: translateX(-10.4%);
+//   }
+// }
+
+// /*Dev*/
+// @import url("https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap");
+// .dev {
+//   font-family: "Poppins", sans-serif;
+//   position: fixed;
+//   font-size: clamp(8px, 3vw, 14px);
+//   bottom: 1vw;
+//   left: 1vw;
+//   padding: 1em;
+//   color: #111;
+//   background-color: white;
+//   border-radius: 25px;
+//   cursor: pointer;
+//   z-index: 100;
+//   a {
+//     text-decoration: none;
+//     font-weight: bold;
+//     color: #111;
+//     transition: ease all 0.3s;
+//     &:hover {
+//       color: #ef5350;
+//       text-decoration: underline;
+//     }
+//   }
+//   span {
+//     display: inline-block;
+//     transition: ease all 0.3s;
+//     color: #ef5350;
+//     &:hover {
+//       transform: scale(1.2);
+//     }
+//   }
+// }
 :root {
   --duration: 15s;
 }
-
+.body {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
 button {
   position: fixed;
   top: 1vw;
@@ -14,10 +148,6 @@ button {
   cursor: pointer;
 }
 
-body {
-  background: #131520;
-  overflow: hidden;
-}
 .wrapper-images {
   display: flex;
   flex-direction: column;
@@ -26,7 +156,7 @@ body {
   left: 10%;
   position: absolute;
   top: 50%;
-  opacity: 0.8;
+  // opacity: 0.8;
   transform: translate3d(-50%, -50%, 0) perspective(800px) rotatey(10deg)
     rotateX(-10deg);
 }
@@ -35,12 +165,12 @@ body {
   display: flex;
   transform: translateX(23%);
   &:nth-child(even) {
-    animation-duration: calc(var(--duration) * 1.5);
+    animation-duration: calc(var(--duration) * 2);
   }
   .line {
     background-position: 50% 50%;
     background-size: cover;
-    opacity: 0.4;
+    // opacity: 0.4;
     flex: none;
     height: 20vh;
     margin: clamp(10px, 2vw, 10px);
@@ -94,9 +224,9 @@ body {
 }
 
 /*Dev*/
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap");
 .dev {
-  font-family: "Poppins", sans-serif;
+  // font-family: "Poppins", sans-serif;
   position: fixed;
   font-size: clamp(8px, 3vw, 14px);
   bottom: 1vw;

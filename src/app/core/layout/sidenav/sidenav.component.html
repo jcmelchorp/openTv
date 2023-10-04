@@ -35,8 +35,7 @@
     </div>
 
   </mat-sidenav>
-  <mat-sidenav-content [@onMainContentChange]="(onSideNavChange && !isHandset) ? 'open': 'close'"
-    class="sidenav-content">
-    <app-main-content fxFill></app-main-content>
+  <mat-sidenav-content [@onMainContentChange]="(onSideNavChange && !isHandset) ? 'open': 'close'">
+    <app-main-content></app-main-content>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -3,6 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './core/layout';
 import { SettingsComponent, WellcomeComponent } from './core/components';
 import { SurferSeedDbComponent } from './iptvs/containers';
+import { NotFoundComponent } from './shared/components';
 
 const routes: Routes = [
   {
@@ -19,11 +20,14 @@ const routes: Routes = [
       {
         path: 'seed',
         component: SurferSeedDbComponent,
-      }
-
+      },
+      {
+        path: '404',
+        component: NotFoundComponent,
+      },
     ]
   },
-  { path: '**', redirectTo: '/iptvs', pathMatch: 'full' }
+  { path: '**', redirectTo: '/404', pathMatch: 'full' }
 ];
 
 @NgModule({

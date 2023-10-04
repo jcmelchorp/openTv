@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { faVirus } from '@fortawesome/free-solid-svg-icons';
 // import { TranslateService } from '@ngx-translate/core';
 // import regions from '../../../../assets/data/regions.json';
@@ -21,17 +21,10 @@ export class NotFoundComponent implements OnInit {
   // array: Region[] = regions as Region[];
 
   ngOnInit(): void {
-    // this.array.forEach((obj) => {
-    //   let id = obj.code;
-    //   this.new.push({ [id]: { ...obj } });
-    //   console.log({ [id]: { ...obj } });
-    // });
 
 
   }
-  get dataUri(): SafeUrl {
-    const jsonData = JSON.stringify(...[this.new]);
-    const uri = 'data:application/json;charset=UTF-8,' + encodeURIComponent(jsonData);
-    return this.sanitizer.bypassSecurityTrustUrl(uri);
-  }
+
 }
+
+

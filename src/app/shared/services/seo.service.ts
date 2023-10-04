@@ -1,28 +1,46 @@
-import { Injectable } from '@angular/core';
+import { ApplicationRef, Injectable, OnDestroy } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Title, Meta } from '@angular/platform-browser';
 import { NavigationEnd, Router, ActivatedRoute } from '@angular/router';
-import { SwUpdate } from '@angular/service-worker';
+import { SwPush, SwUpdate } from '@angular/service-worker';
 import { MatDialog } from '@angular/material/dialog';
 
-import { filter, map } from 'rxjs/operators';
+import { filter, map, takeUntil, tap } from 'rxjs/operators';
 
 import { SnackbarComponent } from '../components/snack/snackbar.component';
+import { Subject, Observable, NEVER } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class SeoService {
+export class SeoService implements OnDestroy {
+  private checkInterval = 1000 * 60 * 60 * 6; // 6 小时
+  private onDestroy = new Subject<void>();
+  updateActivated: Observable<string>;
   titlePage!: string;
+
   constructor(
+    appRef: ApplicationRef,
     private swUpdate: SwUpdate,
+    private swPush: SwPush,
     private snackBar: MatSnackBar,
     private titleService: Title,
     private metaService: Meta,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private dialog: MatDialog
-  ) { }
+  ) {
+    if (!swUpdate.isEnabled) {
+      this.updateActivated = NEVER.pipe(takeUntil(this.onDestroy));
+      return;
+    }
+    this.swPush.notificationClicks.subscribe(event => {
+      console.log('Mensaje push', event);
+      const url = event.notification.data.url;
+      window.open(url, '_blank');
+    });
+
+  }
 
   titleInit() {
     this.router.events.pipe(
@@ -92,18 +110,36 @@ export class SeoService {
       { property: 'twitter:text:title', content: title },
       { property: 'twitter:image', content: image, },
     ]);
-    if (this.swUpdate.isEnabled) {
-      this.swUpdate.versionUpdates.subscribe(async () => {
-        this.snackBar.open(
-          'Se han hecho cambios desde la última visita. Actualiza la página para continuar'
-        );
-        const alert = await this.dialog.open(SnackbarComponent, {
-          data: {
-            header: `This app has been updated!`,
-            message: `Newer version of the app is available. It's a quick refresh away!`
-          }
-        });
-      });
-    }
+    // if (this.swUpdate.isEnabled) {
+    //   this.swUpdate.versionUpdates.subscribe(async () => {
+    //     this.snackBar.open(
+    //       'Se han hecho cambios desde la última visita. Actualiza la página para continuar'
+    //     );
+    //     const alert = await this.dialog.open(SnackbarComponent, {
+    //       data: {
+    //         header: `This app has been updated!`,
+    //         message: `Newer version of the app is available. It's a quick refresh away!`
+    //       }
+    //     });
+    //   });
+    // }
+    this.swUpdate.versionUpdates
+      .pipe(
+        tap(evt => this.log(`Update available: ${JSON.stringify(evt)}`)),
+        takeUntil(this.onDestroy),
+      )
+      .subscribe(() => this.swUpdate.activateUpdate());
+    this.updateActivated = this.swUpdate.versionUpdates.pipe(
+      tap(evt => this.log(`Update activated: ${JSON.stringify(evt)}`)),
+      map(evt => evt['current'].hash),
+      takeUntil(this.onDestroy),
+    );
+  }
+  ngOnDestroy() {
+    this.onDestroy.next();
+  }
+  private log(message: string) {
+    const timestamp = new Date().toISOString();
+    console.log(`[SwUpdates - ${timestamp}]: ${message}`);
   }
 }
