@@ -21,32 +21,52 @@
   <meta name="msapplication-TileImage" content="/assets/icons/mstile-144x144.png">
   <meta name="msapplication-config" content="/assets/icons/browserconfig.xml">
   <meta name="theme-color" content="#1976d2">
-  <style>
-    .loader {
-      margin: 50px auto 0;
-      border: 16px solid #f3f3f3;
-      border-top: 16px solid #3498db;
-      border-radius: 50%;
-      width: 120px;
-      height: 120px;
-      animation: spin 4s linear infinite;
-    }
-
-    @keyframes spin {
-      0% {
-        transform: rotate(0deg);
-      }
-
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-  </style>
 </head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DN8GVRYH5W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
 
-<body class="mat-typography">
+  gtag('config', 'G-DN8GVRYH5W');
+</script>
+
+<body class="mat-typography mat-app-background">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    Please enable JavaScript to continue using this application.
+    <iframe src="https://www.googletagmanager.com/ns.html?id=G-DN8GVRYH5W" height="0" width="0"
+      style="display:none;visibility:hidden">
+    </iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <app-root>
-    <div class="loader"></div>
+    <style>
+      .loader {
+        margin: 50px auto 0;
+        border: 16px solid #f3f3f3;
+        border-top: 16px solid #3498db;
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+    <div class="center">
+      <div class="loader mat-progress-spinner">
+        <p style="color: white">Cargando...</p>
+      </div>
+    </div>
   </app-root>
-  <noscript>Please enable JavaScript to continue using this application.</noscript>
 </body>

@@ -131,7 +131,7 @@ export class SeoService implements OnDestroy {
       .subscribe(() => this.swUpdate.activateUpdate());
     this.updateActivated = this.swUpdate.versionUpdates.pipe(
       tap(evt => this.log(`Update activated: ${JSON.stringify(evt)}`)),
-      map(evt => evt['current'].hash),
+      map(evt => evt['currentVersion']['hash']),
       takeUntil(this.onDestroy),
     );
   }

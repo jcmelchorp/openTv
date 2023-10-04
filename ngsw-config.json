@@ -24,7 +24,12 @@
           "/*.(svg|cur|jpg|jpeg|png|apng|webp|avif|gif|otf|ttf|woff|woff2)"
         ],
         "urls": [
-          "https://fonts.googleapis.com/**"
+          "https://fonts.googleapis.com/css2?family=Comfortaa&display=swap",
+          "https://fonts.googleapis.com/css2&family=Fredoka&display=swap",
+          "https://fonts.googleapis.com/css2&family=Fredoka+One&display=swap",
+          "https://fonts.googleapis.com/css2&family=Londrina+Sketch&display=swap",
+          "https://fonts.googleapis.com/css2&family=Londrina+Shadow&display=swap",
+          "https://fonts.googleapis.com/css2&family=Modak&display=swap"
         ]
       }
     }

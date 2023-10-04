@@ -19,8 +19,7 @@ import { routerKey } from './router';
     imports: [
         StoreModule.forRoot(fromRoot.reducers, storeConfig),
         !environment.production
-            ? StoreDevtoolsModule.instrument()
-            : StoreDevtoolsModule.instrument({
+            ? StoreDevtoolsModule.instrument({
                 maxAge: 25,
                 logOnly: environment.production,
                 features: {
@@ -28,7 +27,7 @@ import { routerKey } from './router';
                     lock: false,
                     persist: true,
                 }
-            }),
+            }) : [],
         StoreRouterConnectingModule.forRoot({
             stateKey: routerKey,
             serializer: CustomSerializer,
