@@ -7,7 +7,7 @@ import { SeoService } from './shared/services';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'openTv';
   constructor(
     public seoService: SeoService,
@@ -27,11 +27,5 @@ export class AppComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
-    this.seoService.updateActivated.subscribe(_ => {
-      if (confirm('Se han hecho cambios desde la última visita. Actualiza la página para continuar')) {
-        window.location.reload();
-      }
-    });
-  }
+
 }

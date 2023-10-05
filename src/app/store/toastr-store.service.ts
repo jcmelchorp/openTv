@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { filter } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ToastrStoreService {
 
   constructor(actions$: Actions, toast: ToastrService) {

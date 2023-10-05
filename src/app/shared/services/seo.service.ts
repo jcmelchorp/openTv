@@ -5,15 +5,18 @@ import { NavigationEnd, Router, ActivatedRoute } from '@angular/router';
 import { SwPush, SwUpdate } from '@angular/service-worker';
 import { MatDialog } from '@angular/material/dialog';
 
-import { filter, map, takeUntil, tap } from 'rxjs/operators';
+import { filter, first, map, takeUntil, tap } from 'rxjs/operators';
 
-import { SnackbarComponent } from '../components/snack/snackbar.component';
-import { Subject, Observable, NEVER } from 'rxjs';
+import { SnackbarComponent } from '../components/snackbar/snackbar.component';
+import { Subject, Observable, NEVER, interval, concat } from 'rxjs';
+import { SnackbarService } from './snackbar.service';
+import { SnackService } from './snack.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SeoService implements OnDestroy {
+
   private checkInterval = 1000 * 60 * 60 * 6; // 6 小时
   private onDestroy = new Subject<void>();
   updateActivated: Observable<string>;
@@ -21,23 +24,39 @@ export class SeoService implements OnDestroy {
 
   constructor(
     appRef: ApplicationRef,
-    private swUpdate: SwUpdate,
-    private swPush: SwPush,
-    private snackBar: MatSnackBar,
+    swUpdate: SwUpdate,
+    swPush: SwPush,
+    snackService: SnackService,
     private titleService: Title,
     private metaService: Meta,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private dialog: MatDialog
   ) {
-    if (!swUpdate.isEnabled) {
-      this.updateActivated = NEVER.pipe(takeUntil(this.onDestroy));
-      return;
-    }
-    this.swPush.notificationClicks.subscribe(event => {
-      console.log('Mensaje push', event);
-      const url = event.notification.data.url;
-      window.open(url, '_blank');
+    // Allow the app to stabilize first, before starting
+    // polling for updates with `interval()`.
+    const appIsStable$ = appRef.isStable.pipe(first(isStable => isStable === true));
+    const everySixHours$ = interval(6 * 60 * 60 * 1000);
+    const everySixHoursOnceAppIsStable$ = concat(appIsStable$, everySixHours$);
+    swUpdate.versionUpdates.subscribe(evt => {
+      switch (evt.type) {
+        case 'VERSION_DETECTED':
+          console.log(`Downloading new app version: ${evt.version.hash}`);
+          break;
+        case 'VERSION_READY':
+          console.log(`Current app version: ${evt.currentVersion.hash}`);
+          console.log(`New app version ready for use: ${evt.latestVersion.hash}`);
+          const snack = snackService.messageWithAction('New version available', 'Reload');
+          snack.onAction().subscribe(() => {
+            window.location.reload();
+          });
+          // Reload the page to update to the latest version.
+          // document.location.reload();
+
+          break;
+        case 'VERSION_INSTALLATION_FAILED':
+          console.log(`Failed to install app version '${evt.version.hash}': ${evt.error}`);
+          break;
+      }
     });
 
   }
@@ -110,36 +129,12 @@ export class SeoService implements OnDestroy {
       { property: 'twitter:text:title', content: title },
       { property: 'twitter:image', content: image, },
     ]);
-    // if (this.swUpdate.isEnabled) {
-    //   this.swUpdate.versionUpdates.subscribe(async () => {
-    //     this.snackBar.open(
-    //       'Se han hecho cambios desde la última visita. Actualiza la página para continuar'
-    //     );
-    //     const alert = await this.dialog.open(SnackbarComponent, {
-    //       data: {
-    //         header: `This app has been updated!`,
-    //         message: `Newer version of the app is available. It's a quick refresh away!`
-    //       }
-    //     });
-    //   });
-    // }
-    this.swUpdate.versionUpdates
-      .pipe(
-        tap(evt => this.log(`Update available: ${JSON.stringify(evt)}`)),
-        takeUntil(this.onDestroy),
-      )
-      .subscribe(() => this.swUpdate.activateUpdate());
-    this.updateActivated = this.swUpdate.versionUpdates.pipe(
-      tap(evt => this.log(`Update activated: ${JSON.stringify(evt)}`)),
-      map(evt => evt['currentVersion']['hash']),
-      takeUntil(this.onDestroy),
-    );
+
   }
+
+
   ngOnDestroy() {
     this.onDestroy.next();
   }
-  private log(message: string) {
-    const timestamp = new Date().toISOString();
-    console.log(`[SwUpdates - ${timestamp}]: ${message}`);
-  }
+
 }

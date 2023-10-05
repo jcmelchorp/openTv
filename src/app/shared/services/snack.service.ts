@@ -21,6 +21,10 @@ export class SnackService {
     return this.snackBar._openedSnackBarRef;
   }
 
+  messageWithReload(message: string, action: string) {
+    this.snackBar.open(message, action);
+    return this.snackBar._openedSnackBarRef;
+  }
   messageWithComponent(data: any, conf: {
     vPos: MatSnackBarVerticalPosition;
     hPos: MatSnackBarHorizontalPosition;

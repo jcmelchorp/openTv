@@ -3,10 +3,11 @@
 @import "assets/theme/colors";
 html,
 body {
-  height: 100%;
+  height: 100vh;
 }
 body {
   margin: 0;
+  padding: 0;
   // background-color: white !important;
   font-family: "Fredoka", "Londrina Sketch", sans-serif;
 }
@@ -16,9 +17,40 @@ body {
   text-shadow: -2px 2px 2px rgb(160, 160, 160);
   color: $orange-color;
 }
+.app-spinner {
+  font-family: "Londrina Sketch", cursive;
+  font-size: calc(3em + 1.5vw);
+  text-shadow: -2px 2px 2px rgb(160, 160, 160);
+  color: $orange-color;
+}
+.loader {
+  margin: 50px auto 0;
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #438432;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 4s linear infinite;
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .view-title {
   color: $bg-main;
-  font-size: calc(3rem + 1.5vw);
+  font-size: calc(3em + 1.5vw);
   font-weight: 800;
   font-family: "fredoka one", cursive;
   text-shadow: -3px -2px 1px $text-shadow-color;

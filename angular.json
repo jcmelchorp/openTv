@@ -102,7 +102,6 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/.well-known",
-              "src/favicon.ico",
               "src/assets",
               "src/manifest.webmanifest"
             ],

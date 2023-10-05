@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ServiceWorkerModule } from '@angular/service-worker';
+import { ServiceWorkerModule, SwRegistrationOptions } from '@angular/service-worker';
 import { getApp, initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
@@ -46,7 +46,7 @@ registerLocaleData(localeEs, "es");
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:1000'
+      registrationStrategy: 'registerWhenStable:5000'
     }),
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
@@ -97,7 +97,13 @@ registerLocaleData(localeEs, "es");
     // provideAnalytics(() => getAnalytics()),
     // provideAuth(() => getAuth()),
   ],
-  providers: [{ provide: LOCALE_ID, useValue: "es" },
+  providers: [
+    {
+      provide: LOCALE_ID, useValue: "es"
+    },
+    {
+      provide: SwRegistrationOptions, useFactory: () => ({ enabled: location.search.includes('sw=true') }),
+    },
     ScreenTrackingService, UserTrackingService, ScreenTrackingService, UserTrackingService,
   ],
   bootstrap: [AppComponent]

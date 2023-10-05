@@ -18,7 +18,7 @@ import { routerKey } from './router';
     declarations: [],
     imports: [
         StoreModule.forRoot(fromRoot.reducers, storeConfig),
-        !environment.production
+        environment.production
             ? StoreDevtoolsModule.instrument({
                 maxAge: 25,
                 logOnly: environment.production,

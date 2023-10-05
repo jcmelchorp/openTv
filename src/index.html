@@ -32,7 +32,7 @@
   gtag('config', 'G-DN8GVRYH5W');
 </script>
 
-<body class="mat-typography mat-app-background">
+<body class="mat-typography ">
   <!-- Google Tag Manager (noscript) -->
   <noscript>
     Please enable JavaScript to continue using this application.
@@ -42,31 +42,7 @@
   </noscript>
   <!-- End Google Tag Manager (noscript) -->
   <app-root>
-    <style>
-      .loader {
-        margin: 50px auto 0;
-        border: 16px solid #f3f3f3;
-        border-top: 16px solid #3498db;
-        border-radius: 50%;
-        width: 120px;
-        height: 120px;
-        animation: spin 1s linear infinite;
-      }
-
-      @keyframes spin {
-        0% {
-          transform: rotate(0deg);
-        }
-
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-    </style>
-    <div class="center">
-      <div class="loader mat-progress-spinner">
-        <p style="color: white">Cargando...</p>
-      </div>
-    </div>
+    <div class="loader"></div>
+    <div class="loader-container app-spinner">Cargando...</div>
   </app-root>
 </body>
