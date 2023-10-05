@@ -156,7 +156,7 @@ button {
   left: 10%;
   position: absolute;
   top: 50%;
-  // opacity: 0.8;
+  opacity: 0.8;
   transform: translate3d(-50%, -50%, 0) perspective(800px) rotatey(10deg)
     rotateX(-10deg);
 }
