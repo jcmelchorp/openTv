@@ -1,7 +1,32 @@
 .mat-toolbar {
   min-height: 53px !important;
   max-height: max-content;
+  background-color: transparent !important;
   .mat-toolbar-row {
     max-height: 53px !important;
+    background-color: transparent !important;
   }
+}
+
+.hideShowToolbar {
+  -webkit-transition: all 0.4s ease-in-out !important;
+  -moz-transition: all 0.4s ease-in-out !important;
+  -o-transition: all 0.4s ease-in-out !important;
+  transition: all 0.4s ease-in-out !important;
+  position: fixed;
+  top: 0px;
+}
+
+.hideToolbar {
+  -webkit-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+
+.showToolbar {
+  -webkit-transform: translateY(0%);
+  -ms-transform: translateY(0%);
+  -o-transform: translateY(0%);
+  transform: translateY(0%);
 }

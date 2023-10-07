@@ -26,15 +26,15 @@ button {
   flex-direction: column;
   height: 100vh;
   justify-content: center;
-  left: 35%;
+  left: 45%;
   position: absolute;
-  top: 50%;
-  opacity: 0.8;
+  top: 70%;
+  opacity: 0.6;
   transform: translate3d(-50%, -50%, 0) perspective(800px) rotatey(15deg)
     rotateX(-15deg);
 }
 .images-line {
-  animation: 8s linear 1s infinite alternate slidein;
+  animation: 8s linear 2s infinite alternate slidein;
   display: flex;
   transform: translateX(20%);
   &:nth-child(even) {
@@ -52,6 +52,7 @@ button {
     transition: ease-in-out all 0.3s;
     border-radius: 1rem;
     .img {
+      filter: blur(4px);
       position: absolute;
       z-index: 2;
       width: 100%;
@@ -66,11 +67,13 @@ button {
     }
     &:hover {
       .img {
+        filter: blur(0px);
         cursor: pointer;
-        transform: scale(1.2) translatez(0px);
+        overflow: visible;
+        transform: scale(1.1) translatez(20px);
       }
       &:after {
-        filter: blur(35px) opacity(0.9);
+        filter: blur(2px) opacity(0.7);
       }
     }
     &:after {
@@ -84,8 +87,8 @@ button {
       position: absolute;
       background-size: cover;
       z-index: -1;
-      transition: ease-in-out all 0.3s;
-      filter: blur(25px) opacity(0.8);
+      transition: ease-in-out all 0.1s;
+      filter: blur(100px) opacity(0.4);
     }
   }
 }

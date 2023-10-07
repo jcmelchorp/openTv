@@ -1,10 +1,10 @@
 <div class="my-4" fxLayout="row-reverse" fxLayoutAlign="space-around start" fxLayout.lt-md="column"
     fxLayoutAlign.lt-md="space-between center" fxLayoutGap="30px">
-    <div fxFlex="0 1 calc(65% -5px)" fxFlex.lt-lg="0 1 calc(50% -5px)">
+    <div style="position: relative;top: 80px;" fxFlex="0 1 calc(65% -5px)" fxFlex.lt-lg="0 1 calc(50% -5px)">
         <router-outlet></router-outlet>
     </div>
 
-    <div class="my-2" fxFlex="0 1 calc(35% -5px)" fxFlex.lt-lg="0 1 calc(50% -5px)">
+    <div style="position: relative;top: 80px;" fxFlex="0 1 calc(35% -5px)" fxFlex.lt-lg="0 1 calc(50% -5px)">
         <form [formGroup]="filterValues">
             <div fxLayout="row" fxLayoutAlign="space-between stretch">
                 <mat-icon>public</mat-icon>
@@ -31,10 +31,6 @@
                 </mat-form-field>
             </div>
         </form>
-        <section *ngIf="(isLoading$|async)||!(isLoaded$|async)">
-            <h1 class="display-1">Loading Accounts</h1>
-            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-        </section>
         <app-iptv-list *ngIf="!(isLoading$|async)&&(isLoaded$|async)" [objects]="iptvs$|async"
             (onIptvEmit)="notify($event)">
         </app-iptv-list>

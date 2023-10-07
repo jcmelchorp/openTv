@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, HostListener, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
@@ -7,7 +7,7 @@ import { faBars, faGlobe } from '@fortawesome/free-solid-svg-icons';
 
 import { TranslateService } from '@ngx-translate/core';
 
-import { Observable } from 'rxjs';
+import { Observable, interval } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { LayoutService } from '../../services/layout.service';
 import { isDarkMode } from '../../state/config.selectors';
@@ -22,13 +22,14 @@ import { SubscriptionService } from 'src/app/shared/services';
   encapsulation: ViewEncapsulation.None
 
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   @Input()
   isHandset!: boolean | null;
   isDarkTheme$!: Observable<boolean>;
   public isDarkTheme!: boolean;
   faGlobe = faGlobe;
   faBars = faBars;
+  hide: boolean = false
   constructor(
     public translate: TranslateService,
     private layoutService: LayoutService,
@@ -50,6 +51,18 @@ export class HeaderComponent {
     );
   }
 
+  ngOnInit(): void {
+
+  }
+
+  @HostListener('window:mousemove', ['$event'])
+  onMousemove(event: MouseEvent) {
+    this.hide = false;
+  }
+  show() {
+    this.hide = !this.hide;
+    console.log(`Hide? ${this.hide}`)
+  }
   switchLang(lang: string) {
     this.translate.use(lang);
   }
