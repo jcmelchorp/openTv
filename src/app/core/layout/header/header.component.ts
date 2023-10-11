@@ -22,7 +22,7 @@ import { SubscriptionService } from 'src/app/shared/services';
   encapsulation: ViewEncapsulation.None
 
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   @Input()
   isHandset!: boolean | null;
   isDarkTheme$!: Observable<boolean>;
@@ -51,18 +51,7 @@ export class HeaderComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {
 
-  }
-
-  @HostListener('window:mousemove', ['$event'])
-  onMousemove(event: MouseEvent) {
-    this.hide = false;
-  }
-  show() {
-    this.hide = !this.hide;
-    console.log(`Hide? ${this.hide}`)
-  }
   switchLang(lang: string) {
     this.translate.use(lang);
   }

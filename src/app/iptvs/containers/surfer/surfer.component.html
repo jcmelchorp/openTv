@@ -9,7 +9,7 @@
             <div fxLayout="row" fxLayoutAlign="space-between stretch">
                 <mat-icon>public</mat-icon>
                 <mat-form-field appearance="outline">
-                    <mat-label>País</mat-label>
+                    <mat-label>{{"country"|translate}}</mat-label>
                     <mat-select formControlName="countryCode" placeholder="País">
                         <mat-option [value]="''">Todas</mat-option>
                         <mat-option *ngFor="let key of countryKeys" [value]="key">
@@ -21,7 +21,7 @@
             <div class="pt-2" fxLayout="row" fxLayoutAlign="space-between stretch">
                 <mat-icon>dvr</mat-icon>
                 <mat-form-field appearance="outline">
-                    <mat-label>Categoría</mat-label>
+                    <mat-label>{{"category"|translate}}</mat-label>
                     <mat-select formControlName="category" placeholder="Categoria">
                         <mat-option [value]="''">Todas</mat-option>
                         <mat-option *ngFor="let key of categoryKeys" [value]="key">

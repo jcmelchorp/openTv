@@ -3,7 +3,7 @@
   <div fxLayout="row" fxLayoutAlign="space-between stretch">
     <mat-icon>search</mat-icon>
     <mat-form-field appearance="outline">
-      <mat-label>Búsqueda por palabra</mat-label>
+      <mat-label>{{"search-by-word"|translate}}</mat-label>
       <input matInput #input (keyup)="applyFilter($event.target.value)" placeholder="Escribe una busqueda">
     </mat-form-field>
   </div>
@@ -14,7 +14,7 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordena por nombre">
         <span *ngIf="dataSource?.data?.length>0"> <span
             class="badge text-bg-success">{{dataSource?.data?.length}}</span>
-          en
+          {{"in"|translate}}
           {{(dataSource?.data[0]?.countryCode|translate).slice(5,end)}}</span>
       </th>
       <td fxLayout="row" fxLayoutAlign="space-between center" mat-cell *matCellDef="let row">
