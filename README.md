@@ -17,8 +17,9 @@ OpenTv is an IPTV client web app for searching and playing IPTV channels all aro
 <img src="src/assets/screenshots/screenshot01.png" alt="OpenTv screenshot light" style="height: auto; width:49%;"/>
 <img src="src/assets/screenshots/screenshot04.png" alt="OpenTv screenshot dark search" style="height: auto; width:49%;"/>
 <img src="src/assets/screenshots/screenshot06.png" alt="OpenTv screenshot dark" style="height: auto; width:100%;"/>
-<img src="src/assets/screenshots/screenshot03.png" alt="OpenTv screenshot dark" style="height: auto; width:49%;"/>
-<img src="src/assets/screenshots/screenshot07.png" alt="OpenTv screenshot dark" style="height: auto; width:49%;"/>
+<img src="src/assets/screenshots/screenshot07.png" alt="OpenTv screenshot dark" style="height: auto; width:25%;"/>
+<img src="src/assets/screenshots/screenshot03.png" alt="OpenTv screenshot dark" style="height: auto; width:25%;"/>
+<img src="src/assets/screenshots/screenshot08.png" alt="OpenTv screenshot dark" style="height: auto; width:25%;"/>
 
 ## License
 
