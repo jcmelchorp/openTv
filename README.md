@@ -6,7 +6,7 @@ OpenTv is an IPTV client web app for searching and playing IPTV channels all aro
 
 - 🔥 Hosted on Firebase
 - 🪤 NGRX state management
-- 📐 Responsive design whit Angular Material 16
+- 📐 Responsive design whit Angular Material
 - 📱 Progressive Web App (PWA)
 - 🌜 Dark mode
 - 🔎 Search by name, country, category, language, etc.
