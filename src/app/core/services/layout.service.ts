@@ -43,9 +43,9 @@ export class LayoutService {
   onWindowScroll() {
     const currentScrollPos = window.pageYOffset;
     if (this.prevScrollpos > 200) {
-      this.matToolbar._elementRef.nativeElement.classList.add('sticky');
+      //this.matToolbar._elementRef.nativeElement.classList.add('sticky');
     } else {
-      this.matToolbar._elementRef.nativeElement.classList.remove('sticky');
+      //this.matToolbar._elementRef.nativeElement.classList.remove('sticky');
     }
     this.prevScrollpos = currentScrollPos;
   }
