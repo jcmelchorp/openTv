@@ -31,7 +31,9 @@
             "assets": [
               "src/.well-known",
               "src/assets",
-              "src/manifest.webmanifest"
+              "src/manifest.webmanifest",
+              "src/google86c37782cc8df195.html",
+              "src/sitemap.xml"
             ],
             "styles": [
               "src/styles.scss"
@@ -103,7 +105,9 @@
             "assets": [
               "src/.well-known",
               "src/assets",
-              "src/manifest.webmanifest"
+              "src/manifest.webmanifest",
+              "src/google86c37782cc8df195.html",
+              "src/sitemap.xml"
             ],
             "styles": [
               "src/styles.scss"
