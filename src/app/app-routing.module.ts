@@ -3,7 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './core/layout';
 import { SettingsComponent, WellcomeComponent } from './core/components';
 import { SurferSeedDbComponent } from './iptvs/containers';
-import { NotFoundComponent } from './shared/components';
+import { NotFoundComponent, AboutComponent } from './shared/components';
 
 const routes: Routes = [
   {
@@ -11,6 +11,10 @@ const routes: Routes = [
       {
         path: '',
         component: WellcomeComponent,
+      },
+      {
+        path: 'about',
+        component: AboutComponent,
       },
       { path: 'iptvs', loadChildren: () => import('./iptvs/iptvs.module').then(m => m.IptvsModule) },
       {

@@ -36,7 +36,10 @@
               "src/sitemap.xml"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/ngx-sharebuttons/themes/modern.scss",
+              "node_modules/ngx-sharebuttons/themes/material.scss",
+              "node_modules/ngx-sharebuttons/themes/circles.scss"
             ],
             "scripts": [],
             "serviceWorker": true,
@@ -110,7 +113,10 @@
               "src/sitemap.xml"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/ngx-sharebuttons/themes/modern.scss",
+              "node_modules/ngx-sharebuttons/themes/material.scss",
+              "node_modules/ngx-sharebuttons/themes/circles.scss"
             ],
             "scripts": []
           }

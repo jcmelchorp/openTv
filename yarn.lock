@@ -6236,6 +6236,13 @@ ngx-flexible-layout@^17.0.4:
   dependencies:
     tslib "^2.3.0"
 
+ngx-sharebuttons@^13.0.0:
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/ngx-sharebuttons/-/ngx-sharebuttons-13.0.0.tgz#b42b86e4288e487c2f328c5f51d9269ef46d6e22"
+  integrity sha512-WRDhuHcNEqZxvUyE+8rXpkZTrB2Q3bYCSXomHTO/Y/rJD+F2eX187Y7sETLU8xDzQwtSUs8B9Aa9CE37M4FMeA==
+  dependencies:
+    tslib "^2.0.0"
+
 ngx-spinner@^16.0.2:
   version "16.0.2"
   resolved "https://registry.npmjs.org/ngx-spinner/-/ngx-spinner-16.0.2.tgz"

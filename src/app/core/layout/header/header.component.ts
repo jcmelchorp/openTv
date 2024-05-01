@@ -51,7 +51,11 @@ export class HeaderComponent {
     );
   }
 
+  showModal: boolean = false;
 
+  toggleModal() {
+    this.showModal = !this.showModal;
+  }
   switchLang(lang: string) {
     this.translate.use(lang);
   }

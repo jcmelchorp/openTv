@@ -30,7 +30,13 @@
       <!-- <button > -->
       <mat-icon class="mx-2" matTooltip="Pantalla completa" type="button" mat-icon-button
         onclick="var el = document.querySelector('body'); el.requestFullscreen();">fullscreen</mat-icon>
-      <!-- </button> -->
+      <mat-icon class="mx-2" matTooltip="Compartir" type="button" mat-icon-button
+        [matMenuTriggerFor]="shareMenu">share</mat-icon>
+      <mat-menu #shareMenu="matMenu">
+        <share-buttons></share-buttons>
+      </mat-menu>
+      <mat-icon class="mx-2" matTooltip="Información" type="button" mat-icon-button
+        routerLink="/about">info_outline</mat-icon>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>

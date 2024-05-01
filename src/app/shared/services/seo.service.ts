@@ -86,7 +86,7 @@ export class SeoService implements OnDestroy {
 
   generateTags({
     title = 'OpenTv',
-    description = 'Watch every TV channel in the world with OpenTv. Find more than 30,000 streams from local or global TV channels in every country all over the world.',
+    description = 'OpenTv es un programa que permite a los usuarios ver canales de televisión en directo a través de cualquier dispositivo. Watch every TV channel in the world with OpenTv. Find more than 30,000 streams from local or global TV channels in every country all over the world.',
     image = 'assets/icons/openTv_transparent.png',
   }): void {
     this.titleService.setTitle(title);
@@ -100,7 +100,7 @@ export class SeoService implements OnDestroy {
       { httpEquiv: 'X-UA-Compatible', content: 'IE=edge' },
       { name: 'author', content: 'Julio César Melchor Pinto' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0, shrink-to-fit=no' },
-      { name: 'date', content: '2023-10-01', scheme: 'YYYY-MM-DD' },
+      { name: 'date', content: '2024-04-30', scheme: 'YYYY-MM-DD' },
       { name: 'application-name', content: title },
       { name: 'apple-mobile-web-app-status-bar', content: 'black-translucent' },
       { name: 'theme-color', content: '#c64600' },

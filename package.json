@@ -44,6 +44,7 @@
     "firebase": "^10.4.0",
     "hls.js": "^1.4.12",
     "ngx-flexible-layout": "^17.0.4",
+    "ngx-sharebuttons": "^13.0.0",
     "ngx-spinner": "^16.0.2",
     "ngx-toastr": "^18.0.0",
     "rxjs": "~7.8.0",

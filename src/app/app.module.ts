@@ -26,6 +26,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 import localeEs from "@angular/common/locales/es";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SHARE_BUTTONS_CONFIG } from 'ngx-sharebuttons';
 registerLocaleData(localeEs, "es");
 
 @NgModule({

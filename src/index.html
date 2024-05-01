@@ -3,8 +3,16 @@
 
 <head>
   <meta charset="utf-8">
-  <title>OpenTv</title>
+  <title>Open Tv</title>
   <base href="/">
+  <!-- Google Analytics -->
+  <script>
+    window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <script async src='https://www.google-analytics.com/analytics.js'></script>
+  <!-- End Google Analytics -->
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/assets/icons/favicon.ico">
@@ -21,6 +29,16 @@
   <meta name="msapplication-TileImage" content="/assets/icons/mstile-144x144.png">
   <meta name="msapplication-config" content="/assets/icons/browserconfig.xml">
   <meta name="google-site-verification" content="jONYtXZmIwUKbEIG-jHuQX4nH7wyH9wUp_r0aTLsonM" />
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-MHF9V7LD');</script>
+  <!-- End Google Tag Manager -->
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DN8GVRYH5W"></script>
@@ -34,12 +52,8 @@
 
 <body class="mat-typography ">
   <!-- Google Tag Manager (noscript) -->
-  <noscript>
-    Please enable JavaScript to continue using this application.
-    <iframe src="https://www.googletagmanager.com/ns.html?id=G-DN8GVRYH5W" height="0" width="0"
-      style="display:none;visibility:hidden">
-    </iframe>
-  </noscript>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MHF9V7LD" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
   <app-root>
     <div class="loader"></div>
