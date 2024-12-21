@@ -82,7 +82,7 @@ export class TdtService {
                             // ambits.push(ambit["name"]);
                             let ambitName = ambit["name"];
                             let channs2 = ambit["channels"].map(channel => {
-                                let firstUrl = channel.options[0]?.url!.replace(/[?DVR]/g, '');
+                                let firstUrl = channel.options[0]?.url!.replace(/[?DVR]/g, '').split('&')[0];
                                 let channelId = channel.name.replace(/[^a-zA-Z0-9]/g, '')
                                 let obj: TdtDto = {
                                     id: channel.epg_id || channelId,
