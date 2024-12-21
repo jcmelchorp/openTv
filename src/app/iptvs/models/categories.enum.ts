@@ -26,7 +26,6 @@ export enum Categories {
     sports = "Deportes",
     travel = "Viajes",
     weather = "Clima",
-    // xxx = "XXX"
 }
 
 
