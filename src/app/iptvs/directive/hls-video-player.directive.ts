@@ -52,7 +52,7 @@ export class HlsVideoPlayerDirective implements OnInit, OnChanges {
             case Hls.ErrorTypes.NETWORK_ERROR:
               // try to recover network error
               this.snackBar.open(
-                'EL canal no está disponible. Intenta d tarde.', 'ok', {
+                'El canal no está disponible. Intenta de nuevo más tarde.', 'ok', {
                 duration: 5000
               }
               );

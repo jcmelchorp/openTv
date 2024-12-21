@@ -6,6 +6,7 @@ import { SeoService } from './seo.service';
 import { SnackService } from './snack.service';
 import { SnackbarService } from './snackbar.service';
 import { SubscriptionService } from './subscription.service';
+import { TdtService } from './tdt.service';
 
 export const sharedServices: any[] = [
   SeoService,
@@ -15,7 +16,8 @@ export const sharedServices: any[] = [
   LoaderService,
   FirestoreV9Service,
   FirebaseService,
-  ApiService
+  ApiService,
+  TdtService
 ]
 export * from './seo.service';
 export * from './snack.service';
@@ -24,4 +26,5 @@ export * from './subscription.service';
 export * from './loader.service';
 export * from './firestore-v9.service';
 export * from './firebase.service';
-export * from './api.service'
+export * from './api.service';
+export * from './tdt.service';

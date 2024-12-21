@@ -17,7 +17,6 @@ import { IptvsResolver } from './resolvers/iptvs.resolver';
   declarations: [
     ...iptvComponents,
     ...iptvContainers,
-    HlsVideoPlayerDirective,
   ],
   imports: [
     SharedModule,

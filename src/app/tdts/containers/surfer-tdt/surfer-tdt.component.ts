@@ -1,36 +1,33 @@
-import { Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
-import { Observable, Subscription, firstValueFrom, map, take } from 'rxjs';
+import { Component, inject, OnInit } from "@angular/core";
+import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import { ActivatedRoute } from "@angular/router";
+import { map, Observable, Subscription } from "rxjs";
+import { TdtsEntityService } from "src/app/store/tdt/tdts-entity.service";
+import { TdtDto } from "../../models/tdt-dto.model";
+import { Countries } from "src/app/iptvs/models/countries.enum";
+import { Categories } from "src/app/iptvs/models/categories.enum";
+import { Ambits } from "../../models/ambits.enum";
 
-
-import { IptvDto } from '../../models/iptv-dto.model';
-import { IptvsEntityService } from 'src/app/store/iptv/iptvs-entity.service';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Languages } from '../../models/languages.enum';
-import { Countries } from '../../models/countries.enum';
-import { ActivatedRoute } from '@angular/router';
-import { Categories } from '../../models/categories.enum';
-import { Subdivisions } from '../../models/subdivisions.enum';
-import { jelloAnimation } from 'angular-animations';
 export interface StateGroup {
   letter: string;
   checked: boolean;
   names: string[];
 }
 @Component({
-  selector: 'app-surfer',
-  templateUrl: './surfer.component.html',
-  styleUrls: ['./surfer.component.scss'],
+  selector: 'app-surfer-tdt',
+  templateUrl: './surfer-tdt.component.html',
+  styleUrls: ['./surfer-tdt.component.scss'],
 })
-export class SurferComponent implements OnInit {
+export class SurferTdtComponent implements OnInit {
   private readonly route: ActivatedRoute = inject(ActivatedRoute);
-  private readonly iptvsEntityService: IptvsEntityService = inject(IptvsEntityService);
-  iptv$!: Observable<IptvDto>;
-  iptvs$!: Observable<IptvDto[]>;
+  private readonly tdtsEntityService: TdtsEntityService = inject(TdtsEntityService);
+  tdt$!: Observable<TdtDto>;
+  tdts$!: Observable<TdtDto[]>;
   isLoading$!: Observable<boolean>;
   isLoaded$!: Observable<boolean>;
-  filteredEntities$: Observable<IptvDto[]>;
+  filteredEntities$: Observable<TdtDto[]>;
   countryKeys = Object.keys(Countries);
-  categoryKeys = Object.keys(Categories);
+  categoryKeys = Object.keys(Ambits);
   countries = Countries;
   // subdivisions = Subdivisions;
   // subdivisionKeys = Object.keys(Subdivisions);
@@ -52,7 +49,7 @@ export class SurferComponent implements OnInit {
   ) {
     // Init form
     this.filterValues = this.fb.group({
-      countryCode: new FormControl('MX'),
+      countryCode: new FormControl(''),
       // subdivisions: new FormControl([]),
       category: new FormControl(''),
     });
@@ -65,37 +62,37 @@ export class SurferComponent implements OnInit {
     // this.countrySubKeys = this.countryKeys.map((key) => {
     //   return { letter: key, names: this.subdivisionKeys.filter((subKey) => subKey.startsWith(key)), checked: false };
     // });
-    // this.iptvsCount$ = this.iptvsEntityService.count$;
+    // this.tdtsCount$ = this.tdtsEntityService.count$;
     this.subscription = this.filterValues.valueChanges
       .subscribe(((changes) => {
         Object.keys(changes).forEach((key) => changes[key] == null && delete changes[key]);
-        this.iptvsEntityService.setFilter(changes);
+        this.tdtsEntityService.setFilter(changes);
       }));
     this.selectFilter()
-    this.isLoading$ = this.iptvsEntityService.loading$;
-    this.isLoaded$ = this.iptvsEntityService.loaded$;
-    this.iptvs$ = this.iptvsEntityService.filteredEntities$.pipe(
-      map(entities => entities.filter(entity => entity.url)));/*.pipe(
-      map((iptvs) => iptvs.filter((iptv) => iptv.countryCode === 'MX'))
+    this.isLoading$ = this.tdtsEntityService.loading$;
+    this.isLoaded$ = this.tdtsEntityService.loaded$;
+    this.tdts$ = this.tdtsEntityService.filteredEntities$.pipe(
+      map(entities => entities.filter(entity => entity.url && entity.isNsfw.toString() == 'false')));/*.pipe(
+      map((tdts) => tdts.filter((tdt) => tdt.countryCode === 'MX'))
     );*/
-    //this.filteredEntities$ = this.iptvsEntityService.filteredEntities$;
-    // this.iptvs$ = this.route.data.pipe<IptvDto[]>(map((iptvs: IptvDto[]) => iptvs));
-    // this.iptv$ = this.selectIptv(this.firstSource);
+    //this.filteredEntities$ = this.tdtsEntityService.filteredEntities$;
+    // this.tdts$ = this.route.data.pipe<TdtDto[]>(map((tdts: TdtDto[]) => tdts));
+    // this.tdt$ = this.selectTdt(this.firstSource);
   }
   // setFilter(filter: any) {
-  //   this.iptvsEntityService.filter$
-  //   this.iptvsEntityService.setFilter({ countryCode: countryCode });
+  //   this.tdtsEntityService.filter$
+  //   this.tdtsEntityService.setFilter({ countryCode: countryCode });
   // }
 
-  selectIptv(channelId: string) {
-    return this.iptvs$
+  selectTdt(channelId: string) {
+    return this.tdts$
       .pipe(
-        map((iptvArray) => iptvArray.filter((iptv) => iptv.channelId === channelId).pop())
+        map((tdtArray) => tdtArray.filter((tdt) => tdt.id === channelId).pop())
       );
   }
   notify(channelId: string) {
     console.log(channelId)
-    this.iptv$ = this.selectIptv(channelId);
+    this.tdt$ = this.selectTdt(channelId);
   }
 
   // applyFilter() {
@@ -108,7 +105,7 @@ export class SurferComponent implements OnInit {
   //       ? ''
   //       : category.toString();
   //   const filter = `${countryCode}$${category}`;
-  //   this.iptvsEntityService.setFilter(filter.trim().toLocaleLowerCase());
+  //   this.tdtsEntityService.setFilter(filter.trim().toLocaleLowerCase());
   // }
 
   get countryCode(): string {
@@ -127,7 +124,7 @@ export class SurferComponent implements OnInit {
       category: this.category
     };
     Object.keys(obj).forEach((key) => obj[key] == null && delete obj[key]);
-    this.iptvsEntityService.setFilter(...[obj]);
+    this.tdtsEntityService.setFilter(...[obj]);
     // console.log(obj)
   }
 

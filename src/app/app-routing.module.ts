@@ -17,14 +17,15 @@ const routes: Routes = [
         component: AboutComponent,
       },
       { path: 'iptvs', loadChildren: () => import('./iptvs/iptvs.module').then(m => m.IptvsModule) },
+      { path: 'tdts', loadChildren: () => import('./tdts/tdts.module').then(m => m.TdtsModule) },
       {
         path: 'settings',
         component: SettingsComponent,
       },
-      {
-        path: 'seed',
-        component: SurferSeedDbComponent,
-      },
+      // {
+      //   path: 'seed',
+      //   component: SurferSeedDbComponent,
+      // },
       {
         path: '404',
         component: NotFoundComponent,

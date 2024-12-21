@@ -1,0 +1,75 @@
+.mat-mdc-form-field {
+  font-size: 18px;
+  height: 45px;
+  width: 90%;
+}
+.mat-mdc-card {
+  height: 50vh;
+}
+::ng-deep .mat-paginator-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 50px;
+  flex-wrap: wrap-reverse;
+  width: 100%;
+}
+.paginator {
+  font-size: 80%;
+  margin: 0 !important;
+  background-color: transparent !important;
+}
+::ng-deep {
+  table {
+    border-radius: 5px;
+    min-width: fit-content;
+    background-color: transparent !important;
+  }
+  tbody {
+    display: block;
+    overflow: auto;
+    max-height: 50vh;
+    width: 100%;
+    padding-top: 3px;
+    padding-bottom: 10px;
+  }
+  thead,
+  tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    padding-top: 5px;
+    padding-bottom: -5px;
+  }
+}
+.mdc-data-table__header-row {
+  height: 30px;
+  // font-style: bold;
+  font-size: 16px;
+  // background-color: transparent !important;
+  // color: #5b380e;
+}
+.mat-mdc-row .mat-mdc-cell {
+  height: 52px;
+  font-size: 18px;
+  font-family: "Fredoka", cursive;
+  // box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.1);
+  // border-bottom: 2px solid transparent;
+  // border-top: 3px solid transparent;
+  cursor: pointer;
+}
+
+.mat-mdc-row:hover {
+  z-index: 10;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
+}
+
+.row-bg {
+  max-height: 35px;
+  max-width: 275px;
+  opacity: 0.5;
+}
+
+.mat-footer-row:first-child td {
+  border-top: 5px solid rgba(0, 0, 0, 0.82);
+}

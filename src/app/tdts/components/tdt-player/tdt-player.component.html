@@ -1,0 +1,16 @@
+<div class="card" appMaterialElevation [defaultElevation]="0" [raisedElevation]="6" *ngIf="(tdt$|async) as tdt">
+    <mat-card>
+        <mat-card-header fxLayout="row" fxLayoutAlign="space-between center">
+            <mat-card-title class="mat-card-title">{{ tdt.channelName! }}</mat-card-title>
+            <mat-card-subtitle>{{ tdt.id! }}</mat-card-subtitle>
+            <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
+                <img mat-card-image [src]="tdt.logo!" height="40px" />
+            </div>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="m-2">
+                <video appHlsVideoPlayer [stream]="tdt.url!" controls autoplay></video>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

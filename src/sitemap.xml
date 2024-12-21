@@ -11,6 +11,11 @@
 	<priority>1.0</priority>
 </url>
 <url>
+	<loc>https://opentv.web.app/tdts</loc>
+	<lastmod>2024-04-30T04:22:16+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
 	<loc>https://opentv.web.app/settings</loc>
 	<lastmod>2024-04-30T04:22:16+01:00</lastmod>
 	<priority>1.0</priority>

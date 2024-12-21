@@ -19,6 +19,11 @@
         <mat-icon>live_tv</mat-icon>
         <span>{{"channels"|translate}}</span>
       </button>
+      <button [@hueButton]="hueBtnState" (@hueButton.done)="hueBtnState = !hueBtnState" mat-button color="warn"
+        routerLink="/tdts">
+        <mat-icon>live_tv</mat-icon>
+        <span>{{"tdt_channels"|translate}}</span>
+      </button>
     </mat-card-footer>
   </mat-card>
 </div>

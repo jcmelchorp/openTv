@@ -99,13 +99,9 @@ registerLocaleData(localeEs, "es");
     // provideAuth(() => getAuth()),
   ],
   providers: [
-    {
-      provide: LOCALE_ID, useValue: "es"
-    },
-    {
-      provide: SwRegistrationOptions, useFactory: () => ({ enabled: location.search.includes('sw=true') }),
-    },
-    ScreenTrackingService, UserTrackingService, ScreenTrackingService, UserTrackingService,
+    { provide: LOCALE_ID, useValue: "es" },
+    { provide: SwRegistrationOptions, useFactory: () => ({ enabled: location.search.includes('sw=true') }) },
+    ScreenTrackingService, UserTrackingService, ScreenTrackingService, UserTrackingService
   ],
   bootstrap: [AppComponent]
 })
