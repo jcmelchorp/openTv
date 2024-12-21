@@ -5,7 +5,7 @@ import { TdtDto } from "src/app/tdts/models/tdt-dto.model";
 
 @Injectable()
 export class TdtService {
-    private URL: string = 'https://www.tdtchannels.com/lists/';
+    private URL: string = 'https://raw.githubusercontent.com/jcmelchorp/openTv/refs/heads/main/TDTchannels.json';
     constructor(private http: HttpClient) {
     }
     // Http Options
@@ -71,7 +71,7 @@ export class TdtService {
     // }
     getChannels() {
         return this.http
-            .get<TdtDto[]>(this.URL + 'tv.json', this.httpOptions)
+            .get<TdtDto[]>(this.URL, this.httpOptions)
             .pipe(
                 map(channels => {
                     let channelsList = [];
