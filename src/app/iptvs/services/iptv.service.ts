@@ -7,6 +7,9 @@ import { Channel } from '../models/channel.model';
 @Injectable()
 export class IptvService {
   //private apiUrl = 'https://iptv-org.github.io/api/streams.json';
+  // TODO: AÑADIR MODULO PARA LAS SIGUIENTES FUENTES
+  // https://raw.githubusercontent.com/byte-capsule/Toffee-Channels-Link-Headers/refs/heads/main/toffee_channel_data.json
+  }//https://raw.githubusercontent.com/interlark/ustvgo-iptv/refs/heads/master/channels.json
   private URL: string = 'https://iptv-org.github.io/api/';
   constructor(private http: HttpClient) {
   }
