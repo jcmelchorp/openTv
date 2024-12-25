@@ -38,8 +38,8 @@ export class ApiService {
             mergeMap(iptvs => {
                 return this.getStreams().pipe(
                     map(streams => iptvs.map(iptv => {
-                        let url = streams.find(stream => stream.channel === iptv.channelId)?.url;
-                        let obj: IptvDto = { ...iptv, url: url };
+                        let urlObj = streams.find(stream => stream.channel === iptv.channelId)?.url;
+                        let obj: IptvDto = { ...iptv, url: urlObj };
                         return obj;
                     }))
                 );

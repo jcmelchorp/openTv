@@ -41,21 +41,23 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from '@angular/material/form-field';
 
 import { MaterialElevationDirective } from './material-elevation.directive';
 export function getPaginatorIntl() {
   const paginatorIntl = new MatPaginatorIntl();
-  paginatorIntl.itemsPerPageLabel = 'Canales por página:';
-  paginatorIntl.nextPageLabel = 'Página siguiente ';
-  paginatorIntl.previousPageLabel = 'Página anterior';
-  paginatorIntl.firstPageLabel = 'Primera página';
-  paginatorIntl.lastPageLabel = 'Última página';
+  paginatorIntl.itemsPerPageLabel = 'Canales por pág.';
+  paginatorIntl.nextPageLabel = 'Pág. siguiente ';
+  paginatorIntl.previousPageLabel = 'Pág. anterior';
+  paginatorIntl.firstPageLabel = 'Primera pág.';
+  paginatorIntl.lastPageLabel = 'Última pág.';
   return paginatorIntl;
 }
 @NgModule({
   declarations: [MaterialElevationDirective],
-  providers: [{ provide: MatPaginatorIntl, useValue: getPaginatorIntl() }],
+  providers: [
+    { provide: MatPaginatorIntl, useValue: getPaginatorIntl() }//, { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { floatLabel: 'always' } }
+  ],
   exports: [
     MaterialElevationDirective,
     A11yModule,

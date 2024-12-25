@@ -2,14 +2,9 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input,
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
-import { Observable, firstValueFrom, map, merge, of, startWith, switchMap } from 'rxjs';
+import { merge, of, startWith, switchMap } from 'rxjs';
 import { IptvDto } from '../../models/iptv-dto.model';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { Router } from '@angular/router';
-import { ApiService } from 'src/app/shared/services';
-import { Country } from '../../models/country.model';
-import { Countries } from '../../models/countries.enum';
-import { Categories } from '../../models/categories.enum';
 
 @Component({
   selector: 'app-iptv-list',
@@ -30,6 +25,7 @@ export class IptvListComponent implements OnInit, OnChanges, AfterViewInit {
   defaultElevation = 2;
   raisedElevation = 4;
   isLoading = false;
+
   // countryKeys = Object.keys(Countries);
   // categoryKeys = Object.keys(Categories);
   // selectedCountry: string = 'MX';

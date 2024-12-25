@@ -1,10 +1,10 @@
 <!-- <ng-content #filterform></ng-content> -->
 <div class="pt-1" fxLayout="column" fxLayoutAlign="space-evenly stretch">
   <div fxLayout="row" fxLayoutAlign="space-between stretch">
-    <mat-icon>search</mat-icon>
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" floatLabel="always">
       <mat-label>{{"search-by-word"|translate}}</mat-label>
-      <input matInput #input (keyup)="applyFilter($event.target.value)" placeholder="Escribe una busqueda">
+      <input matInput #input (keyup)="applyFilter($event.target.value)" placeholder="Placeholder">
+      <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
   </div>
   <table appMaterialElevation mat-table #table [dataSource]="dataSource" aria-label="iptv channels" matSort
