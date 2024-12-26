@@ -1,12 +1,12 @@
 <!-- <ng-content #filterform></ng-content> -->
 <div class="pt-1" fxLayout="column" fxLayoutAlign="space-evenly stretch">
-  <div fxLayout="row" fxLayoutAlign="space-between stretch">
-    <mat-icon>search</mat-icon>
-    <mat-form-field appearance="outline">
-      <mat-label>{{"search-by-word"|translate}}</mat-label>
-      <input matInput #input (keyup)="applyFilter($event.target.value)" placeholder="Escribe una busqueda">
-    </mat-form-field>
-  </div>
+  <!-- <div fxLayo> ut="row" fxLayoutAlign="space-between stretch"> -->
+  <mat-form-field>
+    <mat-label>{{"search-by-word"|translate}}</mat-label>
+    <input matInput (keyup)="applyFilter($event.target.value)">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+  <!-- </div> -->
   <table appMaterialElevation mat-table #table [dataSource]="dataSource" aria-label="tdt channels" matSort
     (matSortChange)="announceSortChange($event)">
 

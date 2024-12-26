@@ -56,7 +56,9 @@ export function getPaginatorIntl() {
 @NgModule({
   declarations: [MaterialElevationDirective],
   providers: [
-    { provide: MatPaginatorIntl, useValue: getPaginatorIntl() }//, { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { floatLabel: 'always' } }
+    { provide: MatPaginatorIntl, useValue: getPaginatorIntl() },
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { floatLabel: 'auto' } },
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } }
   ],
   exports: [
     MaterialElevationDirective,
