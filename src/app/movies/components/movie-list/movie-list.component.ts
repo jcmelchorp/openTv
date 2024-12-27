@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Movie } from '../../models/movie.model';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
@@ -7,11 +7,13 @@ import { Sort } from '@angular/material/sort';
 @Component({
   selector: 'app-movie-list',
   templateUrl: './movie-list.component.html',
-  styleUrls: ['./movie-list.component.scss']
+  styleUrls: ['./movie-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class MovieListComponent implements OnInit {
   @Input({ required: true }) movies!: Movie[];
-  @Output() onIptvEmit = new EventEmitter<string>();
+  @Output() onMovieEmit = new EventEmitter<string>();
   dataSource!: MatTableDataSource<Movie>;
   defaultElevation = 2;
   raisedElevation = 4;
@@ -19,7 +21,17 @@ export class MovieListComponent implements OnInit {
   constructor(private _liveAnnouncer: LiveAnnouncer) {
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['movies'].currentValue) {
+      this.isLoading = false;
+    }
+  }
+
   ngOnInit(): void { }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase()
+  }
 
   /** Announce the change in sort state for assistive technology. */
   announceSortChange(sortState: Sort) {

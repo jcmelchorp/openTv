@@ -1,14 +1,29 @@
-<mat-grid-list cols="4" rowHeight="200px" gutterSize="20px">
-  <mat-grid-tile-header>Hola! </mat-grid-tile-header>
-  @for (movie of movies; track movie) {
-  <mat-grid-tile [colspan]="1" [rowspan]="1">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>{{movie.Title}} </mat-card-title>
-      </mat-card-header>
-      <img mat-card-lg-image [src]="movie.logo" />
-      <mat-card-content> </mat-card-content>
-    </mat-card>
-  </mat-grid-tile>
-  }
-</mat-grid-list>
+<div class="pt-1" fxLayout="column" fxLayoutAlign="space-evenly stretch">
+  <div fxLayout="row" fxLayoutAlign="space-between stretch">
+    <mat-form-field appearance="outline" floatLabel="always">
+      <mat-label>{{"search-by-word"|translate}}</mat-label>
+      <input matInput #input (keyup)="applyFilter($event.target.value)">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+  <mat-grid-list cols="6" rowHeight="150px" gutterSize="5px">
+    <mat-grid-tile-header>Películas </mat-grid-tile-header>
+    <!-- @for (movie of movies; track movie) { -->
+    <mat-grid-tile colspan="1" rowspan="1" style="border-radius: 4px;" *ngFor="let movie of movies; track movie">
+      <mat-card [routerLink]="movie.channelId" appearance="outlined">
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title>{{movie.name}} </mat-card-title>
+            <!-- <mat-card-subtitle>{{movie.channelId}} </mat-card-subtitle> -->
+          </mat-card-title-group>
+        </mat-card-header>
+        <picture>
+          <source media='(min-width:0px)' srcset="{{movie.logo}}">
+          <img mat-card-image src="" alt="{{movie.name}}" height="150px">
+        </picture>
+        <mat-card-content> </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <!-- } -->
+  </mat-grid-list>
+</div>
