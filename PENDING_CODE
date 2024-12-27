@@ -1,3 +1,20 @@
+import { Component } from '@angular/core';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+
+export interface Tile {
+    color: string;
+    cols: number;
+    rows: number;
+    text: string;
+}
+
+/**
+* @title Dynamic grid-list
+*/
+@Component({
+    selector: 'grid-list-dynamic-example',
+    templateUrl: `
 <mat-grid-list cols="4" rowHeight="200px" gutterSize="20px">
     <mat-grid-tile-header>Hola! </mat-grid-tile-header>
     @for (tile of tiles; track tile) {
@@ -11,41 +28,18 @@
         </mat-card>
     </mat-grid-tile>
     }
-</mat-grid-list>
-
-
-import { Component } from '@angular/core';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatCardModule } from '@angular/material/card';
-
-export interface Tile {
-color: string;
-cols: number;
-rows: number;
-text: string;
-}
-
-/**
-* @title Dynamic grid-list
-*/
-@Component({
-selector: 'grid-list-dynamic-example',
-templateUrl: 'grid-list-dynamic-example.html',
-imports: [MatGridListModule, MatCardModule],
+</mat-grid-list>`,
+    imports: [MatGridListModule, MatCardModule],
 })
 export class GridListDynamicExample {
-tiles: Tile[] = [
-{ text: 'One', cols: 1, rows: 1, color: 'lightblue' },
-{ text: 'Two', cols: 1, rows: 1, color: 'lightgreen' },
-{ text: 'Three', cols: 1, rows: 1, color: 'lightpink' },
-{ text: 'Four', cols: 1, rows: 1, color: '#DDBDF1' },
-{ text: 'Five', cols: 1, rows: 1, color: 'lightblue' },
-{ text: 'Six', cols: 1, rows: 1, color: 'lightgreen' },
-{ text: 'Seven', cols: 1, rows: 1, color: 'lightpink' },
-{ text: 'Eight', cols: 1, rows: 1, color: '#DDBDF1' },
-];
+    tiles: Tile[] = [
+        { text: 'One', cols: 1, rows: 1, color: 'lightblue' },
+        { text: 'Two', cols: 1, rows: 1, color: 'lightgreen' },
+        { text: 'Three', cols: 1, rows: 1, color: 'lightpink' },
+        { text: 'Four', cols: 1, rows: 1, color: '#DDBDF1' },
+        { text: 'Five', cols: 1, rows: 1, color: 'lightblue' },
+        { text: 'Six', cols: 1, rows: 1, color: 'lightgreen' },
+        { text: 'Seven', cols: 1, rows: 1, color: 'lightpink' },
+        { text: 'Eight', cols: 1, rows: 1, color: '#DDBDF1' },
+    ];
 }
-
-/** Copyright 2024 Google LLC. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at https://angular.io/license */

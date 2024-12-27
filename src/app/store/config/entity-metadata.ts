@@ -1,8 +1,10 @@
 import { EntityMetadataMap } from '@ngrx/data';
 import * as fromIptv from '../iptv';
 import * as fromTdt from '../tdt';
+import * as fromMovie from '../movie';
 import { IptvDto } from 'src/app/iptvs/models/iptv-dto.model';
 import { TdtDto } from 'src/app/tdts/models/tdt-dto.model';
+import { Movie } from 'src/app/movies/models/movie.model';
 
 export const entityMetadata: EntityMetadataMap = {
     [fromIptv.entityCollectionName]: {
@@ -42,13 +44,31 @@ export const entityMetadata: EntityMetadataMap = {
             optimisticDelete: false,
             optimisticUpsert: false,
         }
+    },
+    [fromMovie.entityCollectionName]: {
+        //sortComparer: (a: MovieDto, b: MovieDto) => a.countryCode.localeCompare(b.countryCode!),
+        filterFn: (entities: Movie[], { name, title, category, Year, Plot, country, language, Actors, Director }: any) =>
+            entities
+                .filter((e) => (name ? e.name!.includes(name) : true))
+                .filter((e) => (country ? e.Country!.includes(country) : true))
+                .filter((e) => (title ? e.Title!.includes(title) : true))
+                .filter((e) => (category ? e.Genre?.includes(category) : true))
+                .filter((e) => (language ? e.Language.includes(language) : true)),
+        selectId: (tdt: Movie) => tdt.id,
+        entityDispatcherOptions: {
+            optimisticAdd: false,
+            optimisticUpdate: false,
+            optimisticSaveEntities: false,
+            optimisticDelete: false,
+            optimisticUpsert: false,
+        }
     }
 }
 // because the plural of "hero" is not "heros"
 const pluralNames = {
     [fromIptv.entityCollectionName]: fromIptv.pluralizedEntityName,
-    [fromTdt.entityCollectionName]: fromTdt.pluralizedEntityName
-
+    [fromTdt.entityCollectionName]: fromTdt.pluralizedEntityName,
+    [fromMovie.entityCollectionName]: fromMovie.pluralizedEntityName
 };
 
 export const entityConfig = {

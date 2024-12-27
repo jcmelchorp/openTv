@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="my-4" fxLayout="row-reverse" fxLayoutAlign="space-around start" fxLayout.lt-md="column"
+    fxLayoutAlign.lt-md="space-between center" fxLayoutGap="30px">
+    <div style="position: relative;top: 80px;" fxFlex="0 1 calc(65% -5px)" fxFlex.lt-lg="0 1 calc(50% -5px)">
+      <router-outlet></router-outlet>
+    </div>
+    <div style="position: relative;top: 80px;" fxFlex="0 1 calc(35% -5px)" fxFlex.lt-lg="0 1 calc(50% -5px)">
+      <app-movie-list *ngIf="!(isLoading$|async)&&(isLoaded$|async)" [objects]="movies$|async"
+        (onIptvEmit)="notify($event)">
+      </app-movie-list>
+    </div>

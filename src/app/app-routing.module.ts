@@ -18,6 +18,8 @@ const routes: Routes = [
       },
       { path: 'iptvs', loadChildren: () => import('./iptvs/iptvs.module').then(m => m.IptvsModule) },
       { path: 'tdts', loadChildren: () => import('./tdts/tdts.module').then(m => m.TdtsModule) },
+      { path: 'movies', loadChildren: () => import('./movies/movies.module').then(m => m.MoviesModule) },
+
       {
         path: 'settings',
         component: SettingsComponent,

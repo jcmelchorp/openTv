@@ -1,0 +1,14 @@
+<mat-grid-list cols="4" rowHeight="200px" gutterSize="20px">
+  <mat-grid-tile-header>Hola! </mat-grid-tile-header>
+  @for (movie of movies; track movie) {
+  <mat-grid-tile [colspan]="1" [rowspan]="1">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{movie.Title}} </mat-card-title>
+      </mat-card-header>
+      <img mat-card-lg-image [src]="movie.logo" />
+      <mat-card-content> </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+  }
+</mat-grid-list>
