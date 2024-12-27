@@ -1,6 +1,6 @@
 export class TdtDto {
     id: string;
-    tdtId!: string;
+    channelId!: string;
     priority?: number;
     channelName?: string;
     countryCode?: string;

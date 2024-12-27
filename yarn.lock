@@ -2808,6 +2808,11 @@
   resolved "https://registry.npmjs.org/@rollup/rollup-linux-x64-gnu/-/rollup-linux-x64-gnu-4.17.1.tgz"
   integrity sha512-AsdnINQoDWfKpBzCPqQWxSPdAWzSgnYbrJYtn6W0H2E9It5bZss99PiLA8CgmDRfvKygt20UpZ3xkhFlIfX9zQ==
 
+"@rollup/rollup-linux-x64-musl@4.17.1":
+  version "4.17.1"
+  resolved "https://registry.npmjs.org/@rollup/rollup-linux-x64-musl/-/rollup-linux-x64-musl-4.17.1.tgz"
+  integrity sha512-KoB4fyKXTR+wYENkIG3fFF+5G6N4GFvzYx8Jax8BR4vmddtuqSb5oQmYu2Uu067vT/Fod7gxeQYKupm8gAcMSQ==
+
 "@schematics/angular@^17.0.0", "@schematics/angular@17.3.6":
   version "17.3.6"
   resolved "https://registry.npmjs.org/@schematics/angular/-/angular-17.3.6.tgz"

@@ -23,7 +23,7 @@ export class TdtResolver implements Resolve<boolean> {
         return this.tdtsEntityService.loaded$.pipe(
             tap((loaded) => {
                 if (!loaded) {
-                    this.tdtsEntityService.entities$.pipe(map(tdts => tdts.find(tdt => tdt.tdtId === route.params['id'])));
+                    this.tdtsEntityService.entities$.pipe(map(tdts => tdts.find(tdt => tdt.channelId === route.params['id'])));
                 }
             }),
             filter((loaded) => !!loaded),

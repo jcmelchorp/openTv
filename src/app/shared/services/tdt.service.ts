@@ -19,7 +19,7 @@ export class TdtService {
         //     map(channels => channels.map(channel => {
         //         let tdt: TdtDto = {
         //             id: channel.id,
-        //             tdtId: channel.tdtId,
+        //             channelId: channel.channelId,
         //             channelName: channel.channelName,
         //             countryCode: channel.countryCode,
         //             isNsfw: channel.isNsfw,
@@ -86,7 +86,7 @@ export class TdtService {
                                 let channelId = channel.name.replace(/[^a-zA-Z0-9]/g, '')
                                 let obj: TdtDto = {
                                     id: channel.epg_id || channelId,
-                                    tdtId: channel.epg_id || channelId,
+                                    channelId: channel.epg_id || channelId,
                                     channelName: channel.name,
                                     countryCode: countryName,
                                     countryName: countryName,

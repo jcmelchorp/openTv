@@ -21,8 +21,8 @@ export interface StateGroup {
 export class SurferTdtComponent implements OnInit {
   private readonly route: ActivatedRoute = inject(ActivatedRoute);
   private readonly tdtsEntityService: TdtsEntityService = inject(TdtsEntityService);
-  tdt$!: Observable<TdtDto>;
-  tdts$!: Observable<TdtDto[]>;
+  iptv$!: Observable<TdtDto>;
+  iptvs$!: Observable<TdtDto[]>;
   isLoading$!: Observable<boolean>;
   isLoaded$!: Observable<boolean>;
   filteredEntities$: Observable<TdtDto[]>;
@@ -71,13 +71,13 @@ export class SurferTdtComponent implements OnInit {
     this.selectFilter()
     this.isLoading$ = this.tdtsEntityService.loading$;
     this.isLoaded$ = this.tdtsEntityService.loaded$;
-    this.tdts$ = this.tdtsEntityService.filteredEntities$.pipe(
+    this.iptvs$ = this.tdtsEntityService.filteredEntities$.pipe(
       map(entities => entities.filter(entity => entity.url && entity.isNsfw.toString() == 'false')));/*.pipe(
-      map((tdts) => tdts.filter((tdt) => tdt.countryCode === 'MX'))
+      map((tdts) => tdts.filter((iptv) => iptv.countryCode === 'MX'))
     );*/
     //this.filteredEntities$ = this.tdtsEntityService.filteredEntities$;
     // this.tdts$ = this.route.data.pipe<TdtDto[]>(map((tdts: TdtDto[]) => tdts));
-    // this.tdt$ = this.selectTdt(this.firstSource);
+    // this.iptv$ = this.selectTdt(this.firstSource);
   }
   // setFilter(filter: any) {
   //   this.tdtsEntityService.filter$
@@ -85,14 +85,14 @@ export class SurferTdtComponent implements OnInit {
   // }
 
   selectTdt(channelId: string) {
-    return this.tdts$
+    return this.iptvs$
       .pipe(
-        map((tdtArray) => tdtArray.filter((tdt) => tdt.id === channelId).pop())
+        map((iptvArray) => iptvArray.filter((iptv) => iptv.id === channelId).pop())
       );
   }
   notify(channelId: string) {
     console.log(channelId)
-    this.tdt$ = this.selectTdt(channelId);
+    this.iptv$ = this.selectTdt(channelId);
   }
 
   // applyFilter() {
