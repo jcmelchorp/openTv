@@ -18,6 +18,9 @@ export class MoviesDataService extends DefaultDataService<Movie> {
     override getAll(): Observable<Movie[]> {
         return from(this.movieService.list());
     }
+    override update(name): Observable<Movie> {
+        return from(this.movieService.getInfo(name));
+    }
     // override getWithQuery(queryParams: QueryParams): Observable<MovieDto[]> {
     //     return from(this.movieService.getWithQuery(queryParams));
     // }

@@ -23,7 +23,7 @@ export class MovieResolver implements Resolve<boolean> {
         return this.moviesEntityService.loaded$.pipe(
             tap((loaded) => {
                 if (!loaded) {
-                    this.moviesEntityService.entities$.pipe(map(movies => movies.find(movie => movie.channelId === route.params['id'])));
+                    this.moviesEntityService.entities$.pipe(map(movies => movies.find(movie => movie.id === route.params['id'])));
                 }
             }),
             filter((loaded) => !!loaded),

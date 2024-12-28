@@ -1,3 +1,30 @@
-<p>
-  movie-player works!
-</p>
+<div class="card" appMaterialElevation [defaultElevation]="0" [raisedElevation]="6" *ngIf="(movie$|async) as movie">
+  <mat-card>
+    <mat-card-header fxLayout="row" fxLayoutAlign="space-between center">
+      <mat-card-title class="mat-card-title">{{ movie.name! }}</mat-card-title>
+      <app-card-subtitle>{{ movie.channelId! }}</app-card-subtitle>
+      <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
+        <!-- <mat-star-rating [rating]="movie.imdbRating!" [starCount]="5" [color]="starColor"></mat-star-rating> -->
+        <img mat-card-image [src]="movie.logo!" height="40px" />
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="m-2">
+        <video appHlsVideoPlayer [stream]="movie.url" controls autoplay muted></video>
+      </div>
+      <p>{{ movie.Plot }}</p>
+    </mat-card-content>
+    <mat-card-footer>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <mat-icon>access_time</mat-icon>
+          <span class="ml-2">{{ movie.Runtime! }}</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="end center">
+          <mat-icon>hd</mat-icon>
+          <span class="ml-2">{{ movie.imdbRating! }}</span>
+        </div>
+      </div>
+    </mat-card-footer>
+  </mat-card>
+</div>

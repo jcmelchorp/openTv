@@ -2,15 +2,15 @@
   <div fxLayout="row" fxLayoutAlign="space-between stretch">
     <mat-form-field appearance="outline" floatLabel="always">
       <mat-label>{{"search-by-word"|translate}}</mat-label>
-      <input matInput #input (keyup)="applyFilter($event.target.value)">
+      <input matInput #input (keyup)="applyFilter($event.target.value)" />
       <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
   </div>
   <mat-grid-list cols="6" rowHeight="150px" gutterSize="5px">
     <mat-grid-tile-header>Películas </mat-grid-tile-header>
     <!-- @for (movie of movies; track movie) { -->
-    <mat-grid-tile colspan="1" rowspan="1" style="border-radius: 4px;" *ngFor="let movie of movies; track movie">
-      <mat-card [routerLink]="movie.channelId" appearance="outlined">
+    <mat-grid-tile colspan="1" rowspan="1" style="border-radius: 4px;" *ngFor="let movie of movies">
+      <mat-card [routerLink]="movie.id" appearance="outlined">
         <mat-card-header>
           <mat-card-title-group>
             <mat-card-title>{{movie.name}} </mat-card-title>

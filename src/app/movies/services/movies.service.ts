@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map, retry, throwError } from 'rxjs';
+import { Observable, catchError, concatAll, concatMap, concatWith, concat, map, merge, mergeAll, retry, switchMap, throwError } from 'rxjs';
 import { Movie } from 'src/app/movies/models/movie.model';
 
 @Injectable()
@@ -16,7 +16,7 @@ export class MoviesService {
     };
     list(): Observable<Movie[]> {
         return this.getMovies().pipe(
-            map(channels => channels.map(channel => {
+            map((channels: Movie[]) => channels.map(channel => {
                 let movie: Movie = {
                     id: channel.id,
                     channelId: channel.channelId,
@@ -26,36 +26,46 @@ export class MoviesService {
                 }
                 return movie;
             })),
-            // mergeMap(movies => {
-            //     return this.getStreams().pipe(
-            //         map(streams => movies.map(movie => {
-            //             let urlObj = streams.find(stream => stream.channel === movie.channelId)?.url;
-            //             let obj: Movie = { ...movie, url: urlObj };
+            // mergeMap((movies: Movie[]) => {
+            //     return this.getInfo(movie.name).pipe(
+            //         map((info: Movie) => movies.map(movie => {
+            //             let obj: Movie = { ...movie, ...info };
+            //             console.log(obj);
             //             return obj;
             //         }))
-            //     );
-            // }),
-            // mergeMap(movies => {
-            //     return this.getCountries().pipe(
-            //         map(countries => movies.map(movie => {
-            //             let name = countries.find(country => country.code === movie.countryCode).name;
-            //             let flag = countries.find(country => country.code === movie.countryCode).flag;
-            //             let obj: Movie = { ...movie, countryName: name, countryFlag: flag };
-            //             return obj;
-            //         }))
-            //     );
-            // }),
-            // mergeMap(movies => {
-            //     return this.getCategories().pipe(
-            //         map(categories => movies.map(movie => {
-            //             let names = movie.categories.map(categoryId => categories.find(category => category.id = categoryId).name)
-            //             let obj: Movie = { ...movie, categoryNames: names };
-            //             return obj;
-            //         }))
-            //     );
-            // }),
+            //     )
+            // })
         );
+        // mergeMap(movies => {
+        //     return this.getInfo().pipe(
+        //         map(streams => movies.map(movie => {
+        //             let urlObj = streams.find(stream => stream.channel === movie.channelId)?.url;
+        //             let obj: Movie = { ...movie, url: urlObj };
+        //             return obj;
+        //         }))
+        //     );
+        // }),
+        // mergeMap(movies => {
+        //     return this.getCountries().pipe(
+        //         map(countries => movies.map(movie => {
+        //             let name = countries.find(country => country.code === movie.countryCode).name;
+        //             let flag = countries.find(country => country.code === movie.countryCode).flag;
+        //             let obj: Movie = { ...movie, countryName: name, countryFlag: flag };
+        //             return obj;
+        //         }))
+        //     );
+        // }),
+        // mergeMap(movies => {
+        //     return this.getCategories().pipe(
+        //         map(categories => movies.map(movie => {
+        //             let names = movie.categories.map(categoryId => categories.find(category => category.id = categoryId).name)
+        //             let obj: Movie = { ...movie, categoryNames: names };
+        //             return obj;
+        //         }))
+        //     );
+        // }),
     }
+
 
     getMovies() {
         return this.http
@@ -90,3 +100,7 @@ export class MoviesService {
         });
     }
 }
+function mergeMap(arg0: (movies: any) => any): import("rxjs").OperatorFunction<Movie[], Movie[]> {
+    throw new Error('Function not implemented.');
+}
+

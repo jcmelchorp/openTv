@@ -1,7 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { map, Observable, Subscription } from 'rxjs';
+import { concat, map, merge, mergeMap, Observable, Subscription, switchMapTo } from 'rxjs';
+import { Categories } from 'src/app/iptvs/models/categories.enum';
+import { Countries } from 'src/app/iptvs/models/countries.enum';
 import { Movie } from 'src/app/movies/models/movie.model';
 import { MoviesEntityService } from 'src/app/store/movie/movies-entity.service';
 
@@ -22,7 +24,9 @@ export class SurferMoviesComponent implements OnInit {
   filteredEntities$: Observable<Movie[]>;
   subscription: Subscription;
   filterValues: FormGroup;
-
+  // countryKeys = Object.keys(Countries);
+  // categoryKeys = Object.keys(Categories);
+  // countries = Countries;
   constructor(
     private fb: FormBuilder,
   ) {
@@ -43,8 +47,8 @@ export class SurferMoviesComponent implements OnInit {
     this.selectFilter()
     this.isLoading$ = this.moviesEntityService.loading$;
     this.isLoaded$ = this.moviesEntityService.loaded$;
-    this.movies$ = this.moviesEntityService.filteredEntities$.pipe(
-      map(entities => entities.filter(entity => entity.url)));/*.pipe(
+    this.movies$ = this.moviesEntityService.filteredEntities$;/*.pipe(
+      map(entities => entities.filter(entity => entity.url)));.pipe(
           map((movies) => movies.filter((movie) => movie.countryCode === 'MX'))
         );*/
     //this.filteredEntities$ = this.moviesEntityService.filteredEntities$;
@@ -70,16 +74,17 @@ export class SurferMoviesComponent implements OnInit {
     return this.filterValues.get('category').value;
   }
 
-  selectMovie(channelId: string) {
+  selectMovie(id: string) {
     return this.movies$
       .pipe(
-        map((movieArray) => movieArray.filter((movie) => movie.channelId === channelId).pop())
+        map((movieArray) => movieArray.find((movie) => movie.id === id)),
+        mergeMap((movie) => this.moviesEntityService.update(movie.name.toString()))
       );
   }
 
-  notify(channelId: string) {
-    console.log(channelId)
-    this.movie$ = this.selectMovie(channelId);
+  notify(id: string) {
+    console.log(id)
+    this.movie$ = this.selectMovie(id);
   }
 }
 

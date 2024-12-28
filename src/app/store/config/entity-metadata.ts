@@ -54,7 +54,7 @@ export const entityMetadata: EntityMetadataMap = {
                 .filter((e) => (title ? e.Title!.includes(title) : true))
                 .filter((e) => (category ? e.Genre?.includes(category) : true))
                 .filter((e) => (language ? e.Language.includes(language) : true)),
-        selectId: (tdt: Movie) => tdt.id,
+        selectId: (movie: Movie) => movie.id,
         entityDispatcherOptions: {
             optimisticAdd: false,
             optimisticUpdate: false,

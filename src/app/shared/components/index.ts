@@ -3,6 +3,7 @@ import { BrandButtonComponent } from './brand-button/brand-button.component';
 import { DummyTextComponent } from './dummy-text/dummy-text.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SnackbarComponent } from './snackbar/snackbar.component';
+import { StarRatingComponent } from './star-rating/star-rating.component';
 import { UnderConstructionComponent } from './under-construction/under-construction.component';
 export const sharedComponents: any[] = [
   SnackbarComponent,
@@ -10,7 +11,8 @@ export const sharedComponents: any[] = [
   UnderConstructionComponent,
   NotFoundComponent,
   BrandButtonComponent,
-  AboutComponent
+  AboutComponent,
+  StarRatingComponent
 ]
 export * from './snackbar/snackbar.component';
 export * from './dummy-text/dummy-text.component';
@@ -18,3 +20,4 @@ export * from './under-construction/under-construction.component';
 export * from './not-found/not-found.component';
 export * from './brand-button/brand-button.component';
 export * from './about/about.component';
+export * from './star-rating/star-rating.component';

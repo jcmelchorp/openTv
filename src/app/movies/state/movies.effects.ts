@@ -35,7 +35,7 @@ export class MoviesEffects {
             this.actions$.pipe(
                 ofType(ROUTER_NAVIGATION),
                 filter((r: RouterNavigatedAction) =>
-                    r.payload.routerState.url.startsWith('/player')
+                    r.payload.routerState.url.startsWith('/movies')
                 ),
                 map((r: RouterNavigatedAction) => r.payload.routerState.url),
                 withLatestFrom(this.moviesEntityService.entities$),
