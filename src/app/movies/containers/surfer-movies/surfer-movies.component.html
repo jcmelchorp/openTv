@@ -1,40 +1,38 @@
-<div class="container">
+<!-- <div class="container">
   <div class="my-4" fxLayout="row-reverse" fxLayoutAlign="space-around start" fxLayout.lt-md="column"
     fxLayoutAlign.lt-md="space-between center" fxLayoutGap="30px">
     <div style="position: relative;top: 80px;" fxFlex="0 1 calc(55% -5px)" fxFlex.lt-lg="0 1 calc(45% -5px)">
       <router-outlet></router-outlet>
     </div>
-
     <div style="position: relative;top: 80px;" fxFlex="0 1 calc(45% -5px)" fxFlex.lt-lg="0 1 calc(55% -5px)">
-      <form [formGroup]="filterValues">
-        <!-- <div fxLayout="row" fxLayoutAlign="space-between stretch">
-          <mat-icon>public</mat-icon>
-          <mat-form-field appearance="outline">
-            <mat-label>{{"country"|translate}}</mat-label>
-            <mat-select formControlName="countryCode" placeholder="País">
-              <mat-option [value]="''">Todas</mat-option>
-              <mat-option *ngFor="let key of countryKeys" [value]="key">
-                {{key | translate}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div class="pt-2" fxLayout="row" fxLayoutAlign="space-between stretch">
-          <mat-icon>dvr</mat-icon>
-          <mat-form-field appearance="outline">
-            <mat-label>{{"category"|translate}}</mat-label>
-            <mat-select formControlName="category" placeholder="Categoria">
-              <mat-option [value]="''">Todas</mat-option>
-              <mat-option *ngFor="let key of categoryKeys" [value]="key">
-                {{key| translate}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div> -->
-      </form>
       <app-movie-list *ngIf="!(isLoading$|async)&&(isLoaded$|async)" [movies]="movies$|async"
         (onMovieEmit)="notify($event)">
       </app-movie-list>
+    </div>
+  </div>
+</div> -->
+
+<div class="pt-5 container">
+  <div class="pt-5" fxLayout="row-reverse" fxLayoutAlign="space-around start" fxLayout.lt-md="column"
+    fxLayoutAlign.lt-md="space-between center" fxLayoutGap="30px">
+    <!-- player   -->
+    <div style="position: relative;top: 80px;" fxFlex="0 1 calc(55% -5px)" fxFlex.lt-lg="0 1 calc(45% -5px)">
+      <router-outlet></router-outlet>
+    </div>
+    <!-- list -->
+    <div fxFlex="0 1 calc(55% -5px)" fxFlex.lt-lg="0 1 calc(45% -5px)">
+
+      <div fxFill fxLayout="column" fxLayoutAlign="space-around" *ngIf="(movies$|async) as movies">
+        <mat-paginator [length]="totalLength" [pageSize]="size" [pageIndex]="page" [pageSizeOptions]="[6, 12, 18]"
+          (page)="getData($event)">
+        </mat-paginator>
+        <div fxLayout="row wrap" *ngIf="!(isLoading$|async)&&(isLoaded$|async)" (onMovieEmit)="notify($event)">
+          <ng-container *ngFor="let movie of data">
+            <img [src]="movie.logo" [alt]="movie.name" [routerLink]="movie.id">
+          </ng-container>
+        </div>
+        
+      </div>
     </div>
   </div>
 </div>

@@ -1,11 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { concat, map, merge, mergeMap, Observable, Subscription, switchMapTo } from 'rxjs';
+import { concat, map, merge, mergeMap, Observable, Subscription, switchMap, switchMapTo, tap } from 'rxjs';
 import { Categories } from 'src/app/iptvs/models/categories.enum';
 import { Countries } from 'src/app/iptvs/models/countries.enum';
 import { Movie } from 'src/app/movies/models/movie.model';
 import { MoviesEntityService } from 'src/app/store/movie/movies-entity.service';
+import { MoviesService } from '../../services';
+import { MovieListComponent } from '../../components';
 
 
 
@@ -17,6 +19,7 @@ import { MoviesEntityService } from 'src/app/store/movie/movies-entity.service';
 export class SurferMoviesComponent implements OnInit {
   private readonly route: ActivatedRoute = inject(ActivatedRoute);
   private readonly moviesEntityService: MoviesEntityService = inject(MoviesEntityService);
+
   movie$!: Observable<Movie>;
   movies$!: Observable<Movie[]>;
   isLoading$!: Observable<boolean>;
@@ -24,6 +27,10 @@ export class SurferMoviesComponent implements OnInit {
   filteredEntities$: Observable<Movie[]>;
   subscription: Subscription;
   filterValues: FormGroup;
+  page = 0;
+  size = 15;
+  data = [];
+  totalLength: number;
   // countryKeys = Object.keys(Countries);
   // categoryKeys = Object.keys(Categories);
   // countries = Countries;
@@ -47,13 +54,33 @@ export class SurferMoviesComponent implements OnInit {
     this.selectFilter()
     this.isLoading$ = this.moviesEntityService.loading$;
     this.isLoaded$ = this.moviesEntityService.loaded$;
-    this.movies$ = this.moviesEntityService.filteredEntities$;/*.pipe(
-      map(entities => entities.filter(entity => entity.url)));.pipe(
-          map((movies) => movies.filter((movie) => movie.countryCode === 'MX'))
-        );*/
-    //this.filteredEntities$ = this.moviesEntityService.filteredEntities$;
-    // this.movies$ = this.route.data.pipe<MovieDto[]>(map((movies: MovieDto[]) => movies));
-    // this.movie$ = this.selectMovie(this.firstSource);
+    // this.movies$ = this.moviesEntityService.filteredEntities$;.pipe(
+    //   map(entities => entities.filter(entity => entity.url)));pipe(
+    //       map((movies) => movies.filter((movie) => movie.countryCode === 'MX'))
+    //     );
+    // this.filteredEntities$ = this.moviesEntityService.filteredEntities$;
+    //  this.movies$ = this.route.data.pipe<MovieDto[]>(map((movies: Mov.ieDto[]) => movies));
+    //  this.movie$ = this.selectMovie(this.firstSource);
+    this.getData({ pageIndex: this.page, pageSize: this.size });
+  }
+
+  getData(obj) {
+    console.log(obj)
+    let index = 0,
+      startingIndex = obj.pageIndex * obj.pageSize,
+      endingIndex = startingIndex + obj.pageSize;
+
+    this.movies$ = this.moviesEntityService.filteredEntities$.pipe(
+      map((movies: Movie[]) => {
+        this.totalLength = movies.length;
+        this.data = movies.filter(() => {
+          index++;
+          return (index > startingIndex && index <= endingIndex) ? true : false;
+        });
+        return this.data;
+      })
+    );
+
   }
 
   selectFilter() {
@@ -74,11 +101,10 @@ export class SurferMoviesComponent implements OnInit {
     return this.filterValues.get('category').value;
   }
 
-  selectMovie(id: string) {
+  selectMovie(id: string): Observable<Movie> {
     return this.movies$
       .pipe(
         map((movieArray) => movieArray.find((movie) => movie.id === id)),
-        mergeMap((movie) => this.moviesEntityService.update(movie.name.toString()))
       );
   }
 

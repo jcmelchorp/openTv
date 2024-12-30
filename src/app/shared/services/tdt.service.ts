@@ -5,7 +5,7 @@ import { TdtDto } from "src/app/tdts/models/tdt-dto.model";
 
 @Injectable()
 export class TdtService {
-    private URL: string = 'https://raw.githubusercontent.com/jcmelchorp/openTv/refs/heads/main/TDTchannels.json';
+    private URL: string = 'https://raw.githubusercontent.com/jcmelchorp/openTv/refs/heads/main/src/assets/lists/tdt.json';
     constructor(private http: HttpClient) {
     }
     // Http Options

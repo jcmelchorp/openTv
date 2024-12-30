@@ -1,11 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, concatAll, concatMap, concatWith, concat, map, merge, mergeAll, retry, switchMap, throwError } from 'rxjs';
+import { Observable, catchError, concatAll, concatMap, concatWith, concat, map, merge, mergeAll, retry, switchMap, throwError, tap } from 'rxjs';
 import { Movie } from 'src/app/movies/models/movie.model';
 
 @Injectable()
 export class MoviesService {
-    private URL: string = 'https://raw.githubusercontent.com/jcmelchorp/openTv/refs/heads/main/';
+    private URL: string = 'https://raw.githubusercontent.com/jcmelchorp/openTv/refs/heads/main/src/assets/lists/';
     private omdbURL: string = 'https://www.omdbapi.com/?apikey=505a6669&t=';
     constructor(private http: HttpClient) {
     }
@@ -67,20 +67,23 @@ export class MoviesService {
     }
 
 
-    getMovies() {
+    getMovies():Observable<Movie[]> {
         return this.http
-            .get<Movie[]>(this.URL + 'movies.json', this.httpOptions)
+            .get<Movie[]>(this.URL + '205-chan.json', this.httpOptions)
             .pipe(
                 retry(1),
                 catchError(this.handleError)
             );
     }
 
-    getInfo(title: string) {
+    getInfo(title: string):Observable<Movie> {
+        let searchStr = title.split('(')[0].trim().replace(' ', '+') ;
+        console.log(searchStr);
         return this.http
-            .get<Movie>(this.omdbURL + title, this.httpOptions)
+            .get<Movie>(this.omdbURL + searchStr, this.httpOptions)
             .pipe(
                 retry(1),
+                tap((movie) => console.log(movie)),
                 catchError(this.handleError)
             );
     }
