@@ -1,34 +1,34 @@
 <div class="container">
-    <div class="my-4" fxLayout="row-reverse" fxLayoutAlign="space-around start" fxLayout.lt-md="column"
+    <div class="pt-5" fxLayout="row-reverse" fxLayoutAlign="space-around start" fxLayout.lt-md="column"
         fxLayoutAlign.lt-md="space-between center" fxLayoutGap="30px">
-        <div style="position: relative;top: 80px;" fxFlex="0 1 calc(65% -5px)" fxFlex.lt-lg="0 1 calc(50% -5px)">
+        <div class="mt-2 w-100" fxFlex="0 1 calc(65% -5px)" fxFlex.lt-lg="0 1 calc(50% -5px)">
             <router-outlet></router-outlet>
         </div>
 
-        <div style="position: relative;top: 80px;" fxFlex="0 1 calc(35% -5px)" fxFlex.lt-lg="0 1 calc(50% -5px)">
+        <div class="pt-5" fxFlex="0 1 calc(35% -5px)" fxFlex.lt-lg="0 1 calc(50% -5px)">
             <form [formGroup]="filterValues">
-                <div fxLayout="row" fxLayoutAlign="space-between stretch">
-                    <mat-icon>public</mat-icon>
+                <div class="pt-2" fxLayout="row" fxLayoutAlign="stretch stretch">
                     <mat-form-field appearance="outline">
                         <mat-label>{{"country"|translate}}</mat-label>
-                        <mat-select formControlName="countryCode" placeholder="País">
+                        <mat-select formControlName="countryCode">
                             <mat-option [value]="''">Todas</mat-option>
                             <mat-option *ngFor="let key of countryKeys" [value]="key">
                                 {{key | translate}}
                             </mat-option>
                         </mat-select>
+                        <mat-icon matSuffix>public</mat-icon>
                     </mat-form-field>
                 </div>
                 <div class="pt-2" fxLayout="row" fxLayoutAlign="space-between stretch">
-                    <mat-icon>dvr</mat-icon>
                     <mat-form-field appearance="outline">
                         <mat-label>{{"category"|translate}}</mat-label>
-                        <mat-select formControlName="category" placeholder="Categoria">
+                        <mat-select formControlName="category" >
                             <mat-option [value]="''">Todas</mat-option>
                             <mat-option *ngFor="let key of categoryKeys" [value]="key">
                                 {{key| translate}}
                             </mat-option>
                         </mat-select>
+                        <mat-icon matSuffix>dvr</mat-icon>
                     </mat-form-field>
                 </div>
             </form>
