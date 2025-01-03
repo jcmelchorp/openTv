@@ -16,93 +16,55 @@ import { TdtListDataSource } from './tdt-list.datasource';
   styleUrls: ['./tdt-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TdtListComponent implements OnInit, OnChanges, AfterViewInit {
-  @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
+export class TdtListComponent implements OnInit, OnChanges {
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   @Input({ required: true }) objects!: TdtDto[];
   @Output() onTdtEmit = new EventEmitter<string>();
-  dataSource!: MatTableDataSource<TdtDto>;
   defaultElevation = 2;
   raisedElevation = 4;
-  isLoading = false;
-  size=24;
-page=0;
-  // countryKeys = Object.keys(Countries);
-  // categoryKeys = Object.keys(Categories);
-  // selectedCountry: string = 'MX';
-  // selectedCategory: string;
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['channelName'/*, 'logo'*/];
-  constructor(private _liveAnnouncer: LiveAnnouncer) {
-  }
+  size = 24;
+  page = 0;
+  dataSource= new MatTableDataSource<TdtDto>();
+ filteredData: TdtDto[];
+  constructor(private _liveAnnouncer: LiveAnnouncer) { }
+  
   ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes)
     if (changes['objects'].currentValue) {
       this.loadPaginatedData(changes['objects'].currentValue);
+      this.linkListToPaginator({ pageIndex: this.page, pageSize: this.paginator.pageSize });
     }
   }
+
   ngOnInit(): void {
     this.loadPaginatedData(this.objects);
+    this.linkListToPaginator({ pageIndex: this.page, pageSize: this.size });
+  }
+ 
+  loadPaginatedData(dataObj): void {
+    this.dataSource.data = dataObj;
     this.dataSource.paginator = this.paginator;
-    // this.dataSource = new TdtListDataSource(this.tdtDtoService);
-     this.linkListToPaginator();
-  }
-  ngAfterViewInit(): void {
-    
-    // console.log(this.dataSource);
-    // this.table.dataSource = this.dataSource;
-    // this.dataSource.sort = this.sort;
-    // this.table.dataSource = this.dataSource;
-    // this.isLoading = false;
-    // this.isLoaded = true;
-  }
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase()
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
 
-  loadPaginatedData(dataObj): void {
-    this.dataSource = new MatTableDataSource(dataObj);
-     this.dataSource.paginator = this.paginator;
-     if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-    //  this.linkListToPaginator();
-    // this.table.dataSource = this.dataSource;
+  linkListToPaginator(obj): void {
+    console.log(obj)
+    let index = 0,
+      startingIndex = obj.pageIndex * obj.pageSize,
+      endingIndex = startingIndex + obj.pageSize;
 
-   
+
+    this.filteredData = this.dataSource.filteredData.filter(() => {
+      index++;
+      return (index > startingIndex && index <= endingIndex) ? true : false;
+    });
+
   }
 
-
-  /** Announce the change in sort state for assistive technology. */
-  announceSortChange(sortState: Sort) {
-    // This example uses English messages. If your application supports
-    // multiple language, you would internationalize these strings.
-    // Furthermore, you can customize the message to add additional
-    // details about the values being sorted.
-    if (sortState.direction) {
-      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
-    } else {
-      this._liveAnnouncer.announce('Sorting cleared');
-    }
-  }
- 
-  // this method will link data to paginator
-  linkListToPaginator() {
-    // merge simply joins all this operators and creates an       //observable that listen to paginator page events
-    
-       merge(this.paginator.page).pipe(
-      startWith({}),
-      switchMap(() => {
-        // creates an obserbable of sample data
-        return of(this.objects);
-      }))
-      .subscribe(res => {
-        const from = this.paginator.pageIndex * this.paginator.pageSize;
-        const to = from + this.paginator.pageSize;
-        this.dataSource.data = res.slice(from, to);
-        this.isLoading = true;
-      });
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase()
+    this.linkListToPaginator({ pageIndex: this.paginator.pageIndex, pageSize: this.paginator.pageSize });
   }
 }

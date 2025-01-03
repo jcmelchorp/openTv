@@ -8,12 +8,11 @@
   </mat-form-field>
   <!-- </div> -->
 
-  <mat-paginator class="paginator" #paginator [length]="objects.length" [pageSize]="size" (page)="linkListToPaginator()"
+  <mat-paginator class="paginator" #paginator [length]="dataSource.filteredData.length" [pageSize]="size" (page)="linkListToPaginator($event)"
     [pageSizeOptions]="[6,12 ,18,24]" showFirstLastButtons aria-label="Select channel"></mat-paginator>
-  <div *ngIf="dataSource.data as datos;else listaVacia">
-
+  <div *ngIf="filteredData.length!==0;else listaVacia">
     <div fxLayout="row wrap">
-      <ng-container *ngFor="let tdt of datos">
+      <ng-container *ngFor="let tdt of filteredData">
         <img [src]="tdt.logo" [alt]="tdt.name" [routerLink]="tdt.id">
       </ng-container>
     </div>
