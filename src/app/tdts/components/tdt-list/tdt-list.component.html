@@ -7,36 +7,22 @@
     <mat-icon matSuffix>search</mat-icon>
   </mat-form-field>
   <!-- </div> -->
-  <table appMaterialElevation mat-table #table [dataSource]="dataSource" aria-label="tdt channels" matSort
-    (matSortChange)="announceSortChange($event)">
 
-    <ng-container matColumnDef="channelName">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordena por nombre">
-        <span *ngIf="dataSource?.data?.length>0"> <span
-            class="badge text-bg-success">{{dataSource?.data?.length}}</span>
-          {{"in"|translate}}
-          {{(dataSource?.data[0]?.countryCode|translate).slice(5,end)}}</span>
-      </th>
-      <td fxLayout="row" fxLayoutAlign="space-between center" mat-cell *matCellDef="let row">
-        <div>{{row.channelName}}</div>
-        <div><img class="row-bg" [src]="(row.logo)?row.logo:'/assets/icons/bad-tv.png'" /></div>
-      </td>
-    </ng-container>
-    <ng-container matColumnDef="paginator">
-      <td mat-footer-cell *matFooterCellDef [colSpan]="displayedColumns.length">
-        <mat-paginator class="paginator" #paginator [length]="dataSource?.data?.length" [pageSize]="5"
-          [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons aria-label="Select channel"></mat-paginator>
-      </td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="row.id">
-    </tr>
-    <!-- Row shown when there is no matching data. -->
-    <tr class="mat-row" *matNoDataRow>
-      <td class="text-center h2" colspan="3"><span class="badge text-bg-warning text-light">No encontré
-          resultados.</span></td>
-    </tr>
-    <tr mat-footer-row *matFooterRowDef="['paginator']"></tr>
-  </table>
+  <mat-paginator class="paginator" #paginator [length]="objects.length" [pageSize]="size" (page)="linkListToPaginator()"
+    [pageSizeOptions]="[6,12 ,18,24]" showFirstLastButtons aria-label="Select channel"></mat-paginator>
+  <div *ngIf="dataSource.data as datos;else listaVacia">
 
+    <div fxLayout="row wrap">
+      <ng-container *ngFor="let tdt of datos">
+        <img [src]="tdt.logo" [alt]="tdt.name" [routerLink]="tdt.id">
+      </ng-container>
+    </div>
+  </div>
+  <ng-template #listaVacia>
+    <div fxLayout="row wrap" fxLayoutAlign="center center">
+      <h2 class="text-center"><span class="badge text-bg-warning text-light">No encontré
+          resultados.</span>
+      </h2>
+    </div>
+  </ng-template>
 </div>

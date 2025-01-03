@@ -19,12 +19,12 @@ export class HlsVideoPlayerDirective implements OnInit, OnChanges {
     this.video = this.el.nativeElement;
   }
   ngOnChanges(): void {
-    // console.log('Stream: ', this.stream);
+     console.log('Stream: ', this.stream);
     this.establishHlsStream();
   }
 
   ngOnInit() {
-    // console.log('Stream: ', this.stream);
+     console.log('Stream: ', this.stream);
     this.establishHlsStream();
   }
 
@@ -46,7 +46,7 @@ export class HlsVideoPlayerDirective implements OnInit, OnChanges {
       });
 
       this.hls.on(Hls.Events.ERROR, (event, data) => {
-        // console.log(data);
+          console.log(data);
         if (data.fatal) {
           switch (data.type) {
             case Hls.ErrorTypes.NETWORK_ERROR:

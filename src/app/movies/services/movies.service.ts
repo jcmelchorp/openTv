@@ -67,17 +67,18 @@ export class MoviesService {
     }
 
 
-    getMovies():Observable<Movie[]> {
+    getMovies(): Observable<Movie[]> {
         return this.http
-            .get<Movie[]>(this.URL + '205-chan.json', this.httpOptions)
+             .get<Movie[]>(this.URL + 'movies.json', this.httpOptions)
+            //.get<Movie[]>(this.URL + 'canales.json', this.httpOptions)
             .pipe(
                 retry(1),
                 catchError(this.handleError)
             );
     }
 
-    getInfo(title: string):Observable<Movie> {
-        let searchStr = title.split('(')[0].trim().replace(' ', '+') ;
+    getInfo(title: string): Observable<Movie> {
+        let searchStr = title.split('(')[0].trim().replace(' ', '+');
         console.log(searchStr);
         return this.http
             .get<Movie>(this.omdbURL + searchStr, this.httpOptions)

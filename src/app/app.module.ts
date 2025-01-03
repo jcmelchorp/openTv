@@ -11,7 +11,7 @@ import { ScreenTrackingService, UserTrackingService } from '@angular/fire/analyt
 import { provideAuth, browserPopupRedirectResolver, indexedDBLocalPersistence, initializeAuth } from '@angular/fire/auth';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule } from 'ngx-toastr';
@@ -27,11 +27,16 @@ export function HttpLoaderFactory(http: HttpClient) {
 import localeEs from "@angular/common/locales/es";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SHARE_BUTTONS_CONFIG } from 'ngx-sharebuttons';
+import { TabComponent } from './tab/tab.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 registerLocaleData(localeEs, "es");
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TabComponent
   ],
   imports: [
     BrowserModule,
@@ -95,13 +100,16 @@ registerLocaleData(localeEs, "es");
       // }
       return database;
     }),
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
     // provideAnalytics(() => getAnalytics()),
     // provideAuth(() => getAuth()),
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "es" },
     { provide: SwRegistrationOptions, useFactory: () => ({ enabled: location.search.includes('sw=true') }) },
-    ScreenTrackingService, UserTrackingService, ScreenTrackingService, UserTrackingService
+    ScreenTrackingService, UserTrackingService
   ],
   bootstrap: [AppComponent]
 })

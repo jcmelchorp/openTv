@@ -6,6 +6,8 @@ import { Observable, firstValueFrom, map, merge, of, startWith, switchMap } from
 import { TdtDto } from '../../models/tdt-dto.model';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Router } from '@angular/router';
+import { TdtsDataService } from 'src/app/store/tdt/tdts-data.service';
+import { TdtListDataSource } from './tdt-list.datasource';
 
 
 @Component({
@@ -17,16 +19,14 @@ import { Router } from '@angular/router';
 export class TdtListComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
-  @ViewChild(MatSort)
-  sort!: MatSort;
-  @ViewChild(MatTable)
-  table!: MatTable<TdtDto>;
   @Input({ required: true }) objects!: TdtDto[];
   @Output() onTdtEmit = new EventEmitter<string>();
   dataSource!: MatTableDataSource<TdtDto>;
   defaultElevation = 2;
   raisedElevation = 4;
   isLoading = false;
+  size=24;
+page=0;
   // countryKeys = Object.keys(Countries);
   // categoryKeys = Object.keys(Categories);
   // selectedCountry: string = 'MX';
@@ -37,31 +37,20 @@ export class TdtListComponent implements OnInit, OnChanges, AfterViewInit {
   }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['objects'].currentValue) {
-      this.dataSource = new MatTableDataSource(changes['objects'].currentValue);
-
-      // this.table.dataSource = this.dataSource;
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-
-      if (this.dataSource.paginator) {
-        this.dataSource.paginator.firstPage();
-      }
-      this.isLoading = false;
+      this.loadPaginatedData(changes['objects'].currentValue);
     }
   }
   ngOnInit(): void {
-    this.dataSource = new MatTableDataSource(this.objects);
-    // this.dataSource.filter = this.selectedCountry
-    // this.linkListToPaginator();
-
+    this.loadPaginatedData(this.objects);
+    this.dataSource.paginator = this.paginator;
     // this.dataSource = new TdtListDataSource(this.tdtDtoService);
-    // this.linkListToPaginator();
+     this.linkListToPaginator();
   }
   ngAfterViewInit(): void {
+    
     // console.log(this.dataSource);
-    this.table.dataSource = this.dataSource;
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    // this.table.dataSource = this.dataSource;
+    // this.dataSource.sort = this.sort;
     // this.table.dataSource = this.dataSource;
     // this.isLoading = false;
     // this.isLoaded = true;
@@ -72,6 +61,19 @@ export class TdtListComponent implements OnInit, OnChanges, AfterViewInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  loadPaginatedData(dataObj): void {
+    this.dataSource = new MatTableDataSource(dataObj);
+     this.dataSource.paginator = this.paginator;
+     if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+    //  this.linkListToPaginator();
+    // this.table.dataSource = this.dataSource;
+
+   
+  }
+
 
   /** Announce the change in sort state for assistive technology. */
   announceSortChange(sortState: Sort) {
@@ -85,26 +87,22 @@ export class TdtListComponent implements OnInit, OnChanges, AfterViewInit {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
-  // playUrl(url: string) {
-  //   this.onTdtEmit.emit(url);
-  // }
-  // goTdt(id: string) {
-  //   this._router.navigate(['/tdts', id]);
-  // }
-
+ 
   // this method will link data to paginator
   linkListToPaginator() {
     // merge simply joins all this operators and creates an       //observable that listen to paginator page events
-    merge(this.paginator.page).pipe(
+    
+       merge(this.paginator.page).pipe(
       startWith({}),
       switchMap(() => {
         // creates an obserbable of sample data
-        return of(this.dataSource.data);
+        return of(this.objects);
       }))
       .subscribe(res => {
-        const from = this.paginator.pageIndex * 10;
-        const to = from + 10;
+        const from = this.paginator.pageIndex * this.paginator.pageSize;
+        const to = from + this.paginator.pageSize;
         this.dataSource.data = res.slice(from, to);
+        this.isLoading = true;
       });
   }
 }

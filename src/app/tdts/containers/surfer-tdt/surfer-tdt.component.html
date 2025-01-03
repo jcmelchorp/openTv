@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
     <div class="my-4" fxLayout="row-reverse" fxLayoutAlign="space-around start" fxLayout.lt-md="column"
         fxLayoutAlign.lt-md="space-between center" fxLayoutGap="30px">
         <div style="position: relative;top: 80px;" fxFlex="0 1 calc(65% -5px)" fxFlex.lt-lg="0 1 calc(50% -5px)">
@@ -7,18 +7,6 @@
 
         <div style="position: relative;top: 80px;" fxFlex="0 1 calc(35% -5px)" fxFlex.lt-lg="0 1 calc(50% -5px)">
             <form [formGroup]="filterValues">
-                <div fxLayout="row" fxLayoutAlign="space-between stretch">
-                    <mat-icon>public</mat-icon>
-                    <mat-form-field appearance="outline">
-                        <mat-label>{{"country"|translate}}</mat-label>
-                        <mat-select formControlName="countryCode" placeholder="País">
-                            <mat-option [value]="''">Todas</mat-option>
-                            <mat-option *ngFor="let key of countryKeys" [value]="key">
-                                {{key | translate}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
                 <div class="pt-2" fxLayout="row" fxLayoutAlign="space-between stretch">
                     <mat-icon>dvr</mat-icon>
                     <mat-form-field appearance="outline">
@@ -32,9 +20,42 @@
                     </mat-form-field>
                 </div>
             </form>
-            <app-tdt-list *ngIf="!(isLoading$|async)&&(isLoaded$|async)" [objects]="iptvs$|async"
+            <app-tdt-list *ngIf="!(isLoading$|async)&&(isLoaded$|async)" [objects]="tdts$|async"
                 (onTdtEmit)="notify($event)">
             </app-tdt-list>
+        </div>
+    </div>
+</div> -->
+
+<div class="container">
+    <div class="pt-5" fxLayout="row-reverse" fxLayoutAlign="space-around start" fxLayout.lt-lg="column"
+        fxLayoutAlign.lt-lg="space-between center" fxLayoutGap="10px">
+        <!-- player   -->
+        <div fxFlex="0 1 calc(55% -5px)" fxFlex.lt-lg="0 1 calc(45% -5px)">
+            <router-outlet></router-outlet>
+        </div>
+        <!-- list -->
+        <div fxFlex="0 1 calc(45% -5px)" fxFlex.lt-lg="0 1 calc(55% -5px)">
+
+            <div fxFill fxLayout="column" fxLayoutAlign="space-around">
+                <form [formGroup]="filterValues">
+                    <div class="pt-2" fxLayout="row" fxLayoutAlign="space-between stretch">
+                        <mat-form-field appearance="outline">
+                            <mat-label>{{"category"|translate}}</mat-label>
+                            <mat-select formControlName="category" placeholder="Categoria">
+                                <mat-option [value]="''">Todas</mat-option>
+                                <mat-option *ngFor="let key of categoryKeys" [value]="key">
+                                    {{key| translate}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-icon matSuffix>dvr</mat-icon>
+                        </mat-form-field>
+                    </div>
+                </form>
+                <app-tdt-list *ngIf="!(isLoading$|async)&&(isLoaded$|async)" [objects]="tdts$|async"
+                    (onTdtEmit)="notify($event)">
+                </app-tdt-list>
+            </div>
         </div>
     </div>
 </div>

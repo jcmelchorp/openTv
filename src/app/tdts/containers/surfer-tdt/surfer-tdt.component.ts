@@ -21,8 +21,8 @@ export interface StateGroup {
 export class SurferTdtComponent implements OnInit {
   private readonly route: ActivatedRoute = inject(ActivatedRoute);
   private readonly tdtsEntityService: TdtsEntityService = inject(TdtsEntityService);
-  iptv$!: Observable<TdtDto>;
-  iptvs$!: Observable<TdtDto[]>;
+  tdt$!: Observable<TdtDto>;
+  tdts$!: Observable<TdtDto[]>;
   isLoading$!: Observable<boolean>;
   isLoaded$!: Observable<boolean>;
   filteredEntities$: Observable<TdtDto[]>;
@@ -39,6 +39,7 @@ export class SurferTdtComponent implements OnInit {
   states = new FormControl();
   stateRecord: any = [];
   countrySubKeys: any[]
+
   // lang = Languages;
   // countries = Countries;
   // langKeys: string[];
@@ -49,7 +50,7 @@ export class SurferTdtComponent implements OnInit {
   ) {
     // Init form
     this.filterValues = this.fb.group({
-      countryCode: new FormControl(''),
+      // countryCode: new FormControl(''),
       // subdivisions: new FormControl([]),
       category: new FormControl(''),
     });
@@ -71,13 +72,16 @@ export class SurferTdtComponent implements OnInit {
     this.selectFilter()
     this.isLoading$ = this.tdtsEntityService.loading$;
     this.isLoaded$ = this.tdtsEntityService.loaded$;
-    this.iptvs$ = this.tdtsEntityService.filteredEntities$.pipe(
-      map(entities => entities.filter(entity => entity.url && entity.isNsfw.toString() == 'false')));/*.pipe(
-      map((tdts) => tdts.filter((iptv) => iptv.countryCode === 'MX'))
+    this.tdts$ = this.tdtsEntityService.filteredEntities$;
+    /* this.tdts$ = this.tdtsEntityService.filteredEntities$.pipe(
+      map(entities => entities.filter(entity => entity.url ))); */
+      /*.pipe(
+      map((tdts) => tdts.filter((tdt) => tdt.countryCode === 'MX'))
     );*/
     //this.filteredEntities$ = this.tdtsEntityService.filteredEntities$;
     // this.tdts$ = this.route.data.pipe<TdtDto[]>(map((tdts: TdtDto[]) => tdts));
-    // this.iptv$ = this.selectTdt(this.firstSource);
+    // this.tdt$ = this.selectTdt(this.firstSource);
+    //this.getData({ pageIndex: this.page, pageSize: this.size });
   }
   // setFilter(filter: any) {
   //   this.tdtsEntityService.filter$
@@ -85,14 +89,14 @@ export class SurferTdtComponent implements OnInit {
   // }
 
   selectTdt(channelId: string) {
-    return this.iptvs$
+    return this.tdts$
       .pipe(
-        map((iptvArray) => iptvArray.filter((iptv) => iptv.id === channelId).pop())
+        map((tdtArray) => tdtArray.filter((tdt) => tdt.id === channelId).pop())
       );
   }
   notify(channelId: string) {
     console.log(channelId)
-    this.iptv$ = this.selectTdt(channelId);
+    this.tdt$ = this.selectTdt(channelId);
   }
 
   // applyFilter() {
@@ -108,9 +112,9 @@ export class SurferTdtComponent implements OnInit {
   //   this.tdtsEntityService.setFilter(filter.trim().toLocaleLowerCase());
   // }
 
-  get countryCode(): string {
-    return this.filterValues.get('countryCode').value;
-  }
+  // get countryCode(): string {
+  //   return this.filterValues.get('countryCode').value;
+  // }
   get category(): string {
     return this.filterValues.get('category').value;
   }
@@ -118,9 +122,10 @@ export class SurferTdtComponent implements OnInit {
   //   return this.filterValues.get('subdivisions').value;
   // }
   selectFilter() {
+    // this.page = 0;
     let obj = {
       // subdivision: this.subdivisions ? this.subdivisions.join('@@') : null, 
-      countryCode: this.countryCode,// ? this.countryCode : this.subdivisions.slice(0, 2)[0], 
+      //countryCode: this.countryCode,// ? this.countryCode : this.subdivisions.slice(0, 2)[0], 
       category: this.category
     };
     Object.keys(obj).forEach((key) => obj[key] == null && delete obj[key]);
@@ -184,7 +189,25 @@ export class SurferTdtComponent implements OnInit {
 
   }
 
+// getData(obj) {
+//     console.log(obj)
+//     let index = 0,
+//       startingIndex = obj.pageIndex * obj.pageSize,
+//       endingIndex = startingIndex + obj.pageSize;
 
+//     this.tdts$ = this.tdtsEntityService.filteredEntities$.pipe(
+//       map((tdts: TdtDto[]) => {
+//         this.totalLength = tdts.length;
+//         this.data = tdts.filter(() => {
+//           index++;
+//           return (index > startingIndex && index <= endingIndex) ? true : false;
+//         });
+//         console.log(this.data.length)
+//         return this.data;
+//       })
+//     );
+
+//   }
 
 
 

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { iptvContainers } from './containers';
-import { HlsVideoPlayerDirective } from './directive/hls-video-player.directive';
+import { HlsVideoPlayerDirective } from '../shared/directive/hls-video-player.directive';
 import { iptvServices } from './services';
 import { IptvsDataService } from '../store/iptv/iptvs-data.service';
 import { IptvsEntityService } from '../store/iptv/iptvs-entity.service';

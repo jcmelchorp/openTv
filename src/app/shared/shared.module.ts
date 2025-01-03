@@ -5,7 +5,7 @@ import { sharedComponents } from './components';
 import { sharedServices } from './services';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
-import { HlsVideoPlayerDirective } from '../iptvs/directive/hls-video-player.directive';
+import { HlsVideoPlayerDirective } from './directive/hls-video-player.directive';
 
 @NgModule({
   declarations: [...sharedComponents,
