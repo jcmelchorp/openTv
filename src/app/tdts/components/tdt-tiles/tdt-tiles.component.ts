@@ -1,28 +1,23 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort, Sort } from '@angular/material/sort';
-import { Observable, firstValueFrom, map, merge, of, startWith, switchMap } from 'rxjs';
 import { TdtDto } from '../../models/tdt-dto.model';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { Router } from '@angular/router';
-import { TdtsDataService } from 'src/app/store/tdt/tdts-data.service';
-import { TdtListDataSource } from './tdt-list.datasource';
 
 
 @Component({
-  selector: 'app-tdt-list',
-  templateUrl: './tdt-list.component.html',
-  styleUrls: ['./tdt-list.component.scss'],
+  selector: 'app-tdt-tiles',
+  templateUrl: './tdt-tiles.component.html',
+  styleUrls: ['./tdt-tiles.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TdtListComponent implements OnInit, OnChanges {
+export class TdtTilesComponent implements OnInit, OnChanges {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @Input({ required: true }) objects!: TdtDto[];
   @Output() onTdtEmit = new EventEmitter<string>();
   defaultElevation = 2;
   raisedElevation = 4;
-  size = 24;
+  size = 20;
   page = 0;
   dataSource= new MatTableDataSource<TdtDto>();
  filteredData: TdtDto[];

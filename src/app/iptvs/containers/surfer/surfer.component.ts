@@ -1,16 +1,12 @@
-import { Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, inject } from '@angular/core';
 import { Observable, Subscription, firstValueFrom, map, take } from 'rxjs';
-
-
 import { IptvDto } from '../../models/iptv-dto.model';
 import { IptvsEntityService } from 'src/app/store/iptv/iptvs-entity.service';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Languages } from '../../models/languages.enum';
 import { Countries } from '../../models/countries.enum';
 import { ActivatedRoute } from '@angular/router';
 import { Categories } from '../../models/categories.enum';
-import { Subdivisions } from '../../models/subdivisions.enum';
-import { jelloAnimation } from 'angular-animations';
+
 export interface StateGroup {
   letter: string;
   checked: boolean;
@@ -20,6 +16,7 @@ export interface StateGroup {
   selector: 'app-surfer',
   templateUrl: './surfer.component.html',
   styleUrls: ['./surfer.component.scss'],
+  //encapsulation: ViewEncapsulation.None
 })
 export class SurferComponent implements OnInit {
   private readonly route: ActivatedRoute = inject(ActivatedRoute);

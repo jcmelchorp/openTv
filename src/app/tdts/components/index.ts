@@ -1,9 +1,9 @@
-import { TdtListComponent } from "./tdt-list/tdt-list.component";
 import { TdtPlayerComponent } from "./tdt-player/tdt-player.component";
+import { TdtTilesComponent } from "./tdt-tiles/tdt-tiles.component";
 
 export const tdtComponents: any[] = [
     TdtPlayerComponent,
-    TdtListComponent
+    TdtTilesComponent
 ];
 export * from "./tdt-player/tdt-player.component";
-export * from "./tdt-list/tdt-list.component";
+export * from "./tdt-tiles/tdt-tiles.component";

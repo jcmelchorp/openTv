@@ -1,40 +1,38 @@
-<div class="container">
-    <div class="pt-5" fxLayout="row-reverse" fxLayoutAlign="space-around start" fxLayout.lt-md="column"
-        fxLayoutAlign.lt-md="space-between center" fxLayoutGap="30px">
-        <div class="mt-2 w-100" fxFlex="0 1 calc(65% -5px)" fxFlex.lt-lg="0 1 calc(50% -5px)">
-            <router-outlet></router-outlet>
-        </div>
-
-        <div class="pt-5" fxFlex="0 1 calc(35% -5px)" fxFlex.lt-lg="0 1 calc(50% -5px)">
-            <form [formGroup]="filterValues">
-                <div class="pt-2" fxLayout="row" fxLayoutAlign="stretch stretch">
-                    <mat-form-field appearance="outline">
-                        <mat-label>{{"country"|translate}}</mat-label>
-                        <mat-select formControlName="countryCode">
-                            <mat-option [value]="''">Todas</mat-option>
-                            <mat-option *ngFor="let key of countryKeys" [value]="key">
-                                {{key | translate}}
-                            </mat-option>
-                        </mat-select>
-                        <mat-icon matSuffix>public</mat-icon>
-                    </mat-form-field>
-                </div>
-                <div class="pt-2" fxLayout="row" fxLayoutAlign="space-between stretch">
-                    <mat-form-field appearance="outline">
-                        <mat-label>{{"category"|translate}}</mat-label>
-                        <mat-select formControlName="category" >
-                            <mat-option [value]="''">Todas</mat-option>
-                            <mat-option *ngFor="let key of categoryKeys" [value]="key">
-                                {{key| translate}}
-                            </mat-option>
-                        </mat-select>
-                        <mat-icon matSuffix>dvr</mat-icon>
-                    </mat-form-field>
-                </div>
-            </form>
-            <app-iptv-list *ngIf="!(isLoading$|async)&&(isLoaded$|async)" [objects]="iptvs$|async"
-                (onIptvEmit)="notify($event)">
-            </app-iptv-list>
-        </div>
+<!-- <div class="container"> -->
+<div class="pt-5 px-5" fxLayout="row-reverse" fxLayout.lt-md="column" fxLayout.gt-lg="row-wrap"
+    fxLayoutAlign.gt-lg="start start" fxLayoutAlign="space-around start" fxLayoutAlign.lt-md="space-between center"
+    fxLayoutGap="12px">
+    <div class="mt-2 h-80" fxFlex.gt-lg="0 1 975px" fxFlex="0 1 calc(65% -20px)" fxFlex.lt-md="0 1 calc(50% -20px)">
+        <router-outlet></router-outlet>
     </div>
+    <div class="pt-4" fxFlex.gt-lg="0 1 525px" fxFlex="0 1 calc(35% -20px)" fxFlex.lt-md="0 1 calc(50% -20px)">
+        <form [formGroup]="filterValues">
+            <div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="8px">
+                <mat-form-field>
+                    <mat-label>{{"country"|translate}}</mat-label>
+                    <mat-select formControlName="countryCode">
+                        <mat-option [value]="''">Todas</mat-option>
+                        <mat-option *ngFor="let key of countryKeys" [value]="key">
+                            {{key | translate}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-icon matSuffix>public</mat-icon>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>{{"category"|translate}}</mat-label>
+                    <mat-select formControlName="category">
+                        <mat-option [value]="''">Todas</mat-option>
+                        <mat-option *ngFor="let key of categoryKeys" [value]="key">
+                            {{key| translate}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-icon matSuffix>dvr</mat-icon>
+                </mat-form-field>
+            </div>
+        </form>
+    <app-iptv-list *ngIf="!(isLoading$|async)&&(isLoaded$|async)" [objects]="iptvs$|async"
+        (onIptvEmit)="notify($event)">
+    </app-iptv-list>
 </div>
+</div>
+<!-- </div> -->

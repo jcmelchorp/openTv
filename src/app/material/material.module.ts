@@ -58,7 +58,7 @@ export function getPaginatorIntl() {
   providers: [
     { provide: MatPaginatorIntl, useValue: getPaginatorIntl() },
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { floatLabel: 'auto' } },
-    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } }
+     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }
   ],
   exports: [
     MaterialElevationDirective,

@@ -8,7 +8,11 @@ $typography-config: mat.define-typography-config(
   $font-family: '"Fredoka", "Londrina Sketch", sans-serif',
 );
 
-@include mat.typography-hierarchy($typography-config);
+//$typography-config: mat.define-typography-config();
+ @include mat.typography-hierarchy($typography-config); // 👈 Added
+
+
+  
 
 // Define a dark theme
 $dark-theme: mat.define-dark-theme(
@@ -17,10 +21,10 @@ $dark-theme: mat.define-dark-theme(
       primary: mat.define-palette(mat.$pink-palette),
       accent: mat.define-palette(mat.$blue-grey-palette),
     ),
-    // Only include `typography` and `density` in the default dark theme.
+    //Only include `typography` and `density` in the default dark theme.
     typography: $typography-config,
     //mat.define-typography-config($font-family: "Londrina Sketch"),
-    density: 0,
+     density: 0
   )
 );
 
@@ -30,7 +34,7 @@ $light-theme: mat.define-light-theme(
     color: (
       primary: mat.define-palette(mat.$indigo-palette),
       accent: mat.define-palette(mat.$pink-palette),
-    ),
+    )
   )
 );
 
@@ -48,3 +52,59 @@ $light-theme: mat.define-light-theme(
   @include mat.button-color($light-theme);
 }
 @include mat.all-component-colors($light-theme);
+
+// .mat-mdc-form-field-label {
+//   padding-left: 15px !important;
+
+  
+// }
+
+// dropdown label
+.mat-mdc-form-field-flex {
+  padding-top: 20px !important;
+  // padding-left: 2px !important;
+  // padding-bottom: 1px !important;
+
+}
+
+// // dropdown label
+// .mat-mdc-form-field-appearance-outline {
+// height: 20px !important;  
+// }
+
+// :root::ng-deep {
+//   input.mat-input-element {
+//     height: 80px !important;
+//   }
+// // // dropdown label
+// .mat-form-field-label {
+//   padding-left: 10px !important;
+// }
+
+// // dropdown label
+// .mat-form-field-flex {
+//   padding-top: 0px !important;
+//   padding-left: 10px !important;
+// }
+
+// // dropdown label
+// .mat-form-field-appearance-outline .mat-form-field-infix {
+//   padding-top: 6px !important;
+// }
+
+// // // dropdown options style
+// // .mat-select-panel .mat-optgroup-label,
+// // .mat-select-panel .mat-option {
+// //   height: 30px !important;
+// // }
+
+// // // dropdown options style
+// // .mat-select-panel .mat-option {
+// //   padding-left: 25px !important;
+// // }
+
+// // // selected value text style
+// // .mat-select-value-text {
+// //   padding-left: 10px !important;
+// // }
+// }

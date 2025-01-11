@@ -4,7 +4,7 @@ import { MatSort } from "@angular/material/sort";
 import { DataSource } from "@angular/cdk/collections";
 import { TdtDto } from "../../models/tdt-dto.model";
 
-export class TdtListDataSource extends DataSource<TdtDto> {
+export class TdtTilesDataSource extends DataSource<TdtDto> {
     //public data!: TdtDto[];
     paginator: MatPaginator | undefined;
     sort!: MatSort;

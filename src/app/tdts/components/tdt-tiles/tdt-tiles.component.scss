@@ -1,0 +1,25 @@
+
+img {
+  max-height: 100px;
+  max-width: 100px;
+  margin-left: 3px;
+  margin-bottom: 3px;
+}
+
+
+// .mat-mdc-form-field {
+//   width: 90%;
+// }
+::ng-deep .mat-paginator-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 50px;
+  flex-wrap: wrap-reverse;
+  width: 100%;
+}
+.paginator {
+  font-size: 80%;
+  margin: 0 !important;
+  background-color: transparent !important;
+}

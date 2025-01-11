@@ -7,13 +7,13 @@
 @import "assets/theme/colors";
 html,
 body {
-  height: 100vh;
+  height:100hv;
 }
 body {
   margin: 0;
   padding: 0;
   // background-color: white !important;
-  font-family: "Fredoka", "Londrina Sketch", sans-serif;
+  //font-family: "Fredoka", "Londrina Sketch", sans-serif;
 }
 .app-name {
   font-family: "Modak", cursive;
@@ -43,15 +43,15 @@ body {
   align-items: center;
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
+// @keyframes spin {
+//   0% {
+//     transform: rotate(0deg);
+//   }
 
-  100% {
-    transform: rotate(360deg);
-  }
-}
+//   100% {
+//     transform: rotate(360deg);
+//   }
+// }
 .view-title {
   color: $bg-main;
   font-size: calc(3em + 1.5vw);
@@ -76,5 +76,3 @@ body {
   user-select: none; /* Likely future */
 }
 
-/* Importing Bootstrap SCSS file. */
-// @import "bootstrap/scss/bootstrap";

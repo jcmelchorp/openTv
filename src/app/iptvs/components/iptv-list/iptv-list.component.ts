@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
@@ -10,7 +10,8 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
   selector: 'app-iptv-list',
   templateUrl: './iptv-list.component.html',
   styleUrls: ['./iptv-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  //encapsulation: ViewEncapsulation.None
 })
 export class IptvListComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChild(MatPaginator)
