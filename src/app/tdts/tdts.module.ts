@@ -1,5 +1,5 @@
 import { EntityDataService, EntityDefinitionService, EntityServices } from "@ngrx/data";
-import { HlsVideoPlayerDirective } from "../shared/directive/hls-video-player.directive";
+import { HlsVideoPlayerDirective } from "../shared/directives/hls-video-player.directive";
 import { SharedModule } from "../shared/shared.module";
 import { TdtsDataService } from "../store/tdt/tdts-data.service";
 import { TdtsEntityService } from "../store/tdt/tdts-entity.service";

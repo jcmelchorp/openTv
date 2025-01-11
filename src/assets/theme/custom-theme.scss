@@ -59,17 +59,26 @@ $light-theme: mat.define-light-theme(
   
 // }
 
-// dropdown label
-.mat-mdc-form-field-flex {
-  padding-top: 20px !important;
-  // padding-left: 2px !important;
-  // padding-bottom: 1px !important;
-
-}
-
 // // dropdown label
-// .mat-mdc-form-field-appearance-outline {
-// height: 20px !important;  
+// .mat-mdc-form-field-flex{
+// //  padding-top: 20px !important;
+// // height: 12px !important;
+// }
+
+ .mat-mdc-form-field-infix {
+    padding-top: 20px !important;
+   // height: 10px !important;
+
+  }
+  .mat-mdc-floating-label {
+   // margin-top: -1vh !important;
+    // margin-bottom: -1vh !important;
+    height: 15px !important;
+  }
+// dropdown label
+
+// .mat-mdc-form-field-appearance-outline .mat-mdc-form-field-flex {
+//   padding-top: 0 !important;
 // }
 
 // :root::ng-deep {
@@ -92,11 +101,11 @@ $light-theme: mat.define-light-theme(
 //   padding-top: 6px !important;
 // }
 
-// // // dropdown options style
-// // .mat-select-panel .mat-optgroup-label,
-// // .mat-select-panel .mat-option {
-// //   height: 30px !important;
-// // }
+// // dropdown options style
+// .mat-select-panel .mat-optgroup-label,
+// .mat-select-panel .mat-option {
+//   height: 30px !important;
+// }
 
 // // // dropdown options style
 // // .mat-select-panel .mat-option {

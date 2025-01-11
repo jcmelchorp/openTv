@@ -5,14 +5,14 @@ import { sharedComponents } from './components';
 import { sharedServices } from './services';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
-import { HlsVideoPlayerDirective } from './directive/hls-video-player.directive';
+import { HlsVideoPlayerDirective } from './directives/hls-video-player.directive';
+import { StylePaginatorDirective } from '../material/style-paginator.directive';
+import { sharedDirectives } from './directives';
 
 @NgModule({
-  declarations: [...sharedComponents,
-    HlsVideoPlayerDirective
-  ],
+  declarations: [...sharedComponents,...sharedDirectives  ],
   imports: [...commonModules, ...formsModules, ...uiModules],
-  exports: [HlsVideoPlayerDirective, ...sharedComponents, ...commonModules, ...formsModules, ...uiModules],
+  exports: [...sharedDirectives, ...sharedComponents, ...commonModules, ...formsModules, ...uiModules],
   providers: [...sharedServices]
 })
 export class SharedModule {

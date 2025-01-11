@@ -42,19 +42,19 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from '@angular/material/form-field';
-
 import { MaterialElevationDirective } from './material-elevation.directive';
+import { StylePaginatorDirective } from './style-paginator.directive';
 export function getPaginatorIntl() {
   const paginatorIntl = new MatPaginatorIntl();
-  paginatorIntl.itemsPerPageLabel = 'Canales por pág.';
-  paginatorIntl.nextPageLabel = 'Pág. siguiente ';
-  paginatorIntl.previousPageLabel = 'Pág. anterior';
-  paginatorIntl.firstPageLabel = 'Primera pág.';
-  paginatorIntl.lastPageLabel = 'Última pág.';
+  paginatorIntl.itemsPerPageLabel = 'Ver';
+  paginatorIntl.nextPageLabel = 'Siguiente';
+  paginatorIntl.previousPageLabel = 'Previo';
+  paginatorIntl.firstPageLabel = 'Inicio';
+  paginatorIntl.lastPageLabel = 'Final';
   return paginatorIntl;
 }
 @NgModule({
-  declarations: [MaterialElevationDirective],
+  declarations: [MaterialElevationDirective,StylePaginatorDirective],
   providers: [
     { provide: MatPaginatorIntl, useValue: getPaginatorIntl() },
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { floatLabel: 'auto' } },
@@ -62,6 +62,7 @@ export function getPaginatorIntl() {
   ],
   exports: [
     MaterialElevationDirective,
+    StylePaginatorDirective,
     A11yModule,
     DragDropModule,
     LayoutModule,
