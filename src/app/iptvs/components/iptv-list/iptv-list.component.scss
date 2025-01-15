@@ -4,35 +4,37 @@
   justify-content: center;
   flex-wrap: wrap;
   width: 100%;
-
+ background-color: transparent !important;
   //font-size: xx-small;
 }
 
 .paginator {
   // font-size: 80%;
   margin: 0 !important;
-  background-color: transparent !important;
+   background-color: transparent !important;
   font-family: "Fredoka", sans-serif;
-  // font-size: small;
+   font-size: small;
  // width: 3vh;
   // margin-top: -1vh;
 }
 ::ng-deep {
   table {
+    padding-left:2px;
+    padding-right:-2px;
     border-radius: 5px;
-    min-width: fit-content;
-    background-color: transparent !important;
+    min-width: min-content;
   }
   tbody {
     display: block;
     overflow: auto;
-    max-height: 50vh;
+    max-height: 60vh;
     width: 100%;
     padding-top: 2px;
     padding-bottom: 5px;
   }
-  thead,
+  tfoot,thead,
   tbody tr {
+    background-color: rgba(100, 100, 100, 0.1) !important;
     // height: 42px;
     display: table;
     width: 100%;
@@ -44,7 +46,7 @@
   font-style: bold;
   font-size: 15px;
   background-color: transparent !important;
-  color: #5b380e;
+  color: #42290b;
   font-family: "Fredoka", sans-serif;
 }
 .mat-mdc-row {
@@ -53,7 +55,7 @@
   // border-top: 1px solid transparent;
   .mat-mdc-cell {
     font-family: "Fredoka", sans-serif;
-    font-size: x-large;
+    font-size: large;
     cursor: pointer;
   }
 }
@@ -72,4 +74,7 @@
 
 .mat-footer-cell{
   border-top: 5px solid rgba(0, 0, 0, 0.82);
+  // font-family: "Fredoka", sans-serif;
+  background-color: transparent !important;
+
 }

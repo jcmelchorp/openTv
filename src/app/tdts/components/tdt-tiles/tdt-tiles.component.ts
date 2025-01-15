@@ -19,10 +19,10 @@ export class TdtTilesComponent implements OnInit, OnChanges {
   raisedElevation = 4;
   size = 20;
   page = 0;
-  dataSource= new MatTableDataSource<TdtDto>();
- filteredData: TdtDto[];
+  dataSource = new MatTableDataSource<TdtDto>();
+  filteredData: TdtDto[];
   constructor(private _liveAnnouncer: LiveAnnouncer) { }
-  
+
   ngOnChanges(changes: SimpleChanges): void {
     console.log(changes)
     if (changes['objects'].currentValue) {
@@ -35,7 +35,7 @@ export class TdtTilesComponent implements OnInit, OnChanges {
     this.loadPaginatedData(this.objects);
     this.linkListToPaginator({ pageIndex: this.page, pageSize: this.size });
   }
- 
+
   loadPaginatedData(dataObj): void {
     this.dataSource.data = dataObj;
     this.dataSource.paginator = this.paginator;

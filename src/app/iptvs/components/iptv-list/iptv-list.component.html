@@ -1,6 +1,6 @@
 <!-- <ng-content #filterform></ng-content> -->
-<div fxLayout="column" fxLayoutAlign="start stretch">
-  <mat-form-field>
+<div  fxLayout="column" fxLayoutAlign="start stretch">
+  <mat-form-field style="margin-bottom: -21px;">
     <mat-label>{{"search-by-word"|translate}}</mat-label>
     <input #input matInput (keyup)="applyFilter($event.target.value)" placeholder="¿cómo se llama el canal?">
     <mat-icon matSuffix>search</mat-icon>

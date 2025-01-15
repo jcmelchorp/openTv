@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Movie } from '../../models/movie.model';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Sort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-movie-list',
@@ -12,25 +13,56 @@ import { Sort } from '@angular/material/sort';
 
 })
 export class MovieListComponent implements OnInit {
+    @ViewChild(MatPaginator) paginator!: MatPaginator;
   @Input({ required: true }) movies!: Movie[];
   @Output() onMovieEmit = new EventEmitter<string>();
-  dataSource!: MatTableDataSource<Movie>;
   defaultElevation = 2;
-  raisedElevation = 4;
-  isLoading = false;
+    raisedElevation = 4;
+    size = 20;
+    page = 0;
+    dataSource = new MatTableDataSource<Movie>();
+    filteredData: Movie[];
   constructor(private _liveAnnouncer: LiveAnnouncer) {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes)
     if (changes['movies'].currentValue) {
-      this.isLoading = false;
+      this.loadPaginatedData(changes['movies'].currentValue);
+      this.linkListToPaginator({ pageIndex: this.page, pageSize: this.paginator.pageSize });
     }
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.loadPaginatedData(this.movies);
+    this.linkListToPaginator({ pageIndex: this.page, pageSize: this.size });
+  }
+
+  loadPaginatedData(dataObj): void {
+    this.dataSource.data = dataObj;
+    this.dataSource.paginator = this.paginator;
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+  linkListToPaginator(obj): void {
+    console.log(obj)
+    let index = 0,
+      startingIndex = obj.pageIndex * obj.pageSize,
+      endingIndex = startingIndex + obj.pageSize;
+
+
+    this.filteredData = this.dataSource.filteredData.filter(() => {
+      index++;
+      return (index > startingIndex && index <= endingIndex) ? true : false;
+    });
+
+  }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase()
+    this.linkListToPaginator({ pageIndex: this.paginator.pageIndex, pageSize: this.paginator.pageSize });
   }
 
   /** Announce the change in sort state for assistive technology. */

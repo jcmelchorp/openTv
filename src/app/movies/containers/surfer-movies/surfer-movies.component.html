@@ -28,8 +28,10 @@
         </mat-paginator>
         <div fxLayout="row wrap" *ngIf="!(isLoading$|async)&&(isLoaded$|async)" (onMovieEmit)="notify($event)">
           <ng-container *ngFor="let movie of data">
+
             <img [src]="movie.logo" [alt]="movie.name" [routerLink]="movie.id">
           </ng-container>
+
         </div>
         
       </div>

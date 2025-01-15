@@ -37,6 +37,7 @@
             ],
             "styles": [
               "src/styles.scss",
+              "node_modules/video.js/dist/video-js.min.css",
               "node_modules/ngx-sharebuttons/themes/modern.scss",
               "node_modules/ngx-sharebuttons/themes/material.scss",
               "node_modules/ngx-sharebuttons/themes/circles.scss"
@@ -114,6 +115,7 @@
             ],
             "styles": [
               "src/styles.scss",
+              "node_modules/video.js/dist/video-js.min.css",
               "node_modules/ngx-sharebuttons/themes/modern.scss",
               "node_modules/ngx-sharebuttons/themes/material.scss",
               "node_modules/ngx-sharebuttons/themes/circles.scss"

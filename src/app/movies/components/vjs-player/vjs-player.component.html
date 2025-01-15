@@ -5,11 +5,11 @@
       <app-card-subtitle>{{ movie.channelId! }}</app-card-subtitle>
       <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
         <!-- <mat-star-rating [rating]="movie.imdbRating!" [starCount]="5" [color]="starColor"></mat-star-rating> -->
-        <img mat-card-image [src]="movie.logo?movie.logo:'/assets/icons/bad-tv.png'" height="40px" />
+        <img mat-card-image [src]="movie.logo!" height="40px" />
       </div>
     </mat-card-header>
     <mat-card-content>
-        <video #target id="my-video" class="video-js vjs-fluid"  [stream]="movie.url!"></video>
+        <video appVideojsPlayer #target class="videojs"  ></video>
       <!-- <p>{{ movie.Plot }}</p> -->
     </mat-card-content>
     <!-- <mat-card-footer>

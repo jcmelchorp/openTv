@@ -2,12 +2,12 @@
 <div class="pt-5 px-5" fxLayout="row-reverse" fxLayout.lt-md="column" fxLayout.gt-lg="row-wrap"
     fxLayoutAlign.gt-lg="start start" fxLayoutAlign="space-around start" fxLayoutAlign.lt-md="space-between center"
     fxLayoutGap="10px">
-    <div class="mt-2 h-80" fxFlex.gt-lg="0 1 975px" fxFlex="0 1 calc(65% -20px)" fxFlex.lt-md="0 1 calc(50% -20px)">
+    <div class="pt-2 h-80" fxFlex.gt-lg="0 1 975px" fxFlex="0 1 calc(65% -20px)" fxFlex.lt-md="0 1 calc(50% -20px)">
         <router-outlet></router-outlet>
     </div>
-    <div class="pt-4" fxFlex.gt-lg="0 350px" fxFlex="0 1 calc(35% -20px)" fxFlex.lt-md="0 1 calc(50% -20px)">
+    <div class="pt-3" fxFlex.gt-lg="0 1 350px" fxFlex="0 1 calc(35% -20px)" fxFlex.lt-md="0 1 calc(50% -20px)">
         <form [formGroup]="filterValues">
-            <div fxLayout="row" fxLayoutAlign="center stretch" fxLayoutGap="5px">
+            <div style="margin-bottom: -21px;" fxLayout="row" fxLayoutAlign="center stretch" fxLayoutGap="0px">
                 <mat-form-field fxFlex>
                     <mat-label>{{"country"|translate}}</mat-label>
                     <mat-select formControlName="countryCode">

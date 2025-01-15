@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { MovieResolver } from "./resolvers/movie.resolver";
 import { MoviesResolver } from "./resolvers/movies.resolver";
-import { MoviePlayerComponent } from "./components";
+import { MoviePlayerComponent, VjsPlayerComponent } from "./components";
 import { SurferMoviesComponent } from "./containers";
 
 

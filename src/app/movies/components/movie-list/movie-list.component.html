@@ -1,20 +1,37 @@
 <div class="pt-1" fxLayout="column" fxLayoutAlign="space-evenly stretch">
-  <div fxLayout="row" fxLayoutAlign="space-between stretch">
+  <!-- <div fxLayout="row" fxLayoutAlign="space-between stretch"> -->
     <mat-form-field appearance="outline" floatLabel="always">
       <mat-label>{{"search-by-word"|translate}}</mat-label>
       <input matInput #input (keyup)="applyFilter($event.target.value)" />
       <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
+    <mat-paginator class="paginator" #paginator [length]="dataSource.filteredData.length" [pageSize]="size"
+    (page)="linkListToPaginator($event)" [pageSizeOptions]="[5, 10, 15, 20, 25,30]" showFirstLastButtons
+    aria-label="Select channel"></mat-paginator>
+  @if (filteredData.length!==0) {
+  <div  fxLayout="row wrap" fxLayoutAlign="center stretch" >
+    <ng-container *ngFor="let movie of filteredData">
+      <figure [routerLink]="movie.id"><img [src]="movie.logo" [alt]="movie.name" ></figure>
+    </ng-container>
   </div>
-  <mat-grid-list cols="6" rowHeight="150px" gutterSize="5px">
+  }
+  @else {
+  <div fxLayout="row wrap" fxLayoutAlign="center center">
+    <h2 class="text-center"><span class="badge text-bg-warning text-light">No encontré
+        resultados.</span>
+    </h2>
+  </div>
+  }
+  <!-- </div> -->
+  <!-- <mat-grid-list cols="6" rowHeight="150px" gutterSize="5px">
     <mat-grid-tile-header>Películas </mat-grid-tile-header>
-    <!-- @for (movie of movies; track movie) { -->
+    @for (movie of movies; track movie) {
     <mat-grid-tile colspan="1" rowspan="1" style="border-radius: 4px;" *ngFor="let movie of movies">
       <mat-card [routerLink]="movie.id" appearance="outlined">
         <mat-card-header>
           <mat-card-title-group>
             <mat-card-title>{{movie.name}} </mat-card-title>
-            <!-- <mat-card-subtitle>{{movie.channelId}} </mat-card-subtitle> -->
+            <mat-card-subtitle>{{movie.channelId}} </mat-card-subtitle>
           </mat-card-title-group>
         </mat-card-header>
         <picture>
@@ -24,6 +41,6 @@
         <mat-card-content> </mat-card-content>
       </mat-card>
     </mat-grid-tile>
-    <!-- } -->
-  </mat-grid-list>
+    }
+  </mat-grid-list> -->
 </div>
