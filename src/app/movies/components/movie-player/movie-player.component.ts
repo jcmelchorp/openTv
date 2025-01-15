@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, map, switchMap, tap } from 'rxjs';
 import { MoviesEntityService } from 'src/app/store/movie/movies-entity.service';
@@ -9,13 +9,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import videojs from 'video.js';
 import 'videojs-playlist';
 import '@videojs/http-streaming';
+// declare const videojs: any;
 
 @Component({
   selector: 'app-movie-player',
   templateUrl: './movie-player.component.html',
   styleUrls: ['./movie-player.component.scss']
 })
-export class MoviePlayerComponent{
+export class MoviePlayerComponent implements OnInit,AfterViewInit {
   private readonly route: ActivatedRoute = inject(ActivatedRoute);
   private readonly moviesEntityService: MoviesEntityService = inject(MoviesEntityService);
   @ViewChild('target') target: ElementRef;
@@ -25,52 +26,54 @@ export class MoviePlayerComponent{
   isLoading$!: Observable<boolean>;
   isLoaded$!: Observable<boolean>;  // constructor() { this.movie$ = this.movieEntityService.entities$.pipe(map((movies) => movies.find((movie) => movie.id === this.route.snapshot.params['id']))); }
   starColor: StarRatingColor = StarRatingColor.accent;
-  private video: HTMLVideoElement; 
   player: any;
-  options:any;
-    
+  options:any = {
+    preload: 'metadata',
+    controls: true,
+    autoplay: true,
+    overrideNative: true,
+    techOrder: ['html5'],
+    html5: {
+      nativeVideoTracks: false,
+      nativeAudioTracks: false,
+      nativeTextTracks: false,
+      vhs: {
+        withCredentials: true,
+        overrideNative: true,
+        debug: true,
+      },
+    },
+    playsinline: true,
+    bigPlayButton: false,
+    liveui: true,
+    sources: [
+      {
+        src: '',
+        type: 'video/mp4',
+      },
+    ],
+  }
+
   ngOnInit(): void {
-    this.movie$ =this.route.paramMap.pipe(
-      switchMap(params =>        this.moviesEntityService.entities$.pipe(
-        map((movies) => {
-          let movie= movies.find((movie) => movie.id == params.get('id'))
-          this.options = {
-            preload: 'metadata',
-            controls: true,
-            autoplay: true,
-            overrideNative: true,
-            techOrder: ['html5'],
-            html5: {
-              nativeVideoTracks: false,
-              nativeAudioTracks: false,
-              nativeTextTracks: false,
-              vhs: {
-                withCredentials: false,
-                overrideNative: true,
-                debug: true,
-              },
-            },
-            playsinline: true,
-            bigPlayButton: false,
-            liveui: true,
-            sources: [
-                {
-                  src: movie.url,
-                  type: 'video/mp4',
-                },
-            ],
-          };
-          return movie
-        }),
-        // switchMap((movie) => this.moviesService.getInfo(movie.name)
-        //   .pipe(
-        //     map((info) => ({ ...movie, ...info } as Movie)),
-        //     tap((movie) =>console.log(movie))
-        //   )
-        // )
-      )
-      )
-    )
+    this.movie$ = this.route.paramMap.pipe(
+      switchMap(params =>
+        this.moviesEntityService.entities$.pipe(
+          map((tdts) => {
+            let mov=tdts.find((tdt) => tdt.id == params.get('id'));
+            this.options.sources[0].src=mov.url!;
+            return mov
+          })
+        )
+      ),
+    );
+        
+    console.log(this.options)
+
+  }
+
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
     this.establishVideojsStream();
 
   }
@@ -82,9 +85,9 @@ export class MoviePlayerComponent{
         //console.log(e.name);
       });
     });
-   
+
   }
-  
+
   videoEve() {
     console.log(this.player.currentTime());
   }

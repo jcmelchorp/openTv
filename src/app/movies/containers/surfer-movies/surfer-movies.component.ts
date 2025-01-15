@@ -19,7 +19,7 @@ import { MovieListComponent } from '../../components';
 export class SurferMoviesComponent implements OnInit {
   private readonly route: ActivatedRoute = inject(ActivatedRoute);
   private readonly moviesEntityService: MoviesEntityService = inject(MoviesEntityService);
-
+  movie: Movie
   movie$!: Observable<Movie>;
   movies$!: Observable<Movie[]>;
   isLoading$!: Observable<boolean>;
@@ -104,7 +104,10 @@ export class SurferMoviesComponent implements OnInit {
   selectMovie(id: string): Observable<Movie> {
     return this.movies$
       .pipe(
-        map((movieArray) => movieArray.find((movie) => movie.id === id)),
+        map((movieArray) => {
+          this.movie = movieArray.find((movie) => movie.id === id)
+          return this.movie
+        }),
       );
   }
 
