@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, ElementRef, inject, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, map, switchMap, tap } from 'rxjs';
+import { Observable, map, mergeMap, switchMap, tap } from 'rxjs';
 import { MoviesEntityService } from 'src/app/store/movie/movies-entity.service';
 import { Movie } from '../../models/movie.model';
 import { StarRatingColor } from 'src/app/shared/components';
@@ -16,7 +16,7 @@ import '@videojs/http-streaming';
   templateUrl: './movie-player.component.html',
   styleUrls: ['./movie-player.component.scss']
 })
-export class MoviePlayerComponent implements OnInit,AfterViewInit {
+export class MoviePlayerComponent implements OnInit,AfterViewInit,OnChanges{
   private readonly route: ActivatedRoute = inject(ActivatedRoute);
   private readonly moviesEntityService: MoviesEntityService = inject(MoviesEntityService);
   @ViewChild('target') target: ElementRef;
@@ -56,11 +56,12 @@ export class MoviePlayerComponent implements OnInit,AfterViewInit {
 
   ngOnInit(): void {
     this.movie$ = this.route.paramMap.pipe(
-      switchMap(params =>
+      mergeMap(params =>
         this.moviesEntityService.entities$.pipe(
           map((tdts) => {
             let mov=tdts.find((tdt) => tdt.id == params.get('id'));
             this.options.sources[0].src=mov.url!;
+            console.log(mov)
             return mov
           })
         )
@@ -68,17 +69,26 @@ export class MoviePlayerComponent implements OnInit,AfterViewInit {
     );
         
     console.log(this.options)
+    this.establishVideojsStream(this.options);
 
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+    //Add '${implements OnChanges}' to the class.
+    this.establishVideojsStream(this.options);
+
+
+  }
   ngAfterViewInit(): void {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
-    this.establishVideojsStream();
+    this.establishVideojsStream(this.options);
+
 
   }
-  private establishVideojsStream() {
-    this.player = videojs('my-video', this.options);
+  private establishVideojsStream(options) {
+    this.player = videojs('my-video',options);
     this.player.on('pause', this.videoEve.bind(this));
     this.player.on('ready', () => {
       this.player.tech().on('usage', (e) => {

@@ -13,28 +13,27 @@ import { MatPaginator } from '@angular/material/paginator';
 
 })
 export class MovieListComponent implements OnInit {
-    @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @Input({ required: true }) movies!: Movie[];
-  @Output() onMovieEmit = new EventEmitter<string>();
+ @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @Input({ required: true }) objects!: Movie[];
+  @Output() onTdtEmit = new EventEmitter<string>();
   defaultElevation = 2;
-    raisedElevation = 4;
-    size = 20;
-    page = 0;
-    dataSource = new MatTableDataSource<Movie>();
-    filteredData: Movie[];
-  constructor(private _liveAnnouncer: LiveAnnouncer) {
-  }
+  raisedElevation = 4;
+  size = 20;
+  page = 0;
+  dataSource = new MatTableDataSource<Movie>();
+  filteredData: Movie[];
+  constructor(private _liveAnnouncer: LiveAnnouncer) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log(changes)
-    if (changes['movies'].currentValue) {
-      this.loadPaginatedData(changes['movies'].currentValue);
+    if (changes['objects'].currentValue) {
+      this.loadPaginatedData(changes['objects'].currentValue);
       this.linkListToPaginator({ pageIndex: this.page, pageSize: this.paginator.pageSize });
     }
   }
 
   ngOnInit(): void {
-    this.loadPaginatedData(this.movies);
+    this.loadPaginatedData(this.objects);
     this.linkListToPaginator({ pageIndex: this.page, pageSize: this.size });
   }
 
@@ -63,18 +62,5 @@ export class MovieListComponent implements OnInit {
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase()
     this.linkListToPaginator({ pageIndex: this.paginator.pageIndex, pageSize: this.paginator.pageSize });
-  }
-
-  /** Announce the change in sort state for assistive technology. */
-  announceSortChange(sortState: Sort) {
-    // This example uses English messages. If your application supports
-    // multiple language, you would internationalize these strings.
-    // Furthermore, you can customize the message to add additional
-    // details about the values being sorted.
-    if (sortState.direction) {
-      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
-    } else {
-      this._liveAnnouncer.announce('Sorting cleared');
-    }
   }
 }

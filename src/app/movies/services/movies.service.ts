@@ -16,7 +16,7 @@ export class MoviesService {
     };
     list(): Observable<Movie[]> {
         return this.getMovies().pipe(
-            map((channels: Movie[]) => channels.map(channel => {
+            map((channels: Movie[]) => channels.filter(channel=>channel.url.includes('.mp4')).map(channel => {
                 let movie: Movie = {
                     id: channel.id,
                     channelId: channel.channelId,
@@ -69,7 +69,6 @@ export class MoviesService {
 
     getMovies(): Observable<Movie[]> {
         return this.http
-            //  .get<Movie[]>(this.URL + 'movies.json', this.httpOptions)
             .get<Movie[]>(this.URL + '205-chan.json', this.httpOptions)
             .pipe(
                 retry(1),
